@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PhishShift Dashboard</title>
+<style>
+:root{--navy:#0b1624;--cyan:#1aa6e0;--bg:#f3f6fa;--card:#fff;--ink:#14202e;--mute:#5d6b7c;--line:#e1e7ef;
+--bad:#c93b3b;--ok:#1b8f63;--warn:#c27a00;--soft:#eaf6fd}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 "Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--navy);color:#fff;padding:18px 28px;border-bottom:4px solid var(--cyan)}
+header h1{margin:0;font-size:22px;letter-spacing:.2px}
+header p{margin:2px 0 0;color:#a9bad0;font-size:13px}
+.banner{background:#fff7e0;border-bottom:1px solid #f0d58a;color:#6b4e00;padding:7px 28px;font-size:13px}
+nav{display:flex;gap:4px;flex-wrap:wrap;padding:10px 24px 0;background:var(--bg);position:sticky;top:0;z-index:5}
+nav button{border:0;background:transparent;padding:9px 14px;border-radius:8px 8px 0 0;font:inherit;color:var(--mute);cursor:pointer}
+nav button.on{background:var(--card);color:var(--ink);font-weight:600;box-shadow:0 -2px 0 var(--cyan) inset}
+main{padding:0 24px 40px;max-width:1280px;margin:0 auto}
+section{display:none;background:var(--card);border-radius:0 10px 10px 10px;padding:22px;border:1px solid var(--line)}
+section.on{display:block}
+h2{margin:0 0 4px;font-size:19px} h3{margin:22px 0 8px;font-size:16px}
+.sub{color:var(--mute);margin:0 0 14px;font-size:13px}
+.grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(380px,1fr))}
+.tile{border:1px solid var(--line);border-radius:10px;padding:14px;background:#fbfdff}
+.tile .k{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.6px}
+.tile .v{font-size:26px;font-weight:700;margin-top:2px}.tile .n{font-size:12px;color:var(--mute)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{background:var(--navy);color:#fff;text-align:left;padding:8px 10px;font-weight:600;white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:#f8fafc}
+.scroll{overflow-x:auto}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600}
+.p-bad{background:#fde8e8;color:var(--bad)}.p-ok{background:#e1f5ec;color:var(--ok)}.p-warn{background:#fff1d6;color:var(--warn)}.p-mute{background:#eef2f6;color:var(--mute)}
+.bar{display:flex;align-items:center;gap:8px;margin:4px 0}.bar .l{width:210px;font-size:13px}
+.bar .t{flex:1;background:#eef2f6;border-radius:5px;height:16px;position:relative;overflow:hidden}
+.bar .f{height:100%;border-radius:5px}.bar .x{width:54px;font-size:12.5px;text-align:right;font-variant-numeric:tabular-nums}
+.note{background:var(--soft);border-left:4px solid var(--cyan);padding:10px 14px;border-radius:6px;margin:12px 0;font-size:13.5px}
+.warnbox{background:#fff7e0;border-left:4px solid #e0a800;padding:10px 14px;border-radius:6px;margin:12px 0;font-size:13.5px}
+textarea,input,select{font:inherit;width:100%;padding:8px 10px;border:1px solid #c9d3df;border-radius:8px;background:#fff}
+textarea{min-height:150px;font-family:Consolas,monospace;font-size:13px}
+label{display:block;font-size:12px;color:var(--mute);margin:10px 0 3px;text-transform:uppercase;letter-spacing:.5px}
+button.btn{background:var(--cyan);color:#fff;border:0;border-radius:8px;padding:9px 18px;font:inherit;font-weight:600;cursor:pointer}
+button.btn.alt{background:#fff;color:var(--ink);border:1px solid #c9d3df;font-weight:500;padding:6px 12px;margin:2px 4px 2px 0}
+button.btn:disabled{opacity:.5}
+.verdict{border-radius:10px;padding:14px 18px;font-size:20px;font-weight:700;margin-bottom:10px}
+.v-phish{background:#fde8e8;color:var(--bad)}.v-legit{background:#e1f5ec;color:var(--ok)}.v-review{background:#fff1d6;color:var(--warn)}
+.cm{display:grid;grid-template-columns:auto 70px 70px;gap:3px;font-size:13px;width:max-content}
+.cm div{padding:8px 10px;text-align:center}.cm .h{color:var(--mute);font-size:12px}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}
+pre{white-space:pre-wrap;background:#f6f8fb;border:1px solid var(--line);border-radius:8px;padding:10px;font-size:12.5px;margin:6px 0}
+mark{background:#ffe27a;padding:0 2px;border-radius:3px}
+.heat{font-variant-numeric:tabular-nums;text-align:center;min-width:54px}
+code{background:#eef2f6;padding:1px 5px;border-radius:4px;font-size:12.5px}
+.small{font-size:12.5px;color:var(--mute)}
+</style>
+</head>
+<body>
+<header>
+  <h1>PhishShift Message Risk Scanner</h1>
+  <p>ML-07 · Cybersecurity NLP + Robustness · educational triage tool · <span id="ver"></span></p>
+</header>
+<div class="banner">⚠ Classification is <b>decision support, not a guarantee of safety</b> (NFR-03). Links in messages are never opened, fetched or executed (NFR-01). Use synthetic or consented messages only (NFR-02).</div>
+<nav id="nav"></nav>
+<main>
+<section id="overview"></section>
+<section id="data"></section>
+<section id="models"></section>
+<section id="robust"></section>
+<section id="scanner"></section>
+<section id="errors"></section>
+<section id="tests"></section>
+<section id="artifacts"></section>
+</main>
+
+<script>
+const TABS=[["overview","Overview"],["data","Data & EDA"],["models","Models"],["robust","Robustness"],["scanner","Live Scanner"],["errors","Errors & Explanations"],["tests","Tests & Traceability"],["artifacts","Artifacts"]];
+const ML={rules:"Rule-based cues",tfidf_lr:"TF-IDF + Logistic Regression",char_svm:"Char n-gram + calibrated SVM"};
+const MK=["rules","tfidf_lr","char_svm"];
+let S=null;
+const $=id=>document.getElementById(id);
+const pct=x=>x==null?"–":(x*100).toFixed(1)+"%";
+const f3=x=>x==null?"–":Number(x).toFixed(3);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function tbl(h,rows,cls=""){return `<div class="scroll"><table class="${cls}"><thead><tr>${h.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`}
+function bar(l,v,max=1,color="#1aa6e0",txt=null){return `<div class="bar"><div class="l">${l}</div><div class="t"><div class="f" style="width:${Math.max(0,Math.min(100,v/max*100))}%;background:${color}"></div></div><div class="x">${txt??pct(v)}</div></div>`}
+function tile(k,v,n=""){return `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div><div class="n">${n}</div></div>`}
+function heat(p){const a=Math.abs(p-.5)*2;const c=p>=.5?`rgba(201,59,59,${.12+a*.5})`:`rgba(27,143,99,${.12+a*.45})`;return `<td class="heat" style="background:${c}">${(p*100).toFixed(0)}%</td>`}
+
+function buildNav(){ $("nav").innerHTML=TABS.map(([id,l],i)=>`<button data-t="${id}" class="${i?"":"on"}">${l}</button>`).join("");
+  $("nav").onclick=e=>{const b=e.target.closest("button");if(!b)return;show(b.dataset.t)};
+  show(location.hash.slice(1)||"overview")}
+function show(id){ if(!document.getElementById(id))id="overview"; location.hash=id;
+  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===id)); }
+
+/* ---------------------------------------------------------------- Overview */
+function renderOverview(){
+  const p=S.primary, h=S.schemes.campaign_holdout[p], rs=S.schemes.random_split_dedup[p], rn=S.schemes.random_split_NO_dedup[p], ab=S.abstain[p];
+  const at=S.acceptance["AT-01"].by_model[p];
+  $("overview").innerHTML=`<h2>Overview</h2><p class="sub">Can a training tool detect suspicious messages when attackers use unfamiliar wording, shortened links and harmless-looking urgency cues?</p>
+  <div class="grid g4">
+   ${tile("Messages (after dedup)",S.counts.dedup,`raw ${S.counts.raw} → removed ${S.dedup.removed} near-duplicates`)}
+   ${tile("Primary model",ML[p],"chosen by leave-campaign-out CV on training campaigns")}
+   ${tile("Held-out campaign F1",f3(h.f1),`recall ${pct(h.recall)} · precision ${pct(h.precision)}`)}
+   ${tile("Random-split F1 (optimistic)",f3(rs.f1),"same model, random split of the same data")}
+   ${tile("FPR on legit urgent msgs",pct(at.fpr),`${at.false_positives} false alarms in ${S.acceptance["AT-01"].n} messages`)}
+   ${tile("Abstain coverage",pct(ab.coverage),`confidence ≥ ${S.abstain_conf}; accuracy on covered ${pct(ab.accuracy_on_covered)}`)}
+  </div>
+  <h3>Key findings</h3>
+  <div class="note"><b>Generalisation gap.</b> ${ML[p]} scores F1 <b>${f3(rs.f1)}</b> on a random split (${f3(rn.f1)} without deduplication) but only <b>${f3(h.f1)}</b> on whole campaigns it never saw. A random split mostly tests memorised templates; the campaign holdout tests the real question.</div>
+  <div class="note"><b>Missed phishing.</b> ${h.fn} of ${h.fn+h.tp} held-out phishing messages were missed at the 0.5 threshold. The abstain option routes ${ab.missed_phish_without_abstain-ab.missed_phish_with_abstain} of them to human review instead of silently passing them as safe.</div>
+  <div class="note"><b>Legitimate urgent messages.</b> Password-expiry and payroll cut-off notices share vocabulary with phishing. Keyword-heavy training would flag them; see the Tests tab (AT-01) for the measured false-positive impact.</div>
+  <h3>Pipeline at a glance</h3>
+  ${bar("Raw rows",S.counts.raw,S.counts.raw,"#8aa0b8",S.counts.raw)}${bar("After cleaning",S.counts.clean,S.counts.raw,"#5b8fb9",S.counts.clean)}
+  ${bar("After near-dup removal",S.counts.dedup,S.counts.raw,"#1aa6e0",S.counts.dedup)}${bar("Training campaigns",S.counts.train,S.counts.raw,"#1b8f63",S.counts.train)}
+  ${bar("Held-out campaigns",S.counts.holdout,S.counts.raw,"#c27a00",S.counts.holdout)}
+  <p class="small">Model <code>${S.meta.version}</code> trained ${S.meta.trained_at} · sklearn ${S.meta.sklearn} · seed ${S.meta.seed} · data hash ${S.meta.data_sha256_prefix}</p>
+  ${S.mentor?`<h3>Mentor-supplied variation</h3>${S.mentor.error?`<div class="warnbox">${esc(S.mentor.error)}</div>`:tbl(["Model","n","Accuracy","Recall","FPR","F1"],MK.map(k=>{const m=S.mentor.metrics[k];return [ML[k],m.n,pct(m.accuracy),pct(m.recall),pct(m.fpr),f3(m.f1)]}))}`:`<p class="small">Mentor drop-in: place <code>data/mentor/mentor_holdout.csv</code> (columns: body_text, label, optional channel / subject_or_title / sender_domain_type) and click “Re-run pipeline” on the Tests tab to evaluate the team-specific variation.</p>`}`;
+  $("ver").textContent="model "+S.meta.version;
+}
+
+/* ---------------------------------------------------------------- Data */
+function renderData(){
+  const d=S.dedup, e=S.eda, a=d.cross_split_audit;
+  const hist=(r)=>Object.entries(r.histogram).map(([k,v])=>bar(k,v,r.n_test,k.startsWith(">=")?"#c93b3b":"#1aa6e0",v)).join("");
+  $("data").innerHTML=`<h2>Data, cleaning & EDA</h2><p class="sub">Schema: message_id, channel, subject_or_title, body_text, sanitized_url_features, sender_domain_type, label, campaign_group, collected_date. 100% locally authored synthetic corpus (see <code>corpus_provenance.csv</code>).</p>
+  <h3>Sanitisation log (CP-1)</h3>
+  ${tbl(["Step","Rows affected","What it did"],S.sanitization_log.map(r=>[`<code>${r.step}</code>`,r.rows_affected,esc(r.note)]))}
+  <div class="note">All URLs use reserved <code>.test</code> / <code>.invalid</code> hostnames or TEST-NET IPs, are defanged (<code>hxxp://host[.]tld</code>), and are processed only as text. Attachments are excluded.</div>
+  <h3>Near-duplicate removal (FR-01 · CP-2)</h3>
+  <p>${esc(d.method)} · threshold <b>${d.threshold}</b></p>
+  <div class="grid g4">${tile("Rows before",d.rows_before)}${tile("Rows after",d.rows_after)}${tile("Removed",d.removed,`${d.duplicate_groups} duplicate groups (largest ${d.largest_group})`)}${tile("Cross-label near-dups",d.cross_label_near_duplicates_not_merged,"never merged across labels")}</div>
+  <div class="grid g2"><div class="card"><b>Random split WITHOUT dedup</b><div class="small">test messages with a near-copy in train: <b>${a.random_split_WITHOUT_dedup.n_near_dup_with_train}</b> of ${a.random_split_WITHOUT_dedup.n_test}</div>${hist(a.random_split_WITHOUT_dedup)}</div>
+  <div class="card"><b>Random split AFTER dedup</b><div class="small">near-copies in train: <b>${a.random_split_after_dedup.n_near_dup_with_train}</b> of ${a.random_split_after_dedup.n_test}</div>${hist(a.random_split_after_dedup)}</div>
+  <div class="card"><b>Campaign holdout AFTER dedup</b><div class="small">near-copies in train: <b>${a.campaign_holdout_after_dedup.n_near_dup_with_train}</b> of ${a.campaign_holdout_after_dedup.n_test} · max similarity ${f3(a.campaign_holdout_after_dedup.max_similarity)}</div>${hist(a.campaign_holdout_after_dedup)}</div></div>
+  <p class="small">Histograms show the highest cosine similarity between each test message and any training message.</p>
+  <h3>Class balance & campaigns</h3>
+  ${tbl(["Campaign","Label","Role","Messages after dedup"],e.campaigns.map(c=>[`<code>${c.campaign_group}</code>`,`<span class="pill ${c.label=="phish"?"p-bad":"p-ok"}">${c.label}</span>`,c.role=="held-out"?'<span class="pill p-warn">held-out</span>':'<span class="pill p-mute">train</span>',c.n]))}
+  <h3>Distributions</h3>
+  <div class="grid g2"><div>
+   <b>Body length (characters)</b>
+   ${e.length_bins.map((b,i)=>{const mx=Math.max(...e.length_hist.phish,...e.length_hist.legit);return `<div class="bar"><div class="l">${b}</div><div class="t"><div class="f" style="width:${e.length_hist.phish[i]/mx*50}%;background:#c93b3b"></div></div><div class="x">${e.length_hist.phish[i]}</div></div><div class="bar"><div class="l"></div><div class="t"><div class="f" style="width:${e.length_hist.legit[i]/mx*50}%;background:#1b8f63"></div></div><div class="x">${e.length_hist.legit[i]}</div></div>`}).join("")}
+   <div class="small"><span style="color:#c93b3b">■ phish</span> &nbsp; <span style="color:#1b8f63">■ legit</span></div></div>
+  <div><b>Sender type by label</b>${tbl(["Sender type","legit","phish"],Object.keys(e.sender_by_label.phish||{}).concat(Object.keys(e.sender_by_label.legit||{})).filter((v,i,a)=>a.indexOf(v)==i).map(k=>[k,(e.sender_by_label.legit||{})[k]||0,(e.sender_by_label.phish||{})[k]||0]))}
+  <b>Channel by label</b>${tbl(["Channel","legit","phish"],Object.keys(e.channel_by_label.phish||{}).map(k=>[k,(e.channel_by_label.legit||{})[k]||0,(e.channel_by_label.phish||{})[k]||0]))}</div></div>
+  <h3>Messages per month</h3>
+  ${Object.keys(e.month_by_label.phish||{}).concat(Object.keys(e.month_by_label.legit||{})).filter((v,i,a)=>a.indexOf(v)==i).sort().map(m=>`<div class="bar"><div class="l">${m}</div><div class="t"><div class="f" style="width:${((e.month_by_label.phish||{})[m]||0)/ S.counts.dedup*600}%;background:#c93b3b"></div></div><div class="x">${(e.month_by_label.phish||{})[m]||0}</div></div><div class="bar"><div class="l"></div><div class="t"><div class="f" style="width:${((e.month_by_label.legit||{})[m]||0)/ S.counts.dedup*600}%;background:#1b8f63"></div></div><div class="x">${(e.month_by_label.legit||{})[m]||0}</div></div>`).join("")}
+  <h3>Missing values, outliers and keyword overrepresentation</h3>
+  <p>Missing before cleaning: ${Object.entries(e.missing_raw).map(([k,v])=>`<code>${k}</code>=${v}`).join(", ")} · after: ${Object.entries(e.missing_after_cleaning).map(([k,v])=>`<code>${k}</code>=${v}`).join(", ")}. Bodies longer than 500 chars: ${e.outliers.body_len_gt_500}.</p>
+  <p>Messages mentioning <b>password</b>: ${Object.entries(e.keyword_overrepresentation.password_mentions_by_label).map(([k,v])=>`${k} ${v}`).join(" · ")} &nbsp;|&nbsp; <b>payroll/salary</b>: ${Object.entries(e.keyword_overrepresentation.payroll_mentions_by_label).map(([k,v])=>`${k} ${v}`).join(" · ")} &nbsp;|&nbsp; <b>urgent words</b>: ${Object.entries(e.keyword_overrepresentation.urgent_words_by_label).map(([k,v])=>`${k} ${v}`).join(" · ")}</p>
+  <p class="small">Top training-set terms → phish: ${e.train_top_terms.phish.slice(0,10).join(", ")} · legit: ${e.train_top_terms.legit.slice(0,10).join(", ")}</p>
+  <h3>Leakage and validity risks (T3)</h3>
+  ${tbl(["Single-feature probe (trained on train campaigns, tested on held-out)","Holdout accuracy"],Object.entries(e.leakage_probes).map(([k,v])=>[k,pct(v.holdout_accuracy)]))}
+  <ul>${e.leakage_notes.map(n=>`<li>${esc(n)}</li>`).join("")}</ul>`;
+}
+
+/* ---------------------------------------------------------------- Models */
+function cm(m){return `<div class="cm"><div class="h"></div><div class="h">pred legit</div><div class="h">pred phish</div>
+ <div class="h">true legit</div><div style="background:#e1f5ec">${m.tn}</div><div style="background:#fde8e8">${m.fp}</div>
+ <div class="h">true phish</div><div style="background:#fde8e8">${m.fn}</div><div style="background:#e1f5ec">${m.tp}</div></div>`}
+function renderModels(){
+  const sc=S.schemes, order=[["random_split_NO_dedup","Random split, no dedup (leaky)"],["random_split_dedup","Random split, deduplicated"],["campaign_holdout","Campaign holdout (the honest test)"],["campaign_holdout_text_only","Campaign holdout, text-only ablation"]];
+  const rows=[];order.forEach(([k,l])=>Object.entries(sc[k]).forEach(([m,r])=>rows.push([l,ML[m]+(m==S.primary?" ★":""),pct(r.accuracy),pct(r.precision),pct(r.recall),f3(r.f1),pct(r.fpr),r.auc==null?"–":f3(r.auc),r.n])));
+  $("models").innerHTML=`<h2>Models & evaluation</h2><p class="sub">Three models compared (FR-02). ★ = primary, chosen only from leave-campaign-out CV on training campaigns, so the holdout stays untouched.</p>
+  <h3>F1 by evaluation scheme</h3>
+  ${MK.map(m=>`<div class="card"><b>${ML[m]}</b>${order.filter(([k])=>sc[k][m]).map(([k,l])=>bar(l,sc[k][m].f1,1,k=="campaign_holdout"?"#c27a00":"#1aa6e0",f3(sc[k][m].f1))).join("")}</div>`).join("")}
+  <h3>Full results table</h3>${tbl(["Scheme","Model","Accuracy","Precision","Recall (phish)","F1","FPR","ROC-AUC","n"],rows)}
+  <h3>Leave-campaign-pair-out CV (training campaigns only)</h3>
+  ${tbl(["Model","Mean F1","Std","Folds"],MK.map(m=>{const c=S.cv.scores[m];return [ML[m],f3(c.mean_f1),f3(c.std_f1),c.folds.map(x=>x.toFixed(2)).join(" · ")]}))}
+  <p class="small">Folds: ${S.cv.folds.join(" | ")}</p>
+  <h3>Confusion matrices — held-out campaigns (CP-3)</h3>
+  <div class="grid g2">${MK.map(m=>`<div class="card"><b>${ML[m]}</b>${cm(sc.campaign_holdout[m])}</div>`).join("")}</div>
+  <h3>Per-campaign accuracy on held-out campaigns</h3>
+  ${tbl(["Campaign","True label","n",...MK.map(m=>ML[m])],S.campaigns.map(c=>[`<code>${c.campaign}</code>`,`<span class="pill ${c.label=="phish"?"p-bad":"p-ok"}">${c.label}</span>`,c.n,...MK.map(m=>pct(c[m+"_correct"]))]))}
+  <div class="note">Per-campaign accuracy shows <i>where</i> the model fails: conversational phishing with no obvious keywords is the weakest subset.</div>
+  <h3>Reject / abstain option (FR-04)</h3>
+  <div class="grid g2"><div><label>Model</label><select id="abModel">${MK.map(m=>`<option value="${m}" ${m==S.primary?"selected":""}>${ML[m]}</option>`).join("")}</select>
+  <label>Confidence threshold: <b id="abVal">${S.abstain_conf}</b> (abstain when max(p, 1−p) is below it)</label><input type="range" id="abSlider" min="0.5" max="0.99" step="0.01" value="${S.abstain_conf}"></div><div id="abOut"></div></div>`;
+  const upd=()=>{const m=$("abModel").value,t=+$("abSlider").value;$("abVal").textContent=t.toFixed(2);
+    const P=S.holdout_preds;let cov=0,corr=0,fnAll=0,fnCov=0,fpAll=0,fpCov=0;
+    P.forEach(r=>{const p=r[m],c=Math.max(p,1-p),pred=p>=.5?1:0,ok=pred==r.y;if(c>=t){cov++;if(ok)corr++;}
+      if(pred==0&&r.y==1){fnAll++;if(c>=t)fnCov++;} if(pred==1&&r.y==0){fpAll++;if(c>=t)fpCov++;}});
+    $("abOut").innerHTML=`${bar("Coverage (auto-decided)",cov/P.length)}${bar("Accuracy on auto-decided",cov?corr/cov:0)}${bar("Sent to human review",1-cov/P.length,1,"#c27a00")}
+    <div class="small">Missed phishing passed as safe: <b>${fnAll}</b> → <b>${fnCov}</b> &nbsp;·&nbsp; False alarms: <b>${fpAll}</b> → <b>${fpCov}</b></div>`};
+  $("abModel").onchange=upd;$("abSlider").oninput=upd;upd();
+}
+
+/* ---------------------------------------------------------------- Robustness */
+function renderRobust(){
+  const prim=S.primary;
+  const rows=[];S.robustness.forEach(r=>rows.push([`<code>${r.perturbation}</code><div class="small">${esc(r.description)}</div>`,ML[r.model]+(r.model==prim?" ★":""),f3(r.f1),(r.delta_f1>=0?"+":"")+f3(r.delta_f1),pct(r.fpr),f3(r.mean_abs_dprob),pct(r.flip_rate),(r.mean_p_shift>=0?"+":"")+f3(r.mean_p_shift)]));
+  const cols=["original",...Object.keys(S.perturbations)];
+  $("robust").innerHTML=`<h2>Robustness drift (FR-05 · AT-03 · CP-5)</h2><p class="sub">Held-out messages are perturbed in controlled, harmless ways and re-scored. Large Δ or flip rates reveal reliance on brittle surface patterns.</p>
+  <div class="note">${esc(S.acceptance["AT-03"].limitation)}</div>
+  <h3>Drift on the held-out campaigns</h3>
+  ${tbl(["Perturbation","Model","F1","ΔF1","FPR","Mean |Δ prob|","Label flips","Mean prob shift"],rows)}
+  <h3>CP-5 · eight new harmless simulated messages × perturbations (${ML[prim]})</h3>
+  <p class="small">Cells = probability of phishing. Red = flagged, green = passed. ⚑ marks a label flip against the original.</p>
+  <div class="scroll"><table><thead><tr><th>Message</th><th>Truth</th>${cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>
+  ${S.cp5.map(r=>`<tr><td>${esc(r.message)}</td><td><span class="pill ${r.true_label=="phish"?"p-bad":"p-ok"}">${r.true_label}</span></td>${cols.map(c=>{const p=r.probs[c][prim];const flip=r.flips.includes(c);return heat(p).replace("</td>",flip?" ⚑</td>":"</td>")}).join("")}</tr>`).join("")}
+  </tbody></table></div>
+  <p class="small">Perturbations: ${Object.entries(S.perturbations).map(([k,v])=>`<code>${k}</code> ${esc(v)}`).join(" · ")}</p>`;
+}
+
+/* ---------------------------------------------------------------- Scanner */
+const PRESETS=[
+ ["Legit password reset",{channel:"email",sender_type:"internal",subject:"Your password reset was completed",body:"Hi Meera,\n\nYour password reset was completed. If this was not you, call the helpdesk on ext 4455. We will never ask for your password by email.\n\nIT Helpdesk"}],
+ ["Obvious phish",{channel:"email",sender_type:"lookalike",subject:"URGENT: Your account has been suspended",body:"Dear user,\n\nWe detected unusual sign-in activity. Click here immediately to verify your password: hxxp://examplecorp-login[.]test/verify?id=1234\n\nFailure to act will result in loss of access."}],
+ ["Subtle shared-file phish",{channel:"email",sender_type:"unknown",subject:"Notes from Tuesday",body:"Hi Asha,\n\nSharing the notes from the call. Have a look when you get a moment: hxxp://tiny-lnk[.]test/k3m9x2\n\nBest"}],
+ ["Conversational favour",{channel:"email",sender_type:"external_free",subject:"Quick favour",body:"Hi Ravi,\n\nAre you free? I need a task done discreetly before my next meeting. Reply here and I will explain.\n\nThanks"}],
+ ["Legit urgent payroll",{channel:"email",sender_type:"internal",subject:"URGENT: approve timesheets today",body:"Hi team,\n\nTimesheets must be approved by 5 pm today so payroll can run. Approve at hxxps://intranet[.]examplecorp[.]test/hr/approvals\n\nPayroll Team"}],
+ ["Parcel SMS",{channel:"sms",sender_type:"unknown",subject:"",body:"Your parcel PK-48213 is held. Pay Rs 120 at hxxp://tiny-lnk[.]test/ab12cd to release it."}]];
+function renderScanner(){
+  $("scanner").innerHTML=`<h2>Live scanner (risk-review UI)</h2><p class="sub">Paste a <b>synthetic</b> message. Personal data is redacted, links are defanged and never opened, and the result is decision support only.</p>
+  <div class="grid g2"><div>
+   <div>${PRESETS.map((p,i)=>`<button class="btn alt" data-p="${i}">${p[0]}</button>`).join("")}</div>
+   <label>Channel</label><select id="sChan"><option>email</option><option>sms</option></select>
+   <label>Sender domain type</label><select id="sSender"><option>internal</option><option>vendor</option><option>external_free</option><option selected>unknown</option><option>lookalike</option></select>
+   <label>Subject / title</label><input id="sSubj" placeholder="(optional for SMS)">
+   <label>Message body</label><textarea id="sBody" placeholder="Paste a synthetic message here ..."></textarea>
+   <label>Abstain below confidence <b id="sAbV">${S.abstain_conf}</b></label><input type="range" id="sAb" min="0.5" max="0.99" step="0.01" value="${S.abstain_conf}">
+   <p><button class="btn" id="sGo">Scan message</button></p></div>
+  <div id="sOut"><div class="note">Results appear here. Try a preset on the left.</div></div></div>`;
+  document.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{const p=PRESETS[b.dataset.p][1];$("sChan").value=p.channel;$("sSender").value=p.sender_type;$("sSubj").value=p.subject;$("sBody").value=p.body;scan()});
+  $("sAb").oninput=()=>$("sAbV").textContent=(+$("sAb").value).toFixed(2);
+  $("sGo").onclick=scan;
+}
+async function scan(){
+  $("sGo").disabled=true;
+  try{
+    const r=await fetch("/api/scan",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({channel:$("sChan").value,sender_type:$("sSender").value,subject:$("sSubj").value,body:$("sBody").value,abstain_conf:+$("sAb").value})});
+    const d=await r.json();
+    if(d.error){$("sOut").innerHTML=`<div class="warnbox">${esc(d.error)}</div>`;return}
+    const cls={phish:"v-phish",legit:"v-legit",review:"v-review"}[d.level];
+    const cueHtml=d.cues.length?d.cues.map(c=>`<tr><td><span class="pill ${c.weight>0?"p-bad":"p-ok"}">${c.weight>0?"+":""}${c.weight.toFixed(1)}</span></td><td><b>${esc(c.cue)}</b><div class="small">${esc(c.why)}</div></td><td><mark>${esc(c.evidence)}</mark></td></tr>`).join(""):`<tr><td colspan=3 class="small">No rule cues fired.</td></tr>`;
+    const terms=(a)=>a.length?a.map(t=>`<code>${esc(t[0])}</code>`).join(" "):"–";
+    $("sOut").innerHTML=`<div class="verdict ${cls}">${d.verdict}</div>
+     <div class="small">Primary model: ${ML[d.primary_model]} · P(phishing) = <b>${(d.probability_phish*100).toFixed(1)}%</b> · confidence ${(d.confidence*100).toFixed(1)}% (abstain below ${(d.abstain_conf*100).toFixed(0)}%)</div>
+     ${MK.map(m=>bar(ML[m],d.probabilities[m],1,d.probabilities[m]>=.5?"#c93b3b":"#1b8f63")).join("")}
+     ${Object.keys(d.redactions).length?`<div class="warnbox">Redacted before analysis: ${Object.entries(d.redactions).map(([k,v])=>k+" ×"+v).join(", ")}. Do not paste real credentials or personal data.</div>`:""}
+     <h3>Why? Risk cues (explanation)</h3>${`<div class="scroll"><table><thead><tr><th>Weight</th><th>Cue</th><th>Evidence in message</th></tr></thead><tbody>${cueHtml}</tbody></table></div>`}
+     <div class="small">Rule score ${d.rule_score.toFixed(1)} · URL traits: ${Object.entries(d.url_features).map(([k,v])=>k+"="+v).join(", ")} · links defanged: ${d.links_defanged}</div>
+     <h3>Words pushing the linear model</h3><div class="small">toward phishing: ${terms(d.model_terms.toward_phishing)}<br>toward legitimate: ${terms(d.model_terms.toward_legitimate)}</div>
+     <h3>Sanitised text actually analysed</h3><pre>${esc(d.sanitized_body)}</pre>
+     <div class="note">${esc(d.disclaimer)}</div>`;
+  }catch(e){$("sOut").innerHTML=`<div class="warnbox">Could not reach the local server: ${esc(e.message)}</div>`}
+  finally{$("sGo").disabled=false}
+}
+
+/* ---------------------------------------------------------------- Errors */
+function renderErrors(){
+  $("errors").innerHTML=`<h2>Error analysis & explanations (CP-4)</h2><p class="sub">Primary model (${ML[S.primary]}) on held-out campaigns: the most confident mistakes, with the safe explanation the scanner would give.</p>`+
+  S.errors.map(e=>`<div class="card"><b>${esc(e.title)}</b> <span class="small">· ${e.message_id} · campaign <code>${e.campaign}</code> · true label <span class="pill ${e.true_label=="phish"?"p-bad":"p-ok"}">${e.true_label}</span> · sender ${e.sender_type} · ${e.channel}</span>
+   <pre>${e.subject?"Subject: "+esc(e.subject)+"\n\n":""}${esc(e.body)}</pre>
+   ${MK.map(m=>bar(ML[m],e.probabilities[m],1,e.probabilities[m]>=.5?"#c93b3b":"#1b8f63")).join("")}
+   <div class="small"><b>Cues that fired:</b></div>
+   ${e.explanation.cues.length?`<ul>${e.explanation.cues.map(c=>`<li><b>${esc(c.cue)}</b> (${c.weight>0?"+":""}${c.weight}) — ${esc(c.why)} <mark>${esc(c.evidence)}</mark></li>`).join("")}</ul>`:"<p class='small'>None — nothing in the rule set recognised this wording, which is exactly why it was missed.</p>"}
+   <div class="small">Linear-model terms → phishing: ${e.explanation.model_terms.toward_phishing.map(t=>`<code>${esc(t[0])}</code>`).join(" ")||"–"} · → legitimate: ${e.explanation.model_terms.toward_legitimate.map(t=>`<code>${esc(t[0])}</code>`).join(" ")||"–"}</div></div>`).join("");
+}
+
+/* ---------------------------------------------------------------- Tests */
+function renderTests(){
+  const a=S.acceptance, at1=a["AT-01"], at2=a["AT-02"], at3=a["AT-03"];
+  $("tests").innerHTML=`<h2>Acceptance tests & requirement traceability</h2><p class="sub">Numbers come from this machine's own data partition and models (see submission rule). Re-run any time with the button below.</p>
+  <h3>AT-01 · Legitimate password-reset / payroll notices appear</h3>
+  <p>Subset: ${esc(at1.subset)} (n = ${at1.n}).</p>
+  ${tbl(["Model","False positives","FPR","Sent to review (abstain)","False alarms per 1,000 such messages"],MK.map(m=>{const r=at1.by_model[m];return [ML[m],r.false_positives,pct(r.fpr),r.abstained,r.false_alarms_per_1000_urgent_legit_messages]}))}
+  <div class="note">${esc(at1.note)}</div>
+  <h3>AT-02 · Phishing with unfamiliar phrasing on campaigns excluded from training</h3>
+  <p>Excluded phishing campaigns: ${at2.campaigns_excluded_from_training.map(c=>`<code>${c}</code>`).join(", ")}</p>
+  ${tbl(["Campaign (recall)",...MK.map(m=>ML[m])],Object.entries(at2.per_campaign_recall).map(([c,v])=>[`<code>${c}</code>`,...MK.map(m=>pct(v[m]))]).concat([["<b>Overall recall</b>",...MK.map(m=>"<b>"+pct(at2.overall_recall[m])+"</b>")]]))}
+  <h3>AT-03 · Defanged URL / punctuation pattern changes</h3>
+  ${tbl(["Perturbation","ΔF1","Mean |Δ prob|","Label flips","Mean prob shift"],at3.rows.map(r=>[`<code>${r.perturbation}</code>`,(r.delta_f1>=0?"+":"")+f3(r.delta_f1),f3(r.mean_abs_dprob),pct(r.flip_rate),(r.mean_p_shift>=0?"+":"")+f3(r.mean_p_shift)]))}
+  <div class="note">Model limitation: ${esc(at3.limitation)}</div>
+  <h3>Requirement-to-test mapping</h3>
+  ${tbl(["ID","Requirement","Implemented in","Evidence","Shown in"],S.trace.map(t=>[`<b>${t.id}</b>`,esc(t.requirement),`<code>${esc(t.implemented_in)}</code>`,esc(t.evidence),esc(t.shown_in)]))}
+  <h3>Re-run the pipeline</h3>
+  <p class="small">Retrains from the saved raw data using the same seed. Add <code>data/mentor/mentor_holdout.csv</code> first to include the mentor's variation.</p>
+  <button class="btn" id="rr">Re-run pipeline</button> <span id="rrs" class="small"></span>`;
+  $("rr").onclick=async()=>{$("rr").disabled=true;$("rrs").textContent="Running ...";await fetch("/api/retrain",{method:"POST",body:"{}"});
+    const t=setInterval(async()=>{const s=await (await fetch("/api/status")).json();$("rrs").textContent=s.message;if(s.status!="running"){clearInterval(t);$("rr").disabled=false;if(s.status=="done")setTimeout(()=>location.reload(),600)}},1200)};
+}
+
+/* ---------------------------------------------------------------- Artifacts */
+async function renderArtifacts(){
+  const a=await (await fetch("/api/artifacts")).json();
+  const nice={outputs:"Evidence & results",processed:"Processed data",raw:"Raw data & provenance",docs:"Documents"};
+  $("artifacts").innerHTML=`<h2>Submission artifacts</h2><p class="sub">Corpus provenance sheet, sanitisation log, deduplication proof, held-out campaign evaluation, results table and more.</p>`+
+   Object.keys(nice).map(g=>`<h3>${nice[g]}</h3>`+tbl(["File","Size","Download"],a.filter(x=>x.group==g).map(x=>[`<code>${esc(x.name)}</code>`,x.kb+" KB",`<a href="${x.url}">download</a>`]))).join("");
+}
+
+async function init(){
+  buildNav();
+  try{const r=await fetch("/api/summary");if(!r.ok)throw new Error("summary.json not found");S=await r.json();}
+  catch(e){document.querySelector("main").innerHTML=`<section class="on"><div class="warnbox">Results are not available yet (${esc(e.message)}). Run <code>python run.py --retrain</code>.</div></section>`;return}
+  renderOverview();renderData();renderModels();renderRobust();renderScanner();renderErrors();renderTests();renderArtifacts();
+  show(location.hash.slice(1)||"overview");
+}
+init();
+</script>
+</body>
+</html>

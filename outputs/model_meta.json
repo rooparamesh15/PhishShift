@@ -1,0 +1,13 @@
+{
+  "version": "v1.0",
+  "primary": "tfidf_lr",
+  "trained_at": "2026-10-26T09:34:12",
+  "train_rows": 425,
+  "holdout_rows": 286,
+  "data_sha256_prefix": "e115572c61ac112d",
+  "seed": 7,
+  "python": "3.13.17",
+  "sklearn": "1.9.1",
+  "numpy": "2.5.3",
+  "pandas": "3.0.5"
+}

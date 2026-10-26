@@ -1,0 +1,17 @@
+id,requirement,implemented_in,evidence,shown_in
+FR-01,Deduplicate near-identical templates before split,src/pipeline.py: dedup(),"outputs/dedup_proof.json, dedup_groups.csv",Data & EDA tab
+FR-02,"Compare rules, TF-IDF linear model, third model",src/cues.py + make_models(),"Models tab, outputs/summary.json",Models tab
+FR-03,Campaign-separated holdout,config.HOLDOUT_CAMPAIGNS; run() split,"outputs/holdout_ids.csv, holdout_predictions.csv",Models tab
+FR-04,Reject/abstain + safe explanation,abstain_stats(); cues.score_message(); lr_terms(),Errors tab; Live Scanner,Live Scanner tab
+FR-05,FPR on legit urgent messages + robustness drift,"run(): at01, PERTURBATIONS","Robustness tab, outputs/summary.json",Robustness tab
+NFR-01,Never click/fetch/execute content,sanitize.py string-only; no network libs imported,tests: tests/test_safety.py,Banner
+NFR-02,No real credentials / PII,sanitize.redact_pii(); synthetic data,outputs/sanitization_log.csv,Live Scanner redaction notice
+NFR-03,"Decision support, not a guarantee",dashboard banner + scan response,Dashboard header,Header
+AT-01,Legit password-reset notice: FP impact,run(): at01,Tests tab,Tests tab
+AT-02,Phishing with unfamiliar phrasing on excluded campaign,run(): at02,Tests tab,Tests tab
+AT-03,Defanged URL / punctuation changes,"run(): at03, perturb.py",Robustness tab,Robustness tab
+CP-1,Safe corpus handling; URLs inert,sanitization_log.csv; reserved TLDs,outputs/sanitization_log.csv,Data & EDA tab
+CP-2,Audit near-duplicate removal across splits,proof['cross_split_audit'],outputs/dedup_proof.json,Data & EDA tab
+CP-3,Campaign test + confusion analysis,schemes + camp_rows,Models tab,Models tab
+CP-4,Explain a missed phish and a flagged legit message,errors list,Errors tab,Errors tab
+CP-5,8 new harmless messages with perturbations,CP5 + cp5_table(),Robustness tab,Robustness tab

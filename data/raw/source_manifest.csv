@@ -1,0 +1,3 @@
+source_id,description,type,rows,licence,url_policy,attachments,pii,generated_on
+SRC-1,Locally authored benign + phishing simulation corpus (20 campaigns),generated,941,CC0 / educational use,reserved TLDs (.test/.invalid) + TEST-NET IPs; all defanged,excluded,none (synthetic names only),2026-10-26
+SRC-2,Mentor-assigned unseen campaign + legitimate set (optional drop-in),mentor supplied,see data/mentor/,as supplied by mentor,sanitised on load,excluded,redacted on load,n/a

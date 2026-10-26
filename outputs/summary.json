@@ -1,0 +1,4591 @@
+{
+  "meta": {
+    "version": "v1.0",
+    "primary": "tfidf_lr",
+    "trained_at": "2026-10-26T09:34:12",
+    "train_rows": 425,
+    "holdout_rows": 286,
+    "data_sha256_prefix": "e115572c61ac112d",
+    "seed": 7,
+    "python": "3.13.17",
+    "sklearn": "1.9.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5"
+  },
+  "version": "v1.0",
+  "primary": "tfidf_lr",
+  "model_labels": {
+    "rules": "Rule-based cues",
+    "tfidf_lr": "TF-IDF + Logistic Regression",
+    "char_svm": "Char n-gram TF-IDF + calibrated Linear SVM"
+  },
+  "counts": {
+    "raw": 941,
+    "clean": 941,
+    "dedup": 711,
+    "train": 425,
+    "holdout": 286
+  },
+  "sanitization_log": [
+    {
+      "step": "load_raw",
+      "rows_affected": 941,
+      "note": "raw_messages.csv left unchanged on disk (data/raw/); all fixes applied to a copy"
+    },
+    {
+      "step": "normalise_channel",
+      "rows_affected": 237,
+      "note": "trim + lowercase (Email/EMAIL/' sms ' -> email/sms)"
+    },
+    {
+      "step": "map_labels",
+      "rows_affected": 246,
+      "note": "label spellings (Phish/PHISHING/1, Legit/benign/0) -> {phish, legit}"
+    },
+    {
+      "step": "drop_unknown_label",
+      "rows_affected": 0,
+      "note": "rows with unmappable label removed"
+    },
+    {
+      "step": "parse_dates",
+      "rows_affected": 380,
+      "note": "3 date formats -> ISO yyyy-mm-dd"
+    },
+    {
+      "step": "drop_bad_dates",
+      "rows_affected": 0,
+      "note": "rows with unparseable date"
+    },
+    {
+      "step": "fill_missing_sender_type",
+      "rows_affected": 23,
+      "note": "missing sender_domain_type -> 'unknown' (kept as its own category)"
+    },
+    {
+      "step": "fill_missing_subject",
+      "rows_affected": 8,
+      "note": "empty e-mail subject -> '(no subject)'; SMS keeps empty subject by design"
+    },
+    {
+      "step": "normalise_whitespace",
+      "rows_affected": 97,
+      "note": "trailing spaces / blank lines trimmed"
+    },
+    {
+      "step": "strip_attachment_lines",
+      "rows_affected": 12,
+      "note": "'Attachment: file.pdf' lines removed (attachments excluded by SRS)"
+    },
+    {
+      "step": "defang_urls",
+      "rows_affected": 100,
+      "note": "live-looking http(s):// URLs rewritten to hxxp(s)://host[.]tld (inert strings)"
+    },
+    {
+      "step": "redact_pii",
+      "rows_affected": 0,
+      "note": "e-mails / phones / card-like numbers / 'password: x' redacted (NFR-02)"
+    },
+    {
+      "step": "extract_url_features",
+      "rows_affected": 808,
+      "note": "URL traits derived from strings only; links never opened (NFR-01)"
+    }
+  ],
+  "dedup": {
+    "threshold": 0.92,
+    "method": "TF-IDF (1-2 gram) cosine on text with URLs/numbers/names masked; connected components within the same label; keep lowest message_id",
+    "rows_before": 941,
+    "rows_after": 711,
+    "removed": 230,
+    "duplicate_groups": 179,
+    "largest_group": 5,
+    "cross_label_near_duplicates_not_merged": 0,
+    "per_campaign": [
+      {
+        "campaign_group": "acct_suspend",
+        "before": 47,
+        "after": 31,
+        "removed": 16
+      },
+      {
+        "campaign_group": "ceo_favour",
+        "before": 47,
+        "after": 32,
+        "removed": 15
+      },
+      {
+        "campaign_group": "facilities_notice",
+        "before": 46,
+        "after": 45,
+        "removed": 1
+      },
+      {
+        "campaign_group": "finance_expense",
+        "before": 47,
+        "after": 38,
+        "removed": 9
+      },
+      {
+        "campaign_group": "helpdesk_ticket",
+        "before": 47,
+        "after": 40,
+        "removed": 7
+      },
+      {
+        "campaign_group": "hr_benefits",
+        "before": 46,
+        "after": 32,
+        "removed": 14
+      },
+      {
+        "campaign_group": "hr_payroll_update",
+        "before": 45,
+        "after": 36,
+        "removed": 9
+      },
+      {
+        "campaign_group": "invoice_overdue",
+        "before": 51,
+        "after": 40,
+        "removed": 11
+      },
+      {
+        "campaign_group": "it_maintenance",
+        "before": 44,
+        "after": 38,
+        "removed": 6
+      },
+      {
+        "campaign_group": "it_pw_expiry_policy",
+        "before": 45,
+        "after": 36,
+        "removed": 9
+      },
+      {
+        "campaign_group": "it_pw_reset",
+        "before": 48,
+        "after": 34,
+        "removed": 14
+      },
+      {
+        "campaign_group": "mfa_reset",
+        "before": 44,
+        "after": 29,
+        "removed": 15
+      },
+      {
+        "campaign_group": "parcel_fee",
+        "before": 48,
+        "after": 33,
+        "removed": 15
+      },
+      {
+        "campaign_group": "payroll_cutoff_urgent",
+        "before": 50,
+        "after": 38,
+        "removed": 12
+      },
+      {
+        "campaign_group": "payroll_dd",
+        "before": 47,
+        "after": 34,
+        "removed": 13
+      },
+      {
+        "campaign_group": "pw_expire_click",
+        "before": 49,
+        "after": 35,
+        "removed": 14
+      },
+      {
+        "campaign_group": "security_awareness",
+        "before": 51,
+        "after": 35,
+        "removed": 16
+      },
+      {
+        "campaign_group": "shared_doc",
+        "before": 41,
+        "after": 33,
+        "removed": 8
+      },
+      {
+        "campaign_group": "survey_gift",
+        "before": 55,
+        "after": 38,
+        "removed": 17
+      },
+      {
+        "campaign_group": "vendor_bank_change",
+        "before": 43,
+        "after": 34,
+        "removed": 9
+      }
+    ],
+    "cross_split_audit": {
+      "random_split_WITHOUT_dedup": {
+        "n_test": 236,
+        "n_near_dup_with_train": 86,
+        "max_similarity": 1.000000000000001,
+        "histogram": {
+          "<0.50": 0,
+          "0.50-0.70": 14,
+          "0.70-0.90": 122,
+          "0.90-0.92": 14,
+          ">=0.92": 86
+        }
+      },
+      "random_split_after_dedup": {
+        "n_test": 178,
+        "n_near_dup_with_train": 0,
+        "max_similarity": 0.9187549250684885,
+        "histogram": {
+          "<0.50": 0,
+          "0.50-0.70": 22,
+          "0.70-0.90": 144,
+          "0.90-0.92": 12,
+          ">=0.92": 0
+        }
+      },
+      "campaign_holdout_after_dedup": {
+        "n_test": 286,
+        "n_near_dup_with_train": 0,
+        "max_similarity": 0.26381436917861534,
+        "histogram": {
+          "<0.50": 286,
+          "0.50-0.70": 0,
+          "0.70-0.90": 0,
+          "0.90-0.92": 0,
+          ">=0.92": 0
+        }
+      }
+    }
+  },
+  "eda": {
+    "rows": {
+      "raw": 941,
+      "clean": 941,
+      "dedup": 711
+    },
+    "class_balance": {
+      "legit": 372,
+      "phish": 339
+    },
+    "channel_by_label": {
+      "legit": {
+        "email": 344,
+        "sms": 28
+      },
+      "phish": {
+        "email": 291,
+        "sms": 48
+      }
+    },
+    "sender_by_label": {
+      "legit": {
+        "external_free": 27,
+        "internal": 275,
+        "lookalike": 9,
+        "unknown": 22,
+        "vendor": 39
+      },
+      "phish": {
+        "external_free": 96,
+        "internal": 44,
+        "lookalike": 114,
+        "unknown": 68,
+        "vendor": 17
+      }
+    },
+    "campaigns": [
+      {
+        "campaign_group": "acct_suspend",
+        "label": "phish",
+        "n": 31,
+        "role": "train"
+      },
+      {
+        "campaign_group": "ceo_favour",
+        "label": "phish",
+        "n": 32,
+        "role": "held-out"
+      },
+      {
+        "campaign_group": "facilities_notice",
+        "label": "legit",
+        "n": 45,
+        "role": "train"
+      },
+      {
+        "campaign_group": "finance_expense",
+        "label": "legit",
+        "n": 38,
+        "role": "train"
+      },
+      {
+        "campaign_group": "helpdesk_ticket",
+        "label": "legit",
+        "n": 40,
+        "role": "held-out"
+      },
+      {
+        "campaign_group": "hr_benefits",
+        "label": "legit",
+        "n": 32,
+        "role": "train"
+      },
+      {
+        "campaign_group": "hr_payroll_update",
+        "label": "legit",
+        "n": 36,
+        "role": "train"
+      },
+      {
+        "campaign_group": "invoice_overdue",
+        "label": "phish",
+        "n": 40,
+        "role": "train"
+      },
+      {
+        "campaign_group": "it_maintenance",
+        "label": "legit",
+        "n": 38,
+        "role": "train"
+      },
+      {
+        "campaign_group": "it_pw_expiry_policy",
+        "label": "legit",
+        "n": 36,
+        "role": "held-out"
+      },
+      {
+        "campaign_group": "it_pw_reset",
+        "label": "legit",
+        "n": 34,
+        "role": "train"
+      },
+      {
+        "campaign_group": "mfa_reset",
+        "label": "phish",
+        "n": 29,
+        "role": "train"
+      },
+      {
+        "campaign_group": "parcel_fee",
+        "label": "phish",
+        "n": 33,
+        "role": "train"
+      },
+      {
+        "campaign_group": "payroll_cutoff_urgent",
+        "label": "legit",
+        "n": 38,
+        "role": "held-out"
+      },
+      {
+        "campaign_group": "payroll_dd",
+        "label": "phish",
+        "n": 34,
+        "role": "train"
+      },
+      {
+        "campaign_group": "pw_expire_click",
+        "label": "phish",
+        "n": 35,
+        "role": "train"
+      },
+      {
+        "campaign_group": "security_awareness",
+        "label": "legit",
+        "n": 35,
+        "role": "held-out"
+      },
+      {
+        "campaign_group": "shared_doc",
+        "label": "phish",
+        "n": 33,
+        "role": "held-out"
+      },
+      {
+        "campaign_group": "survey_gift",
+        "label": "phish",
+        "n": 38,
+        "role": "held-out"
+      },
+      {
+        "campaign_group": "vendor_bank_change",
+        "label": "phish",
+        "n": 34,
+        "role": "held-out"
+      }
+    ],
+    "month_by_label": {
+      "legit": {
+        "2026-03": 20,
+        "2026-04": 44,
+        "2026-05": 67,
+        "2026-06": 61,
+        "2026-07": 30,
+        "2026-08": 55,
+        "2026-09": 78,
+        "2026-10": 17
+      },
+      "phish": {
+        "2026-03": 37,
+        "2026-04": 60,
+        "2026-05": 76,
+        "2026-06": 29,
+        "2026-07": 3,
+        "2026-08": 47,
+        "2026-09": 68,
+        "2026-10": 19
+      }
+    },
+    "missing_after_cleaning": {
+      "subject_or_title": 76,
+      "body_text": 0,
+      "sender_domain_type": 0
+    },
+    "missing_raw": {
+      "subject_or_title": 134,
+      "body_text": 0,
+      "sender_domain_type": 23
+    },
+    "body_length": {
+      "phish": {
+        "mean": 174.8377581120944,
+        "p95": 225.09999999999997
+      },
+      "legit": {
+        "mean": 160.1451612903226,
+        "p95": 214.0
+      }
+    },
+    "length_hist": {
+      "phish": [
+        0,
+        1,
+        91,
+        161,
+        86,
+        0,
+        0
+      ],
+      "legit": [
+        0,
+        5,
+        128,
+        198,
+        41,
+        0,
+        0
+      ]
+    },
+    "length_bins": [
+      "<60",
+      "60-100",
+      "100-150",
+      "150-200",
+      "200-300",
+      "300-500",
+      ">500"
+    ],
+    "outliers": {
+      "body_len_gt_500": 0
+    },
+    "leakage_probes": {
+      "sender_domain_type only": {
+        "holdout_accuracy": 0.8041958041958042
+      },
+      "URL features only": {
+        "holdout_accuracy": 0.8426573426573427
+      },
+      "channel only": {
+        "holdout_accuracy": 0.5454545454545454
+      },
+      "campaign_group only (must NOT be a feature)": {
+        "holdout_accuracy": 0.5209790209790209
+      }
+    },
+    "leakage_notes": [
+      "campaign_group perfectly determines the label, so it is excluded from every model input.",
+      "sender_domain_type and URL traits are partly informative by construction; the 'text only' ablation shows how much of the result depends on them.",
+      "Holdout campaigns are dated later than most training campaigns (time ordering), so a random split would be optimistic.",
+      "Near-identical templates were merged BEFORE splitting (FR-01); see dedup_proof.json for the audit."
+    ],
+    "keyword_overrepresentation": {
+      "password_mentions_by_label": {
+        "legit": 87,
+        "phish": 62
+      },
+      "payroll_mentions_by_label": {
+        "legit": 104,
+        "phish": 28
+      },
+      "urgent_words_by_label": {
+        "phish": 57,
+        "legit": 23
+      },
+      "legit_urgent_flag_rows": 144
+    },
+    "train_top_terms": {
+      "phish": [
+        "f_login_path_1 f_https_0",
+        "f_ip_host_0 f_lookalike_1",
+        "f_subdomains_0 f_login_path_1",
+        "f_lookalike_1 f_subdomains_0",
+        "f_lookalike_1",
+        "f_https_0",
+        "your",
+        "f_login_path_1",
+        "and",
+        "invoice",
+        "in",
+        "f_subdomains_0",
+        "payment",
+        "to",
+        "send_lookalike f_n_urls_1"
+      ],
+      "legit": [
+        "f_subdomains_1",
+        "f_lookalike_0 f_subdomains_1",
+        "f_https_1",
+        "f_login_path_0 f_https_1",
+        "f_subdomains_1 f_login_path_0",
+        "chan_email send_internal",
+        "send_internal",
+        "f_ip_host_0 f_lookalike_0",
+        "f_login_path_0",
+        "on",
+        "send_internal f_n_urls_1",
+        "thanks",
+        "from",
+        "page",
+        "f_lookalike_0"
+      ]
+    }
+  },
+  "cv": {
+    "scores": {
+      "rules": {
+        "mean_f1": 0.9923853923853924,
+        "std_f1": 0.011597891628310967,
+        "folds": [
+          1.0,
+          1.0,
+          1.0,
+          0.9846153846153847,
+          0.9696969696969697,
+          1.0
+        ]
+      },
+      "tfidf_lr": {
+        "mean_f1": 1.0,
+        "std_f1": 0.0,
+        "folds": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "char_svm": {
+        "mean_f1": 0.985058313683003,
+        "std_f1": 0.017578769470382727,
+        "folds": [
+          1.0,
+          1.0,
+          1.0,
+          0.9705882352941176,
+          0.9538461538461539,
+          0.9859154929577465
+        ]
+      }
+    },
+    "folds": [
+      "acct_suspend+facilities_notice",
+      "invoice_overdue+finance_expense",
+      "mfa_reset+hr_benefits",
+      "parcel_fee+hr_payroll_update",
+      "payroll_dd+it_maintenance",
+      "pw_expire_click+it_pw_reset"
+    ]
+  },
+  "schemes": {
+    "campaign_holdout": {
+      "rules": {
+        "n": 286,
+        "accuracy": 0.8076923076923077,
+        "precision": 0.9767441860465116,
+        "recall": 0.6131386861313869,
+        "f1": 0.7533632286995515,
+        "fpr": 0.013422818791946308,
+        "fnr": 0.38686131386861317,
+        "tn": 147,
+        "fp": 2,
+        "fn": 53,
+        "tp": 84,
+        "auc": 0.9724685249595846
+      },
+      "tfidf_lr": {
+        "n": 286,
+        "accuracy": 0.7902097902097902,
+        "precision": 0.9753086419753086,
+        "recall": 0.5766423357664233,
+        "f1": 0.7247706422018348,
+        "fpr": 0.013422818791946308,
+        "fnr": 0.4233576642335766,
+        "tn": 147,
+        "fp": 2,
+        "fn": 58,
+        "tp": 79,
+        "auc": 0.9139273992063881
+      },
+      "char_svm": {
+        "n": 286,
+        "accuracy": 0.7167832167832168,
+        "precision": 0.9,
+        "recall": 0.45985401459854014,
+        "f1": 0.6086956521739131,
+        "fpr": 0.04697986577181208,
+        "fnr": 0.5401459854014599,
+        "tn": 142,
+        "fp": 7,
+        "fn": 74,
+        "tp": 63,
+        "auc": 0.8714054769019742
+      }
+    },
+    "random_split_dedup": {
+      "rules": {
+        "n": 178,
+        "accuracy": 0.9213483146067416,
+        "precision": 1.0,
+        "recall": 0.8352941176470589,
+        "f1": 0.9102564102564102,
+        "fpr": 0.0,
+        "fnr": 0.16470588235294117,
+        "tn": 93,
+        "fp": 0,
+        "fn": 14,
+        "tp": 71,
+        "auc": 0.9986084756483239
+      },
+      "tfidf_lr": {
+        "n": 178,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "fpr": 0.0,
+        "fnr": 0.0,
+        "tn": 93,
+        "fp": 0,
+        "fn": 0,
+        "tp": 85,
+        "auc": 1.0
+      },
+      "char_svm": {
+        "n": 178,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "fpr": 0.0,
+        "fnr": 0.0,
+        "tn": 93,
+        "fp": 0,
+        "fn": 0,
+        "tp": 85,
+        "auc": 1.0
+      }
+    },
+    "random_split_NO_dedup": {
+      "rules": {
+        "n": 236,
+        "accuracy": 0.923728813559322,
+        "precision": 1.0,
+        "recall": 0.847457627118644,
+        "f1": 0.9174311926605505,
+        "fpr": 0.0,
+        "fnr": 0.15254237288135594,
+        "tn": 118,
+        "fp": 0,
+        "fn": 18,
+        "tp": 100,
+        "auc": 0.9951881643205975
+      },
+      "tfidf_lr": {
+        "n": 236,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "fpr": 0.0,
+        "fnr": 0.0,
+        "tn": 118,
+        "fp": 0,
+        "fn": 0,
+        "tp": 118,
+        "auc": 1.0
+      },
+      "char_svm": {
+        "n": 236,
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "fpr": 0.0,
+        "fnr": 0.0,
+        "tn": 118,
+        "fp": 0,
+        "fn": 0,
+        "tp": 118,
+        "auc": 1.0
+      }
+    },
+    "campaign_holdout_text_only": {
+      "tfidf_lr": {
+        "n": 286,
+        "accuracy": 0.6573426573426573,
+        "precision": 0.7407407407407407,
+        "recall": 0.43795620437956206,
+        "f1": 0.5504587155963303,
+        "fpr": 0.14093959731543623,
+        "fnr": 0.5620437956204379,
+        "tn": 128,
+        "fp": 21,
+        "fn": 77,
+        "tp": 60,
+        "auc": 0.6748150688286876
+      },
+      "char_svm": {
+        "n": 286,
+        "accuracy": 0.6153846153846154,
+        "precision": 0.6708860759493671,
+        "recall": 0.38686131386861317,
+        "f1": 0.49074074074074076,
+        "fpr": 0.174496644295302,
+        "fnr": 0.6131386861313869,
+        "tn": 123,
+        "fp": 26,
+        "fn": 84,
+        "tp": 53,
+        "auc": 0.6844657816097586
+      }
+    }
+  },
+  "campaigns": [
+    {
+      "campaign": "ceo_favour",
+      "label": "phish",
+      "n": 32,
+      "legit_urgent": 0,
+      "rules_correct": 0.6875,
+      "rules_mean_p": 0.5672566925640372,
+      "tfidf_lr_correct": 0.3125,
+      "tfidf_lr_mean_p": 0.4922054018475595,
+      "char_svm_correct": 0.28125,
+      "char_svm_mean_p": 0.4473720784757149
+    },
+    {
+      "campaign": "helpdesk_ticket",
+      "label": "legit",
+      "n": 40,
+      "legit_urgent": 0,
+      "rules_correct": 1.0,
+      "rules_mean_p": 0.05830849380404485,
+      "tfidf_lr_correct": 1.0,
+      "tfidf_lr_mean_p": 0.14295935663870413,
+      "char_svm_correct": 1.0,
+      "char_svm_mean_p": 0.19447598412015116
+    },
+    {
+      "campaign": "it_pw_expiry_policy",
+      "label": "legit",
+      "n": 36,
+      "legit_urgent": 1,
+      "rules_correct": 0.9722222222222222,
+      "rules_mean_p": 0.051426396787090906,
+      "tfidf_lr_correct": 0.9722222222222222,
+      "tfidf_lr_mean_p": 0.2286765681128165,
+      "char_svm_correct": 0.9444444444444444,
+      "char_svm_mean_p": 0.23861229858694097
+    },
+    {
+      "campaign": "payroll_cutoff_urgent",
+      "label": "legit",
+      "n": 38,
+      "legit_urgent": 1,
+      "rules_correct": 0.9736842105263158,
+      "rules_mean_p": 0.0668132654160107,
+      "tfidf_lr_correct": 1.0,
+      "tfidf_lr_mean_p": 0.160752063468943,
+      "char_svm_correct": 1.0,
+      "char_svm_mean_p": 0.10782112583544505
+    },
+    {
+      "campaign": "security_awareness",
+      "label": "legit",
+      "n": 35,
+      "legit_urgent": 0,
+      "rules_correct": 1.0,
+      "rules_mean_p": 0.02995450555543644,
+      "tfidf_lr_correct": 0.9714285714285714,
+      "tfidf_lr_mean_p": 0.17194616696262455,
+      "char_svm_correct": 0.8571428571428571,
+      "char_svm_mean_p": 0.2641986444077965
+    },
+    {
+      "campaign": "shared_doc",
+      "label": "phish",
+      "n": 33,
+      "legit_urgent": 0,
+      "rules_correct": 0.36363636363636365,
+      "rules_mean_p": 0.3995095509070389,
+      "tfidf_lr_correct": 0.5454545454545454,
+      "tfidf_lr_mean_p": 0.4734221578896908,
+      "char_svm_correct": 0.30303030303030304,
+      "char_svm_mean_p": 0.4261279814464317
+    },
+    {
+      "campaign": "survey_gift",
+      "label": "phish",
+      "n": 38,
+      "legit_urgent": 0,
+      "rules_correct": 0.7894736842105263,
+      "rules_mean_p": 0.7213523419129819,
+      "tfidf_lr_correct": 0.7631578947368421,
+      "tfidf_lr_mean_p": 0.6373000806427426,
+      "char_svm_correct": 0.5,
+      "char_svm_mean_p": 0.4816970608918583
+    },
+    {
+      "campaign": "vendor_bank_change",
+      "label": "phish",
+      "n": 34,
+      "legit_urgent": 0,
+      "rules_correct": 0.5882352941176471,
+      "rules_mean_p": 0.5740736335128807,
+      "tfidf_lr_correct": 0.6470588235294118,
+      "tfidf_lr_mean_p": 0.6118082541786422,
+      "char_svm_correct": 0.7352941176470589,
+      "char_svm_mean_p": 0.5925627958117892
+    }
+  ],
+  "abstain": {
+    "rules": {
+      "conf_threshold": 0.7,
+      "coverage": 0.8216783216783217,
+      "abstained": 51,
+      "accuracy_on_covered": 0.8425531914893617,
+      "missed_phish_without_abstain": 53,
+      "missed_phish_with_abstain": 37,
+      "false_alarms_without_abstain": 2,
+      "false_alarms_with_abstain": 0
+    },
+    "tfidf_lr": {
+      "conf_threshold": 0.7,
+      "coverage": 0.7062937062937062,
+      "abstained": 84,
+      "accuracy_on_covered": 0.8861386138613861,
+      "missed_phish_without_abstain": 58,
+      "missed_phish_with_abstain": 23,
+      "false_alarms_without_abstain": 2,
+      "false_alarms_with_abstain": 0
+    },
+    "char_svm": {
+      "conf_threshold": 0.7,
+      "coverage": 0.6153846153846154,
+      "abstained": 110,
+      "accuracy_on_covered": 0.8409090909090909,
+      "missed_phish_without_abstain": 74,
+      "missed_phish_with_abstain": 27,
+      "false_alarms_without_abstain": 7,
+      "false_alarms_with_abstain": 1
+    }
+  },
+  "abstain_conf": 0.7,
+  "robustness": [
+    {
+      "perturbation": "defang_alt",
+      "description": "Defang style: [.] -> (.), hxxp -> hXXp",
+      "model": "rules",
+      "f1": 0.7533632286995515,
+      "fpr": 0.013422818791946308,
+      "recall": 0.6131386861313869,
+      "delta_f1": 0.0,
+      "mean_abs_dprob": 0.0,
+      "flip_rate": 0.0,
+      "mean_p_shift": 0.0
+    },
+    {
+      "perturbation": "defang_alt",
+      "description": "Defang style: [.] -> (.), hxxp -> hXXp",
+      "model": "tfidf_lr",
+      "f1": 0.7247706422018348,
+      "fpr": 0.013422818791946308,
+      "recall": 0.5766423357664233,
+      "delta_f1": 0.0,
+      "mean_abs_dprob": 0.0,
+      "flip_rate": 0.0,
+      "mean_p_shift": 0.0
+    },
+    {
+      "perturbation": "defang_alt",
+      "description": "Defang style: [.] -> (.), hxxp -> hXXp",
+      "model": "char_svm",
+      "f1": 0.6086956521739131,
+      "fpr": 0.04697986577181208,
+      "recall": 0.45985401459854014,
+      "delta_f1": 0.0,
+      "mean_abs_dprob": 0.0,
+      "flip_rate": 0.0,
+      "mean_p_shift": 0.0
+    },
+    {
+      "perturbation": "defang_dot",
+      "description": "Defang style: [.] -> [dot] (unsupported)",
+      "model": "rules",
+      "f1": 0.6222222222222222,
+      "fpr": 0.12080536912751678,
+      "recall": 0.5109489051094891,
+      "delta_f1": -0.1311410064773293,
+      "mean_abs_dprob": 0.14762212774974362,
+      "flip_rate": 0.1048951048951049,
+      "mean_p_shift": 0.07086998762122365
+    },
+    {
+      "perturbation": "defang_dot",
+      "description": "Defang style: [.] -> [dot] (unsupported)",
+      "model": "tfidf_lr",
+      "f1": 0.6118721461187214,
+      "fpr": 0.10067114093959731,
+      "recall": 0.48905109489051096,
+      "delta_f1": -0.11289849608311342,
+      "mean_abs_dprob": 0.11863435982249848,
+      "flip_rate": 0.12937062937062938,
+      "mean_p_shift": 0.07677084493886152
+    },
+    {
+      "perturbation": "defang_dot",
+      "description": "Defang style: [.] -> [dot] (unsupported)",
+      "model": "char_svm",
+      "f1": 0.5674418604651162,
+      "fpr": 0.11409395973154363,
+      "recall": 0.44525547445255476,
+      "delta_f1": -0.04125379170879684,
+      "mean_abs_dprob": 0.04324856926762552,
+      "flip_rate": 0.055944055944055944,
+      "mean_p_shift": 0.028295396451253858
+    },
+    {
+      "perturbation": "punct_noise",
+      "description": "Punctuation noise: '...', spaced colons, '!!'",
+      "model": "rules",
+      "f1": 0.27672955974842767,
+      "fpr": 0.0,
+      "recall": 0.16058394160583941,
+      "delta_f1": -0.47663366895112386,
+      "mean_abs_dprob": 0.16825955866391543,
+      "flip_rate": 0.22377622377622378,
+      "mean_p_shift": -0.1467681284556741
+    },
+    {
+      "perturbation": "punct_noise",
+      "description": "Punctuation noise: '...', spaced colons, '!!'",
+      "model": "tfidf_lr",
+      "f1": 0.3583815028901734,
+      "fpr": 0.03355704697986577,
+      "recall": 0.22627737226277372,
+      "delta_f1": -0.36638913931166145,
+      "mean_abs_dprob": 0.1517862208218414,
+      "flip_rate": 0.22727272727272727,
+      "mean_p_shift": -0.03870310889390695
+    },
+    {
+      "perturbation": "punct_noise",
+      "description": "Punctuation noise: '...', spaced colons, '!!'",
+      "model": "char_svm",
+      "f1": 0.5517241379310345,
+      "fpr": 0.06711409395973154,
+      "recall": 0.40875912408759124,
+      "delta_f1": -0.05697151424287861,
+      "mean_abs_dprob": 0.06131895848333618,
+      "flip_rate": 0.07692307692307693,
+      "mean_p_shift": -0.028266028190833212
+    },
+    {
+      "perturbation": "case_upper",
+      "description": "ALL CAPS",
+      "model": "rules",
+      "f1": 0.7533632286995515,
+      "fpr": 0.013422818791946308,
+      "recall": 0.6131386861313869,
+      "delta_f1": 0.0,
+      "mean_abs_dprob": 0.0,
+      "flip_rate": 0.0,
+      "mean_p_shift": 0.0
+    },
+    {
+      "perturbation": "case_upper",
+      "description": "ALL CAPS",
+      "model": "tfidf_lr",
+      "f1": 0.7247706422018348,
+      "fpr": 0.013422818791946308,
+      "recall": 0.5766423357664233,
+      "delta_f1": 0.0,
+      "mean_abs_dprob": 0.0,
+      "flip_rate": 0.0,
+      "mean_p_shift": 0.0
+    },
+    {
+      "perturbation": "case_upper",
+      "description": "ALL CAPS",
+      "model": "char_svm",
+      "f1": 0.6086956521739131,
+      "fpr": 0.04697986577181208,
+      "recall": 0.45985401459854014,
+      "delta_f1": 0.0,
+      "mean_abs_dprob": 0.0,
+      "flip_rate": 0.0,
+      "mean_p_shift": 0.0
+    },
+    {
+      "perturbation": "char_sub",
+      "description": "Character substitution (o->0, l->1, a->@ ...)",
+      "model": "rules",
+      "f1": 0.6857142857142857,
+      "fpr": 0.006711409395973154,
+      "recall": 0.5255474452554745,
+      "delta_f1": -0.0676489429852658,
+      "mean_abs_dprob": 0.028867945530045874,
+      "flip_rate": 0.045454545454545456,
+      "mean_p_shift": -0.024373072561175952
+    },
+    {
+      "perturbation": "char_sub",
+      "description": "Character substitution (o->0, l->1, a->@ ...)",
+      "model": "tfidf_lr",
+      "f1": 0.7102803738317757,
+      "fpr": 0.006711409395973154,
+      "recall": 0.5547445255474452,
+      "delta_f1": -0.014490268370059178,
+      "mean_abs_dprob": 0.030643890725260137,
+      "flip_rate": 0.02097902097902098,
+      "mean_p_shift": -0.0029284648188699406
+    },
+    {
+      "perturbation": "char_sub",
+      "description": "Character substitution (o->0, l->1, a->@ ...)",
+      "model": "char_svm",
+      "f1": 0.6124401913875598,
+      "fpr": 0.053691275167785234,
+      "recall": 0.46715328467153283,
+      "delta_f1": 0.0037445392136467026,
+      "mean_abs_dprob": 0.03477951782192483,
+      "flip_rate": 0.04895104895104895,
+      "mean_p_shift": -0.002696918667248439
+    },
+    {
+      "perturbation": "benign_pad",
+      "description": "Benign padding sentence appended",
+      "model": "rules",
+      "f1": 0.7533632286995515,
+      "fpr": 0.013422818791946308,
+      "recall": 0.6131386861313869,
+      "delta_f1": 0.0,
+      "mean_abs_dprob": 0.0,
+      "flip_rate": 0.0,
+      "mean_p_shift": 0.0
+    },
+    {
+      "perturbation": "benign_pad",
+      "description": "Benign padding sentence appended",
+      "model": "tfidf_lr",
+      "f1": 0.7533632286995515,
+      "fpr": 0.013422818791946308,
+      "recall": 0.6131386861313869,
+      "delta_f1": 0.028592586497716677,
+      "mean_abs_dprob": 0.040935087102348375,
+      "flip_rate": 0.017482517482517484,
+      "mean_p_shift": 0.02823562507347092
+    },
+    {
+      "perturbation": "benign_pad",
+      "description": "Benign padding sentence appended",
+      "model": "char_svm",
+      "f1": 0.6048780487804878,
+      "fpr": 0.040268456375838924,
+      "recall": 0.45255474452554745,
+      "delta_f1": -0.003817603393425295,
+      "mean_abs_dprob": 0.015408537051845686,
+      "flip_rate": 0.013986013986013986,
+      "mean_p_shift": -0.0015133036674615458
+    },
+    {
+      "perturbation": "urgency_add",
+      "description": "Harmless urgency cue prepended",
+      "model": "rules",
+      "f1": 0.7477477477477478,
+      "fpr": 0.013422818791946308,
+      "recall": 0.6058394160583942,
+      "delta_f1": -0.005615480951803753,
+      "mean_abs_dprob": 0.0023130413263528515,
+      "flip_rate": 0.0034965034965034965,
+      "mean_p_shift": -0.0023130413263528515
+    },
+    {
+      "perturbation": "urgency_add",
+      "description": "Harmless urgency cue prepended",
+      "model": "tfidf_lr",
+      "f1": 0.7589285714285714,
+      "fpr": 0.013422818791946308,
+      "recall": 0.6204379562043796,
+      "delta_f1": 0.03415792922673655,
+      "mean_abs_dprob": 0.027658841523208973,
+      "flip_rate": 0.02097902097902098,
+      "mean_p_shift": 0.02549863166950918
+    },
+    {
+      "perturbation": "urgency_add",
+      "description": "Harmless urgency cue prepended",
+      "model": "char_svm",
+      "f1": 0.6422018348623854,
+      "fpr": 0.0738255033557047,
+      "recall": 0.5109489051094891,
+      "delta_f1": 0.033506182688472275,
+      "mean_abs_dprob": 0.03211054257721671,
+      "flip_rate": 0.038461538461538464,
+      "mean_p_shift": 0.03121595303437133
+    }
+  ],
+  "cp5": [
+    {
+      "message": "A. Obvious credential phish",
+      "true_label": "phish",
+      "channel": "email",
+      "subject": "Account locked",
+      "probs": {
+        "original": {
+          "rules": 0.9978921989379567,
+          "tfidf_lr": 0.9705067016323456,
+          "char_svm": 0.9878201890286902
+        },
+        "defang_alt": {
+          "rules": 0.9978921989379567,
+          "tfidf_lr": 0.9705067016323456,
+          "char_svm": 0.9878201890286902
+        },
+        "defang_dot": {
+          "rules": 0.9978921989379567,
+          "tfidf_lr": 0.9705067016323456,
+          "char_svm": 0.9878201890286902
+        },
+        "punct_noise": {
+          "rules": 0.9002495108803148,
+          "tfidf_lr": 0.826980194014678,
+          "char_svm": 0.9510593502869491
+        },
+        "case_upper": {
+          "rules": 0.9978921989379567,
+          "tfidf_lr": 0.9705067016323456,
+          "char_svm": 0.9878201890286902
+        },
+        "char_sub": {
+          "rules": 0.9978921989379567,
+          "tfidf_lr": 0.9704599798729788,
+          "char_svm": 0.9905542952301047
+        },
+        "benign_pad": {
+          "rules": 0.9978921989379567,
+          "tfidf_lr": 0.9542887405129322,
+          "char_svm": 0.9770190047939646
+        },
+        "urgency_add": {
+          "rules": 0.995929862284104,
+          "tfidf_lr": 0.965579278522112,
+          "char_svm": 0.9843155561658928
+        }
+      },
+      "primary_original": 0.9705067016323456,
+      "flips": []
+    },
+    {
+      "message": "B. Subtle shared-file phish",
+      "true_label": "phish",
+      "channel": "email",
+      "subject": "Meeting notes",
+      "probs": {
+        "original": {
+          "rules": 0.12131883789173686,
+          "tfidf_lr": 0.20986175767503745,
+          "char_svm": 0.22800814813256762
+        },
+        "defang_alt": {
+          "rules": 0.12131883789173686,
+          "tfidf_lr": 0.20986175767503745,
+          "char_svm": 0.22800814813256762
+        },
+        "defang_dot": {
+          "rules": 0.12131883789173686,
+          "tfidf_lr": 0.20986175767503745,
+          "char_svm": 0.22800814813256762
+        },
+        "punct_noise": {
+          "rules": 0.06660803557509065,
+          "tfidf_lr": 0.2350873283724672,
+          "char_svm": 0.2821032129270113
+        },
+        "case_upper": {
+          "rules": 0.12131883789173686,
+          "tfidf_lr": 0.20986175767503745,
+          "char_svm": 0.22800814813256762
+        },
+        "char_sub": {
+          "rules": 0.12131883789173686,
+          "tfidf_lr": 0.20986175767503745,
+          "char_svm": 0.2097559653965745
+        },
+        "benign_pad": {
+          "rules": 0.12131883789173686,
+          "tfidf_lr": 0.2844887590016862,
+          "char_svm": 0.258343566801015
+        },
+        "urgency_add": {
+          "rules": 0.12131883789173686,
+          "tfidf_lr": 0.25863397666191895,
+          "char_svm": 0.28640924852265087
+        }
+      },
+      "primary_original": 0.20986175767503745,
+      "flips": []
+    },
+    {
+      "message": "C. Conversational favour request",
+      "true_label": "phish",
+      "channel": "email",
+      "subject": "Quick favour",
+      "probs": {
+        "original": {
+          "rules": 0.29317777890643243,
+          "tfidf_lr": 0.32227381520462267,
+          "char_svm": 0.2523037191089771
+        },
+        "defang_alt": {
+          "rules": 0.29317777890643243,
+          "tfidf_lr": 0.32227381520462267,
+          "char_svm": 0.2523037191089771
+        },
+        "defang_dot": {
+          "rules": 0.29317777890643243,
+          "tfidf_lr": 0.32227381520462267,
+          "char_svm": 0.2523037191089771
+        },
+        "punct_noise": {
+          "rules": 0.29317777890643243,
+          "tfidf_lr": 0.32227381520462267,
+          "char_svm": 0.2540059370583022
+        },
+        "case_upper": {
+          "rules": 0.29317777890643243,
+          "tfidf_lr": 0.32227381520462267,
+          "char_svm": 0.2523037191089771
+        },
+        "char_sub": {
+          "rules": 0.06660803557509065,
+          "tfidf_lr": 0.28899455937096225,
+          "char_svm": 0.2538315423313976
+        },
+        "benign_pad": {
+          "rules": 0.29317777890643243,
+          "tfidf_lr": 0.3758851276441251,
+          "char_svm": 0.27043240345918274
+        },
+        "urgency_add": {
+          "rules": 0.29317777890643243,
+          "tfidf_lr": 0.362323693892935,
+          "char_svm": 0.29623227503444266
+        }
+      },
+      "primary_original": 0.32227381520462267,
+      "flips": []
+    },
+    {
+      "message": "D. Parcel-fee SMS",
+      "true_label": "phish",
+      "channel": "sms",
+      "subject": "",
+      "probs": {
+        "original": {
+          "rules": 0.4182406231581638,
+          "tfidf_lr": 0.9169053088029525,
+          "char_svm": 0.9083704274334625
+        },
+        "defang_alt": {
+          "rules": 0.4182406231581638,
+          "tfidf_lr": 0.9169053088029525,
+          "char_svm": 0.9083704274334625
+        },
+        "defang_dot": {
+          "rules": 0.12131883789173686,
+          "tfidf_lr": 0.8549257178493989,
+          "char_svm": 0.8739931271629743
+        },
+        "punct_noise": {
+          "rules": 0.06660803557509065,
+          "tfidf_lr": 0.7392716129721956,
+          "char_svm": 0.8452570628734707
+        },
+        "case_upper": {
+          "rules": 0.4182406231581638,
+          "tfidf_lr": 0.9169053088029525,
+          "char_svm": 0.9083704274334625
+        },
+        "char_sub": {
+          "rules": 0.4182406231581638,
+          "tfidf_lr": 0.8805902995489513,
+          "char_svm": 0.838903433224582
+        },
+        "benign_pad": {
+          "rules": 0.4182406231581638,
+          "tfidf_lr": 0.8842845232726071,
+          "char_svm": 0.8620754543798005
+        },
+        "urgency_add": {
+          "rules": 0.4182406231581638,
+          "tfidf_lr": 0.9000196260843683,
+          "char_svm": 0.8965113148633875
+        }
+      },
+      "primary_original": 0.9169053088029525,
+      "flips": []
+    },
+    {
+      "message": "E. Legit password-reset notice",
+      "true_label": "legit",
+      "channel": "email",
+      "subject": "Your password reset was completed",
+      "probs": {
+        "original": {
+          "rules": 0.0021078010620432515,
+          "tfidf_lr": 0.16243913367068016,
+          "char_svm": 0.08379540559562935
+        },
+        "defang_alt": {
+          "rules": 0.0021078010620432515,
+          "tfidf_lr": 0.16243913367068016,
+          "char_svm": 0.08379540559562935
+        },
+        "defang_dot": {
+          "rules": 0.0021078010620432515,
+          "tfidf_lr": 0.16243913367068016,
+          "char_svm": 0.08379540559562935
+        },
+        "punct_noise": {
+          "rules": 0.0021078010620432515,
+          "tfidf_lr": 0.16243913367068016,
+          "char_svm": 0.08782741005700169
+        },
+        "case_upper": {
+          "rules": 0.0021078010620432515,
+          "tfidf_lr": 0.16243913367068016,
+          "char_svm": 0.08379540559562935
+        },
+        "char_sub": {
+          "rules": 0.005652437151237075,
+          "tfidf_lr": 0.17353400002582225,
+          "char_svm": 0.1292423025030129
+        },
+        "benign_pad": {
+          "rules": 0.0021078010620432515,
+          "tfidf_lr": 0.18352451505488626,
+          "char_svm": 0.08275842345783757
+        },
+        "urgency_add": {
+          "rules": 0.0021078010620432515,
+          "tfidf_lr": 0.1769202046828216,
+          "char_svm": 0.10511335486354767
+        }
+      },
+      "primary_original": 0.16243913367068016,
+      "flips": []
+    },
+    {
+      "message": "F. Legit payslip notice",
+      "true_label": "legit",
+      "channel": "email",
+      "subject": "Your payslip is available",
+      "probs": {
+        "original": {
+          "rules": 0.013519639645969637,
+          "tfidf_lr": 0.053526323895843,
+          "char_svm": 0.024654690582726874
+        },
+        "defang_alt": {
+          "rules": 0.013519639645969637,
+          "tfidf_lr": 0.053526323895843,
+          "char_svm": 0.024654690582726874
+        },
+        "defang_dot": {
+          "rules": 0.36586440898919936,
+          "tfidf_lr": 0.16135745311309943,
+          "char_svm": 0.045610466431006046
+        },
+        "punct_noise": {
+          "rules": 0.020836344518680414,
+          "tfidf_lr": 0.09261508537169022,
+          "char_svm": 0.028823968015696238
+        },
+        "case_upper": {
+          "rules": 0.013519639645969637,
+          "tfidf_lr": 0.053526323895843,
+          "char_svm": 0.024654690582726874
+        },
+        "char_sub": {
+          "rules": 0.013519639645969637,
+          "tfidf_lr": 0.0632603385663788,
+          "char_svm": 0.03470430068665029
+        },
+        "benign_pad": {
+          "rules": 0.013519639645969637,
+          "tfidf_lr": 0.07535054843294764,
+          "char_svm": 0.029471306811365616
+        },
+        "urgency_add": {
+          "rules": 0.013519639645969637,
+          "tfidf_lr": 0.06562808536715618,
+          "char_svm": 0.036101672707939764
+        }
+      },
+      "primary_original": 0.053526323895843,
+      "flips": []
+    },
+    {
+      "message": "G. Legit urgent timesheet",
+      "true_label": "legit",
+      "channel": "email",
+      "subject": "URGENT: approve timesheets today",
+      "probs": {
+        "original": {
+          "rules": 0.01679064808681382,
+          "tfidf_lr": 0.117211079964858,
+          "char_svm": 0.0877360236676324
+        },
+        "defang_alt": {
+          "rules": 0.01679064808681382,
+          "tfidf_lr": 0.117211079964858,
+          "char_svm": 0.0877360236676324
+        },
+        "defang_dot": {
+          "rules": 0.4182406231581638,
+          "tfidf_lr": 0.3868268221459601,
+          "char_svm": 0.14450676088525236
+        },
+        "punct_noise": {
+          "rules": 0.060086650174007626,
+          "tfidf_lr": 0.19246421529135982,
+          "char_svm": 0.08779221496060537
+        },
+        "case_upper": {
+          "rules": 0.01679064808681382,
+          "tfidf_lr": 0.117211079964858,
+          "char_svm": 0.0877360236676324
+        },
+        "char_sub": {
+          "rules": 0.01679064808681382,
+          "tfidf_lr": 0.1312622493974788,
+          "char_svm": 0.09812811356949531
+        },
+        "benign_pad": {
+          "rules": 0.01679064808681382,
+          "tfidf_lr": 0.17011345255766122,
+          "char_svm": 0.10156068518369747
+        },
+        "urgency_add": {
+          "rules": 0.01679064808681382,
+          "tfidf_lr": 0.14172010382591863,
+          "char_svm": 0.10391662129099916
+        }
+      },
+      "primary_original": 0.117211079964858,
+      "flips": []
+    },
+    {
+      "message": "H. Legit security reminder",
+      "true_label": "legit",
+      "channel": "email",
+      "subject": "Security reminder",
+      "probs": {
+        "original": {
+          "rules": 0.005652437151237075,
+          "tfidf_lr": 0.17133621365851054,
+          "char_svm": 0.22149850640112398
+        },
+        "defang_alt": {
+          "rules": 0.005652437151237075,
+          "tfidf_lr": 0.17133621365851054,
+          "char_svm": 0.22149850640112398
+        },
+        "defang_dot": {
+          "rules": 0.005652437151237075,
+          "tfidf_lr": 0.17133621365851054,
+          "char_svm": 0.22149850640112398
+        },
+        "punct_noise": {
+          "rules": 0.005652437151237075,
+          "tfidf_lr": 0.17133621365851054,
+          "char_svm": 0.23517476881862
+        },
+        "case_upper": {
+          "rules": 0.005652437151237075,
+          "tfidf_lr": 0.17133621365851054,
+          "char_svm": 0.22149850640112398
+        },
+        "char_sub": {
+          "rules": 0.005652437151237075,
+          "tfidf_lr": 0.15293236152522038,
+          "char_svm": 0.23002162261447115
+        },
+        "benign_pad": {
+          "rules": 0.005652437151237075,
+          "tfidf_lr": 0.21745689462950255,
+          "char_svm": 0.228509645996701
+        },
+        "urgency_add": {
+          "rules": 0.005652437151237075,
+          "tfidf_lr": 0.19685857181314628,
+          "char_svm": 0.2605668644248845
+        }
+      },
+      "primary_original": 0.17133621365851054,
+      "flips": []
+    }
+  ],
+  "errors": [
+    {
+      "title": "Missed phishing message (false negative)",
+      "message_id": "M0666",
+      "campaign": "survey_gift",
+      "true_label": "phish",
+      "channel": "email",
+      "subject": "Team appreciation survey",
+      "body": "Hi Vikram,\n\nOnly a few places remain for this month's appreciation draw.\n\nClaim yours: hxxps://files[.]cloudbox-share[.]test/d/n3yvdgha\n\nPeople Team",
+      "sender_type": "internal",
+      "probabilities": {
+        "rules": 0.27091207765069353,
+        "tfidf_lr": 0.028087479575652184,
+        "char_svm": 0.017356810189117732
+      },
+      "explanation": {
+        "rule_score": 1.5,
+        "cues": [
+          {
+            "cue": "Urgency / time pressure",
+            "weight": 1.0,
+            "evidence": "Only a few",
+            "why": "Pushes the reader to act before thinking or checking."
+          },
+          {
+            "cue": "Gift / reward bait",
+            "weight": 1.0,
+            "evidence": "appreciation draw",
+            "why": "Offers something to lower the reader's guard."
+          },
+          {
+            "cue": "Internal sender",
+            "weight": -0.5,
+            "evidence": "sender type: internal",
+            "why": "Internal senders are usually legitimate (but accounts can be compromised)."
+          }
+        ],
+        "model_terms": {
+          "toward_phishing": [
+            [
+              "urltoken",
+              0.012687866456764538
+            ],
+            [
+              "f_n_urls_1",
+              0.012687866456764538
+            ]
+          ],
+          "toward_legitimate": [
+            [
+              "team",
+              -0.2385776351047669
+            ],
+            [
+              "f_https_1",
+              -0.23298869416776555
+            ],
+            [
+              "f_lookalike_0 f_subdomains_1",
+              -0.23298869416776555
+            ],
+            [
+              "f_subdomains_1",
+              -0.23298869416776555
+            ],
+            [
+              "f_login_path_0 f_https_1",
+              -0.2311737635932
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "title": "Legitimate message flagged as phishing (false positive)",
+      "message_id": "M0849",
+      "campaign": "security_awareness",
+      "true_label": "legit",
+      "channel": "email",
+      "subject": "Do not click suspicious links",
+      "body": "Hi Arjun,\n\nBeware of fake invoices and parcel fees. Verify the sender before you act.\n\nQuestions? Visit the security desk.\n\nStay safe",
+      "sender_type": "lookalike",
+      "probabilities": {
+        "rules": 0.1765352747791167,
+        "tfidf_lr": 0.532591760983693,
+        "char_svm": 0.688835113644641
+      },
+      "explanation": {
+        "rule_score": 1.0,
+        "cues": [
+          {
+            "cue": "Look-alike sender domain",
+            "weight": 1.0,
+            "evidence": "sender type: lookalike",
+            "why": "Sender domain imitates the organisation."
+          }
+        ],
+        "model_terms": {
+          "toward_phishing": [
+            [
+              "and",
+              0.1779369487630101
+            ],
+            [
+              "send_lookalike",
+              0.15719964758853913
+            ],
+            [
+              "verify",
+              0.15526783966249416
+            ],
+            [
+              "chan_email send_lookalike",
+              0.14990082545517494
+            ],
+            [
+              "do not",
+              0.13273531731413923
+            ]
+          ],
+          "toward_legitimate": [
+            [
+              "f_n_urls_0",
+              -0.19075487011268458
+            ],
+            [
+              "f_n_urls_0 f_shortener_0",
+              -0.19075487011268458
+            ],
+            [
+              "questions",
+              -0.16520210440354766
+            ],
+            [
+              "before",
+              -0.15616420809532958
+            ],
+            [
+              "the",
+              -0.13418263881146103
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "title": "Another error (second-most-confident mistake)",
+      "message_id": "M0403",
+      "campaign": "shared_doc",
+      "true_label": "phish",
+      "channel": "email",
+      "subject": "Notes from Tuesday",
+      "body": "Hi,\n\nSharing the meeting notes from earlier, there are a few items for you.\n\nOpen it here: hxxps://files[.]cloudbox-share[.]test/d/schebpmw\n\nThanks",
+      "sender_type": "unknown",
+      "probabilities": {
+        "rules": 0.12131883789173686,
+        "tfidf_lr": 0.05901215688604654,
+        "char_svm": 0.12908004672364248
+      },
+      "explanation": {
+        "rule_score": 0.6,
+        "cues": [
+          {
+            "cue": "Link from an unfamiliar sender",
+            "weight": 0.6,
+            "evidence": "sender type: unknown",
+            "why": "Links from unknown senders deserve extra care."
+          }
+        ],
+        "model_terms": {
+          "toward_phishing": [
+            [
+              "here",
+              0.13252936545003408
+            ],
+            [
+              "here urltoken",
+              0.11100470578657508
+            ],
+            [
+              "send_unknown f_n_urls_1",
+              0.08640317300941128
+            ],
+            [
+              "send_unknown",
+              0.07821852847278729
+            ],
+            [
+              "chan_email send_unknown",
+              0.054748927686191495
+            ]
+          ],
+          "toward_legitimate": [
+            [
+              "from",
+              -0.37498057913216054
+            ],
+            [
+              "f_https_1",
+              -0.2510266841378394
+            ],
+            [
+              "f_lookalike_0 f_subdomains_1",
+              -0.2510266841378394
+            ],
+            [
+              "f_subdomains_1",
+              -0.2510266841378394
+            ],
+            [
+              "f_login_path_0 f_https_1",
+              -0.24907124159715757
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "acceptance": {
+    "AT-01": {
+      "subset": "held-out legitimate urgent messages (password-expiry policy + payroll cut-off campaigns)",
+      "n": 74,
+      "by_model": {
+        "rules": {
+          "false_positives": 2,
+          "fpr": 0.02702702702702703,
+          "abstained": 2,
+          "false_alarms_per_1000_urgent_legit_messages": 27
+        },
+        "tfidf_lr": {
+          "false_positives": 1,
+          "fpr": 0.013513513513513514,
+          "abstained": 11,
+          "false_alarms_per_1000_urgent_legit_messages": 14
+        },
+        "char_svm": {
+          "false_positives": 2,
+          "fpr": 0.02702702702702703,
+          "abstained": 10,
+          "false_alarms_per_1000_urgent_legit_messages": 27
+        }
+      },
+      "note": "Each false alarm costs a helpdesk review and teaches users to ignore warnings; see 'abstain' in the dashboard for how many are routed to human review instead of auto-flagged."
+    },
+    "AT-02": {
+      "campaigns_excluded_from_training": [
+        "ceo_favour",
+        "shared_doc",
+        "vendor_bank_change",
+        "survey_gift"
+      ],
+      "per_campaign_recall": {
+        "ceo_favour": {
+          "rules": 0.6875,
+          "tfidf_lr": 0.3125,
+          "char_svm": 0.28125
+        },
+        "shared_doc": {
+          "rules": 0.36363636363636365,
+          "tfidf_lr": 0.5454545454545454,
+          "char_svm": 0.30303030303030304
+        },
+        "survey_gift": {
+          "rules": 0.7894736842105263,
+          "tfidf_lr": 0.7631578947368421,
+          "char_svm": 0.5
+        },
+        "vendor_bank_change": {
+          "rules": 0.5882352941176471,
+          "tfidf_lr": 0.6470588235294118,
+          "char_svm": 0.7352941176470589
+        }
+      },
+      "overall_recall": {
+        "rules": 0.6131386861313869,
+        "tfidf_lr": 0.5766423357664233,
+        "char_svm": 0.45985401459854014
+      }
+    },
+    "AT-03": {
+      "primary_model": "tfidf_lr",
+      "rows": [
+        {
+          "perturbation": "defang_alt",
+          "description": "Defang style: [.] -> (.), hxxp -> hXXp",
+          "model": "tfidf_lr",
+          "f1": 0.7247706422018348,
+          "fpr": 0.013422818791946308,
+          "recall": 0.5766423357664233,
+          "delta_f1": 0.0,
+          "mean_abs_dprob": 0.0,
+          "flip_rate": 0.0,
+          "mean_p_shift": 0.0
+        },
+        {
+          "perturbation": "defang_dot",
+          "description": "Defang style: [.] -> [dot] (unsupported)",
+          "model": "tfidf_lr",
+          "f1": 0.6118721461187214,
+          "fpr": 0.10067114093959731,
+          "recall": 0.48905109489051096,
+          "delta_f1": -0.11289849608311342,
+          "mean_abs_dprob": 0.11863435982249848,
+          "flip_rate": 0.12937062937062938,
+          "mean_p_shift": 0.07677084493886152
+        },
+        {
+          "perturbation": "punct_noise",
+          "description": "Punctuation noise: '...', spaced colons, '!!'",
+          "model": "tfidf_lr",
+          "f1": 0.3583815028901734,
+          "fpr": 0.03355704697986577,
+          "recall": 0.22627737226277372,
+          "delta_f1": -0.36638913931166145,
+          "mean_abs_dprob": 0.1517862208218414,
+          "flip_rate": 0.22727272727272727,
+          "mean_p_shift": -0.03870310889390695
+        }
+      ],
+      "limitation": "URL traits are parsed only from [.] and (.) defang styles; '[dot]' is not recognised, so link features vanish and the probability shifts. Character substitution and padding also move probabilities because the models rely on exact words."
+    }
+  },
+  "mentor": null,
+  "holdout_preds": [
+    {
+      "id": "M0003",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.11711419097287738,
+      "char_svm": 0.1681622075048358
+    },
+    {
+      "id": "M0005",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.09352856020877136,
+      "char_svm": 0.2505937107104252
+    },
+    {
+      "id": "M0010",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.020836344518680414,
+      "tfidf_lr": 0.17051161912242452,
+      "char_svm": 0.12937589990598075
+    },
+    {
+      "id": "M0013",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.013519639645969637,
+      "tfidf_lr": 0.15711086230054488,
+      "char_svm": 0.49486278674135303
+    },
+    {
+      "id": "M0014",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.18341983462497946,
+      "char_svm": 0.19020579676457858
+    },
+    {
+      "id": "M0019",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.4182406231581638,
+      "tfidf_lr": 0.6144065950302339,
+      "char_svm": 0.6197691558156154
+    },
+    {
+      "id": "M0022",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.16622932791221492,
+      "char_svm": 0.3198972428028641
+    },
+    {
+      "id": "M0026",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.018706509954354602,
+      "tfidf_lr": 0.12076287984325935,
+      "char_svm": 0.08808264390528797
+    },
+    {
+      "id": "M0027",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.068316500361962,
+      "char_svm": 0.08913333154508936
+    },
+    {
+      "id": "M0031",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.14510078011565875,
+      "char_svm": 0.41219431655501615
+    },
+    {
+      "id": "M0032",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.11146984894471652,
+      "char_svm": 0.06297666020721476
+    },
+    {
+      "id": "M0033",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.09041567422276521,
+      "char_svm": 0.06043721580898251
+    },
+    {
+      "id": "M0037",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.7702989490466019,
+      "tfidf_lr": 0.8324618487561628,
+      "char_svm": 0.6904202716403455
+    },
+    {
+      "id": "M0038",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8664582774667876,
+      "tfidf_lr": 0.5699742014296336,
+      "char_svm": 0.22304820450982232
+    },
+    {
+      "id": "M0042",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.2033938685369757,
+      "char_svm": 0.25808826056321627
+    },
+    {
+      "id": "M0044",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.19309868423321644,
+      "tfidf_lr": 0.2725623362156902,
+      "char_svm": 0.2157387476633993
+    },
+    {
+      "id": "M0045",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5274723043445938,
+      "tfidf_lr": 0.6310900529059797,
+      "char_svm": 0.45141887947851433
+    },
+    {
+      "id": "M0046",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.06891145297384552,
+      "char_svm": 0.12902236482685628
+    },
+    {
+      "id": "M0047",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.26617020345579373,
+      "char_svm": 0.16823052673812242
+    },
+    {
+      "id": "M0048",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.7702989490466019,
+      "tfidf_lr": 0.7359566413925335,
+      "char_svm": 0.5212033489572946
+    },
+    {
+      "id": "M0051",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.12402024177790119,
+      "char_svm": 0.09387311871819048
+    },
+    {
+      "id": "M0056",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.013519639645969637,
+      "tfidf_lr": 0.1455776566038306,
+      "char_svm": 0.14490963694161244
+    },
+    {
+      "id": "M0057",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.14679033980138237,
+      "tfidf_lr": 0.1581546336078142,
+      "char_svm": 0.1931969887476741
+    },
+    {
+      "id": "M0059",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.3016977239564628,
+      "char_svm": 0.24596275306199908
+    },
+    {
+      "id": "M0062",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.0997041949084469,
+      "char_svm": 0.1693698202047648
+    },
+    {
+      "id": "M0063",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.08446156739874872,
+      "char_svm": 0.18646967469434406
+    },
+    {
+      "id": "M0065",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.3917409692534856,
+      "tfidf_lr": 0.5437163409010881,
+      "char_svm": 0.25057403858122707
+    },
+    {
+      "id": "M0066",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.007845023030455627,
+      "tfidf_lr": 0.19600737197119955,
+      "char_svm": 0.07123021325079461
+    },
+    {
+      "id": "M0070",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.4182406231581638,
+      "tfidf_lr": 0.6363790329010647,
+      "char_svm": 0.43545772038536795
+    },
+    {
+      "id": "M0074",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.19309868423321644,
+      "tfidf_lr": 0.3325624676090032,
+      "char_svm": 0.25317701641071255
+    },
+    {
+      "id": "M0075",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.0007842485527910258,
+      "tfidf_lr": 0.17796627403291215,
+      "char_svm": 0.21691924291347467
+    },
+    {
+      "id": "M0076",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.018706509954354602,
+      "tfidf_lr": 0.0990865692947131,
+      "char_svm": 0.07375618304578264
+    },
+    {
+      "id": "M0077",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.36586440898919936,
+      "tfidf_lr": 0.3837118869301377,
+      "char_svm": 0.6366338449107639
+    },
+    {
+      "id": "M0078",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.03954377955095297,
+      "tfidf_lr": 0.19594457542765595,
+      "char_svm": 0.1196916671151755
+    },
+    {
+      "id": "M0080",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.05416670048123607,
+      "tfidf_lr": 0.12766401005467226,
+      "char_svm": 0.07968860053532605
+    },
+    {
+      "id": "M0084",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.19309868423321644,
+      "tfidf_lr": 0.20315257948849239,
+      "char_svm": 0.18354881331066877
+    },
+    {
+      "id": "M0085",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.97125150407346,
+      "tfidf_lr": 0.6797530074447887,
+      "char_svm": 0.23566543185785813
+    },
+    {
+      "id": "M0087",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.19309868423321644,
+      "tfidf_lr": 0.21692974869391624,
+      "char_svm": 0.10711584428926367
+    },
+    {
+      "id": "M0090",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.97125150407346,
+      "tfidf_lr": 0.9621988262154471,
+      "char_svm": 0.8357319879017223
+    },
+    {
+      "id": "M0094",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.055459361341433505,
+      "char_svm": 0.2895985848944631
+    },
+    {
+      "id": "M0095",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.22970105095339807,
+      "tfidf_lr": 0.3308057571489195,
+      "char_svm": 0.42059625610138696
+    },
+    {
+      "id": "M0101",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.3917409692534856,
+      "tfidf_lr": 0.5779346503164409,
+      "char_svm": 0.42880037886227323
+    },
+    {
+      "id": "M0103",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.11007257436250302,
+      "tfidf_lr": 0.08306323647506741,
+      "char_svm": 0.06928838406035485
+    },
+    {
+      "id": "M0109",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.018706509954354602,
+      "tfidf_lr": 0.1669888196633465,
+      "char_svm": 0.2551396363967208
+    },
+    {
+      "id": "M0113",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.16710395417947332,
+      "char_svm": 0.24027654632131124
+    },
+    {
+      "id": "M0116",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6082590307465146,
+      "tfidf_lr": 0.6168173579723224,
+      "char_svm": 0.43675986498561975
+    },
+    {
+      "id": "M0120",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.03954377955095297,
+      "tfidf_lr": 0.12592319554818054,
+      "char_svm": 0.11076397085452988
+    },
+    {
+      "id": "M0121",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6082590307465146,
+      "tfidf_lr": 0.561265034621429,
+      "char_svm": 0.6343886959485109
+    },
+    {
+      "id": "M0122",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.07457769134096705,
+      "char_svm": 0.07221392365341829
+    },
+    {
+      "id": "M0123",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.10946938453795635,
+      "char_svm": 0.118998887390796
+    },
+    {
+      "id": "M0124",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.789181706522253,
+      "tfidf_lr": 0.656763915922709,
+      "char_svm": 0.43272762465480846
+    },
+    {
+      "id": "M0126",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6835208937363157,
+      "tfidf_lr": 0.6858843230637225,
+      "char_svm": 0.47936312191048946
+    },
+    {
+      "id": "M0129",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.018706509954354602,
+      "tfidf_lr": 0.14178442614918876,
+      "char_svm": 0.25605511281350296
+    },
+    {
+      "id": "M0133",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.06616829146205527,
+      "char_svm": 0.07127293142925407
+    },
+    {
+      "id": "M0134",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9183397445384054,
+      "tfidf_lr": 0.9132430784399229,
+      "char_svm": 0.6016553067042146
+    },
+    {
+      "id": "M0137",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.04393981539614132,
+      "tfidf_lr": 0.2647203213548601,
+      "char_svm": 0.13827126756948874
+    },
+    {
+      "id": "M0142",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.2305601103079835,
+      "char_svm": 0.5059396358130535
+    },
+    {
+      "id": "M0143",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.4698925590373556,
+      "char_svm": 0.39596789939449245
+    },
+    {
+      "id": "M0145",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.06643729401365481,
+      "char_svm": 0.07487344900251197
+    },
+    {
+      "id": "M0148",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.13354172253321245,
+      "tfidf_lr": 0.26186052923363584,
+      "char_svm": 0.3138951174140003
+    },
+    {
+      "id": "M0151",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.009756665624551365,
+      "tfidf_lr": 0.09339671024637675,
+      "char_svm": 0.0682251983881982
+    },
+    {
+      "id": "M0156",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.2166223815486985,
+      "char_svm": 0.32736247482823616
+    },
+    {
+      "id": "M0157",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.0007842485527910258,
+      "tfidf_lr": 0.13408082079957484,
+      "char_svm": 0.22468431558841126
+    },
+    {
+      "id": "M0158",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.19309868423321644,
+      "tfidf_lr": 0.2195383672432805,
+      "char_svm": 0.18443300072197463
+    },
+    {
+      "id": "M0159",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.018706509954354602,
+      "tfidf_lr": 0.1205055570191837,
+      "char_svm": 0.16514594848833494
+    },
+    {
+      "id": "M0161",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.19309868423321644,
+      "tfidf_lr": 0.3067599870089546,
+      "char_svm": 0.35205380098120753
+    },
+    {
+      "id": "M0162",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.12027263279801377,
+      "char_svm": 0.06909394835388814
+    },
+    {
+      "id": "M0165",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8664582774667876,
+      "tfidf_lr": 0.6065357488959117,
+      "char_svm": 0.35722815636137906
+    },
+    {
+      "id": "M0166",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.07261456150246877,
+      "char_svm": 0.08444371451406985
+    },
+    {
+      "id": "M0170",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.04393981539614132,
+      "tfidf_lr": 0.21110811729433937,
+      "char_svm": 0.08255097361635276
+    },
+    {
+      "id": "M0171",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.023202938145644076,
+      "tfidf_lr": 0.20743620888795888,
+      "char_svm": 0.347011281320617
+    },
+    {
+      "id": "M0176",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.09599685017090988,
+      "char_svm": 0.17910366854516938
+    },
+    {
+      "id": "M0177",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.09862497513120759,
+      "char_svm": 0.13635263106975534
+    },
+    {
+      "id": "M0183",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.36818114958566067,
+      "char_svm": 0.4153493212250869
+    },
+    {
+      "id": "M0185",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.10154984415523859,
+      "char_svm": 0.031707422225266006
+    },
+    {
+      "id": "M0186",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.12245090691460143,
+      "char_svm": 0.09156289336003881
+    },
+    {
+      "id": "M0187",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.07378164660246529,
+      "tfidf_lr": 0.19331004584276676,
+      "char_svm": 0.13154970859332918
+    },
+    {
+      "id": "M0188",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.009756665624551365,
+      "tfidf_lr": 0.15365645321643456,
+      "char_svm": 0.20078606894652848
+    },
+    {
+      "id": "M0190",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6592603884513855,
+      "tfidf_lr": 0.2915570725632549,
+      "char_svm": 0.08239183287172892
+    },
+    {
+      "id": "M0193",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.3948814949317844,
+      "char_svm": 0.457097803076943
+    },
+    {
+      "id": "M0194",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.789181706522253,
+      "tfidf_lr": 0.867822767830496,
+      "char_svm": 0.7880080447235951
+    },
+    {
+      "id": "M0196",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.03954377955095297,
+      "tfidf_lr": 0.1564657701492346,
+      "char_svm": 0.09526395323626591
+    },
+    {
+      "id": "M0198",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.19309868423321644,
+      "tfidf_lr": 0.2713610127968695,
+      "char_svm": 0.1839064001959936
+    },
+    {
+      "id": "M0203",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.04393981539614132,
+      "tfidf_lr": 0.2509007414903116,
+      "char_svm": 0.12935639658367826
+    },
+    {
+      "id": "M0205",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9183397445384054,
+      "tfidf_lr": 0.9437566834172836,
+      "char_svm": 0.8245991481823927
+    },
+    {
+      "id": "M0207",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8069013157667836,
+      "tfidf_lr": 0.7725720842090521,
+      "char_svm": 0.774986728441422
+    },
+    {
+      "id": "M0211",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.789181706522253,
+      "tfidf_lr": 0.874437753763944,
+      "char_svm": 0.7969489086169497
+    },
+    {
+      "id": "M0213",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.06288954578463626,
+      "char_svm": 0.04123763388715027
+    },
+    {
+      "id": "M0215",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.009756665624551365,
+      "tfidf_lr": 0.14790338734486524,
+      "char_svm": 0.23784898755820238
+    },
+    {
+      "id": "M0217",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.023202938145644076,
+      "tfidf_lr": 0.3736098575685076,
+      "char_svm": 0.27315599730764956
+    },
+    {
+      "id": "M0218",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.09975048911968518,
+      "tfidf_lr": 0.2561311642439695,
+      "char_svm": 0.2871128883467301
+    },
+    {
+      "id": "M0223",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01506798981059282,
+      "tfidf_lr": 0.2417478076311223,
+      "char_svm": 0.20389703609332413
+    },
+    {
+      "id": "M0224",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8069013157667836,
+      "tfidf_lr": 0.6062769977530215,
+      "char_svm": 0.3929815627121005
+    },
+    {
+      "id": "M0226",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.060086650174007626,
+      "tfidf_lr": 0.2527233827349327,
+      "char_svm": 0.31458388761614237
+    },
+    {
+      "id": "M0227",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01506798981059282,
+      "tfidf_lr": 0.1182463847099527,
+      "char_svm": 0.06418648311467724
+    },
+    {
+      "id": "M0228",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.060086650174007626,
+      "tfidf_lr": 0.2359698324909184,
+      "char_svm": 0.24340613435434388
+    },
+    {
+      "id": "M0234",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6082590307465146,
+      "tfidf_lr": 0.8125792624771684,
+      "char_svm": 0.6512810408012731
+    },
+    {
+      "id": "M0235",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.17237618298331076,
+      "char_svm": 0.3234044094394464
+    },
+    {
+      "id": "M0245",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.08226278384838642,
+      "char_svm": 0.07784389267129915
+    },
+    {
+      "id": "M0249",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.06660803557509065,
+      "tfidf_lr": 0.16514872558689764,
+      "char_svm": 0.15958320516673927
+    },
+    {
+      "id": "M0250",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9849320101894071,
+      "tfidf_lr": 0.814868603047242,
+      "char_svm": 0.718782318098769
+    },
+    {
+      "id": "M0252",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.09839898296384918,
+      "char_svm": 0.35138773569451726
+    },
+    {
+      "id": "M0253",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.04000420090202345,
+      "char_svm": 0.05559007764907406
+    },
+    {
+      "id": "M0254",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.36472041989735193,
+      "char_svm": 0.36605170478423826
+    },
+    {
+      "id": "M0256",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.960456220449047,
+      "tfidf_lr": 0.7582232012638883,
+      "char_svm": 0.6084201819964518
+    },
+    {
+      "id": "M0257",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.4182406231581638,
+      "tfidf_lr": 0.553056775243806,
+      "char_svm": 0.32948381626378026
+    },
+    {
+      "id": "M0258",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.1275192546674802,
+      "char_svm": 0.10885428614076072
+    },
+    {
+      "id": "M0259",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8664582774667876,
+      "tfidf_lr": 0.8853835855054141,
+      "char_svm": 0.7830819689503606
+    },
+    {
+      "id": "M0260",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.35710224097566345,
+      "char_svm": 0.3062301736207895
+    },
+    {
+      "id": "M0261",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.1765352747791167,
+      "tfidf_lr": 0.40721306992183104,
+      "char_svm": 0.3764153270652375
+    },
+    {
+      "id": "M0266",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6835208937363157,
+      "tfidf_lr": 0.8279167255883145,
+      "char_svm": 0.7255174665288678
+    },
+    {
+      "id": "M0267",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.34992879936411814,
+      "char_svm": 0.5147556602238094
+    },
+    {
+      "id": "M0268",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6835208937363157,
+      "tfidf_lr": 0.7497306221009968,
+      "char_svm": 0.6918803793977283
+    },
+    {
+      "id": "M0270",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.1765352747791167,
+      "tfidf_lr": 0.4668246612359835,
+      "char_svm": 0.3779814842078577
+    },
+    {
+      "id": "M0272",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.4458709351332571,
+      "char_svm": 0.3957867714435456
+    },
+    {
+      "id": "M0278",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.4182406231581638,
+      "tfidf_lr": 0.5797773550039349,
+      "char_svm": 0.5715831142887383
+    },
+    {
+      "id": "M0279",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9183397445384054,
+      "tfidf_lr": 0.9106459323286984,
+      "char_svm": 0.6713603873067799
+    },
+    {
+      "id": "M0280",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.6082590307465146,
+      "tfidf_lr": 0.3259935799298386,
+      "char_svm": 0.4033080589130165
+    },
+    {
+      "id": "M0284",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.05416670048123607,
+      "tfidf_lr": 0.2966447181505521,
+      "char_svm": 0.4875707896960228
+    },
+    {
+      "id": "M0291",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.04393981539614132,
+      "tfidf_lr": 0.24085397692756577,
+      "char_svm": 0.1499326150463734
+    },
+    {
+      "id": "M0293",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5274723043445938,
+      "tfidf_lr": 0.5501727832080983,
+      "char_svm": 0.29080078239966584
+    },
+    {
+      "id": "M0294",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.020836344518680414,
+      "tfidf_lr": 0.062321742136223726,
+      "char_svm": 0.050017572265168064
+    },
+    {
+      "id": "M0298",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.1517428740107792,
+      "char_svm": 0.08512752532238534
+    },
+    {
+      "id": "M0306",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.22970105095339807,
+      "tfidf_lr": 0.3780267521624493,
+      "char_svm": 0.4656144851943491
+    },
+    {
+      "id": "M0311",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6835208937363157,
+      "tfidf_lr": 0.6175581323569023,
+      "char_svm": 0.6442985801328894
+    },
+    {
+      "id": "M0320",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.1985384100908061,
+      "char_svm": 0.17434863719641122
+    },
+    {
+      "id": "M0321",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.08918051455539558,
+      "char_svm": 0.2045836037503491
+    },
+    {
+      "id": "M0323",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.12102169145462864,
+      "char_svm": 0.0652490653526052
+    },
+    {
+      "id": "M0324",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.26741951346173426,
+      "char_svm": 0.365209913074878
+    },
+    {
+      "id": "M0329",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.39287945009132785,
+      "char_svm": 0.48965174046521875
+    },
+    {
+      "id": "M0335",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6341355910108007,
+      "tfidf_lr": 0.3380124778192366,
+      "char_svm": 0.5275153672817453
+    },
+    {
+      "id": "M0337",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8664582774667876,
+      "tfidf_lr": 0.48590583958149297,
+      "char_svm": 0.227038397505649
+    },
+    {
+      "id": "M0338",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.3917409692534856,
+      "tfidf_lr": 0.4907121308612919,
+      "char_svm": 0.32830807070531187
+    },
+    {
+      "id": "M0340",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.02874849592653997,
+      "tfidf_lr": 0.13712240835402603,
+      "char_svm": 0.08381591274633025
+    },
+    {
+      "id": "M0341",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.08433877296882264,
+      "char_svm": 0.06071085505553292
+    },
+    {
+      "id": "M0342",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.789181706522253,
+      "tfidf_lr": 0.10132655412369321,
+      "char_svm": 0.07639340027459729
+    },
+    {
+      "id": "M0345",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.001358519950428958,
+      "tfidf_lr": 0.15391141789224314,
+      "char_svm": 0.26956345843478324
+    },
+    {
+      "id": "M0346",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.025831238524664058,
+      "tfidf_lr": 0.3114965436860398,
+      "char_svm": 0.22380107901476612
+    },
+    {
+      "id": "M0359",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.4153113488050699,
+      "char_svm": 0.4073873714981168
+    },
+    {
+      "id": "M0361",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.17679575323040903,
+      "char_svm": 0.1840290879569252
+    },
+    {
+      "id": "M0362",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.32902963759298515,
+      "char_svm": 0.3696014697661471
+    },
+    {
+      "id": "M0364",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.02874849592653997,
+      "tfidf_lr": 0.23626121354461824,
+      "char_svm": 0.29199170194343965
+    },
+    {
+      "id": "M0366",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.5078555945888336,
+      "char_svm": 0.5660072466146598
+    },
+    {
+      "id": "M0368",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.009756665624551365,
+      "tfidf_lr": 0.160197979884739,
+      "char_svm": 0.10296546741960493
+    },
+    {
+      "id": "M0369",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.04393981539614132,
+      "tfidf_lr": 0.3131899852821367,
+      "char_svm": 0.42919608257235775
+    },
+    {
+      "id": "M0372",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.2307314337873265,
+      "char_svm": 0.3354221304898579
+    },
+    {
+      "id": "M0373",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.04393981539614132,
+      "tfidf_lr": 0.4240721823317095,
+      "char_svm": 0.5389838567501082
+    },
+    {
+      "id": "M0375",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.15988690346772924,
+      "char_svm": 0.11474996776858819
+    },
+    {
+      "id": "M0379",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.07029804805590323,
+      "char_svm": 0.2910293611752599
+    },
+    {
+      "id": "M0380",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.3768705376392634,
+      "char_svm": 0.3227373393226763
+    },
+    {
+      "id": "M0382",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.19309868423321644,
+      "tfidf_lr": 0.24891884589459332,
+      "char_svm": 0.3768933077318219
+    },
+    {
+      "id": "M0384",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.08269394606729447,
+      "char_svm": 0.12154221104992603
+    },
+    {
+      "id": "M0385",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.97125150407346,
+      "tfidf_lr": 0.9295744812695153,
+      "char_svm": 0.8741292850299162
+    },
+    {
+      "id": "M0387",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6835208937363157,
+      "tfidf_lr": 0.8315556174172778,
+      "char_svm": 0.7295249963819582
+    },
+    {
+      "id": "M0388",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.06660803557509065,
+      "tfidf_lr": 0.21801091455070723,
+      "char_svm": 0.06589752595377309
+    },
+    {
+      "id": "M0394",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.13354172253321245,
+      "tfidf_lr": 0.5532134056189567,
+      "char_svm": 0.6088951472566467
+    },
+    {
+      "id": "M0398",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.22970105095339807,
+      "tfidf_lr": 0.3761301639322309,
+      "char_svm": 0.5728239473128878
+    },
+    {
+      "id": "M0403",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.12131883789173686,
+      "tfidf_lr": 0.05901215688604654,
+      "char_svm": 0.12908004672364248
+    },
+    {
+      "id": "M0410",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8786811621082632,
+      "tfidf_lr": 0.9074246639293996,
+      "char_svm": 0.7913287981738953
+    },
+    {
+      "id": "M0413",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.06660803557509065,
+      "tfidf_lr": 0.2423665016653376,
+      "char_svm": 0.1741181603064507
+    },
+    {
+      "id": "M0418",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.789181706522253,
+      "tfidf_lr": 0.8705333629534749,
+      "char_svm": 0.5934114321305141
+    },
+    {
+      "id": "M0419",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8069013157667836,
+      "tfidf_lr": 0.7861751196372291,
+      "char_svm": 0.6195815985469996
+    },
+    {
+      "id": "M0420",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.960456220449047,
+      "tfidf_lr": 0.8797556557210895,
+      "char_svm": 0.7206991348158435
+    },
+    {
+      "id": "M0421",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8069013157667836,
+      "tfidf_lr": 0.7491948738675565,
+      "char_svm": 0.7218575289642594
+    },
+    {
+      "id": "M0425",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9560601846038588,
+      "tfidf_lr": 0.9306564679177893,
+      "char_svm": 0.8404396068274961
+    },
+    {
+      "id": "M0426",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.789181706522253,
+      "tfidf_lr": 0.7629974208617193,
+      "char_svm": 0.49388044518854746
+    },
+    {
+      "id": "M0436",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8664582774667876,
+      "tfidf_lr": 0.6153512196449785,
+      "char_svm": 0.22923091140683063
+    },
+    {
+      "id": "M0440",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.3917409692534856,
+      "tfidf_lr": 0.3596232647336685,
+      "char_svm": 0.28641324160799986
+    },
+    {
+      "id": "M0446",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.789181706522253,
+      "tfidf_lr": 0.8313522829688701,
+      "char_svm": 0.5909451813210252
+    },
+    {
+      "id": "M0447",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.09993962172658613,
+      "char_svm": 0.36519270172392915
+    },
+    {
+      "id": "M0450",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.13354172253321245,
+      "tfidf_lr": 0.4596680833238843,
+      "char_svm": 0.6042520215451291
+    },
+    {
+      "id": "M0457",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8899274256374969,
+      "tfidf_lr": 0.8144117619405589,
+      "char_svm": 0.745864529472063
+    },
+    {
+      "id": "M0461",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.1554318604145783,
+      "char_svm": 0.26175841251975135
+    },
+    {
+      "id": "M0466",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.03954377955095296,
+      "tfidf_lr": 0.11982117777304062,
+      "char_svm": 0.07171228827114866
+    },
+    {
+      "id": "M0467",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9183397445384054,
+      "tfidf_lr": 0.9296614414026554,
+      "char_svm": 0.7720385539736485
+    },
+    {
+      "id": "M0474",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8899274256374969,
+      "tfidf_lr": 0.7915172783857121,
+      "char_svm": 0.7179973699519268
+    },
+    {
+      "id": "M0476",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.07510772135129791,
+      "char_svm": 0.03843970376024667
+    },
+    {
+      "id": "M0477",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.4182406231581638,
+      "tfidf_lr": 0.5893539792783614,
+      "char_svm": 0.5651467955608845
+    },
+    {
+      "id": "M0480",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.6082590307465143,
+      "tfidf_lr": 0.14537400278877533,
+      "char_svm": 0.21344497341764437
+    },
+    {
+      "id": "M0485",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.15056423795437893,
+      "char_svm": 0.3176804804477439
+    },
+    {
+      "id": "M0487",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.10583620834302614,
+      "char_svm": 0.14049911503565468
+    },
+    {
+      "id": "M0495",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.960456220449047,
+      "tfidf_lr": 0.7767061127830102,
+      "char_svm": 0.6529836883833858
+    },
+    {
+      "id": "M0498",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9512002770012,
+      "tfidf_lr": 0.6674613050663732,
+      "char_svm": 0.18301732490594813
+    },
+    {
+      "id": "M0500",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.19309868423321644,
+      "tfidf_lr": 0.2049227928315172,
+      "char_svm": 0.11085077394980997
+    },
+    {
+      "id": "M0503",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6835208937363157,
+      "tfidf_lr": 0.7363046152160253,
+      "char_svm": 0.7308309667839522
+    },
+    {
+      "id": "M0504",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9560601846038588,
+      "tfidf_lr": 0.8957778058623794,
+      "char_svm": 0.6692276217339641
+    },
+    {
+      "id": "M0505",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.0007842485527910258,
+      "tfidf_lr": 0.09410968505057558,
+      "char_svm": 0.10301354092095792
+    },
+    {
+      "id": "M0511",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.10787824463385602,
+      "char_svm": 0.17153356309500567
+    },
+    {
+      "id": "M0516",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.12131883789173686,
+      "tfidf_lr": 0.09030546088649498,
+      "char_svm": 0.10708167182865758
+    },
+    {
+      "id": "M0522",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.4182406231581638,
+      "tfidf_lr": 0.28035140504325207,
+      "char_svm": 0.18531613830693192
+    },
+    {
+      "id": "M0526",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.19309868423321644,
+      "tfidf_lr": 0.2241781873540802,
+      "char_svm": 0.1866495735795999
+    },
+    {
+      "id": "M0529",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.007845023030455627,
+      "tfidf_lr": 0.19191283362532852,
+      "char_svm": 0.05677333079376254
+    },
+    {
+      "id": "M0536",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.4846207011107797,
+      "char_svm": 0.42367385601198926
+    },
+    {
+      "id": "M0537",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.07378164660246529,
+      "tfidf_lr": 0.1702903370561245,
+      "char_svm": 0.3038803543642349
+    },
+    {
+      "id": "M0538",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.09474677579680454,
+      "char_svm": 0.18942429371044936
+    },
+    {
+      "id": "M0542",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.789181706522253,
+      "tfidf_lr": 0.34117857283407954,
+      "char_svm": 0.19340225293270316
+    },
+    {
+      "id": "M0544",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.05416670048123607,
+      "tfidf_lr": 0.10345559496601932,
+      "char_svm": 0.07697006905753905
+    },
+    {
+      "id": "M0546",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.1409689642036494,
+      "char_svm": 0.4777254005038742
+    },
+    {
+      "id": "M0554",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.013519639645969637,
+      "tfidf_lr": 0.17010810790249806,
+      "char_svm": 0.09390548870205806
+    },
+    {
+      "id": "M0556",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9512002770012,
+      "tfidf_lr": 0.6085566135011764,
+      "char_svm": 0.1484355932502945
+    },
+    {
+      "id": "M0557",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.04393981539614132,
+      "tfidf_lr": 0.24851946634185512,
+      "char_svm": 0.18440205537132648
+    },
+    {
+      "id": "M0563",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.013519639645969637,
+      "tfidf_lr": 0.24151065881630873,
+      "char_svm": 0.1267469480310083
+    },
+    {
+      "id": "M0569",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.058709682832294816,
+      "char_svm": 0.08553118867129678
+    },
+    {
+      "id": "M0570",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.16488144725919304,
+      "char_svm": 0.2768658756850126
+    },
+    {
+      "id": "M0571",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.09869823496553051,
+      "char_svm": 0.045371522439409895
+    },
+    {
+      "id": "M0586",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.1765352747791167,
+      "tfidf_lr": 0.3075331043025825,
+      "char_svm": 0.26397545567771624
+    },
+    {
+      "id": "M0601",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.4182406231581638,
+      "tfidf_lr": 0.5822994496456381,
+      "char_svm": 0.5441693709103973
+    },
+    {
+      "id": "M0615",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9849320101894071,
+      "tfidf_lr": 0.7804915293374748,
+      "char_svm": 0.651283249378699
+    },
+    {
+      "id": "M0625",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.09334320483787178,
+      "char_svm": 0.0998203953847273
+    },
+    {
+      "id": "M0635",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.39949252676925434,
+      "char_svm": 0.37949828564722604
+    },
+    {
+      "id": "M0636",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.97125150407346,
+      "tfidf_lr": 0.8444177416000345,
+      "char_svm": 0.2820745715666212
+    },
+    {
+      "id": "M0641",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.21081829347774714,
+      "tfidf_lr": 0.4621314165179117,
+      "char_svm": 0.48740627515007606
+    },
+    {
+      "id": "M0643",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.05416670048123605,
+      "tfidf_lr": 0.3981714679917592,
+      "char_svm": 0.42411212629482464
+    },
+    {
+      "id": "M0645",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.22970105095339807,
+      "tfidf_lr": 0.4829917604486714,
+      "char_svm": 0.5375236199441988
+    },
+    {
+      "id": "M0646",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.013519639645969637,
+      "tfidf_lr": 0.11083011142487434,
+      "char_svm": 0.11115585684082423
+    },
+    {
+      "id": "M0647",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.10339746945672301,
+      "char_svm": 0.03525542505291563
+    },
+    {
+      "id": "M0648",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.97125150407346,
+      "tfidf_lr": 0.7157068081574304,
+      "char_svm": 0.31898647044221234
+    },
+    {
+      "id": "M0651",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.4002588350986035,
+      "char_svm": 0.30502352777909536
+    },
+    {
+      "id": "M0653",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.16580844623005486,
+      "char_svm": 0.324396061857294
+    },
+    {
+      "id": "M0656",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.06660803557509065,
+      "tfidf_lr": 0.235005918492414,
+      "char_svm": 0.5903449561870507
+    },
+    {
+      "id": "M0660",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8899274256374969,
+      "tfidf_lr": 0.756670054441845,
+      "char_svm": 0.794254123334046
+    },
+    {
+      "id": "M0661",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.13354172253321245,
+      "tfidf_lr": 0.2465349255616722,
+      "char_svm": 0.23572563381222986
+    },
+    {
+      "id": "M0663",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.013519639645969637,
+      "tfidf_lr": 0.11044797308079793,
+      "char_svm": 0.058106111325967796
+    },
+    {
+      "id": "M0666",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.27091207765069353,
+      "tfidf_lr": 0.028087479575652184,
+      "char_svm": 0.017356810189117732
+    },
+    {
+      "id": "M0671",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.14680186482095553,
+      "char_svm": 0.07698768083897471
+    },
+    {
+      "id": "M0673",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9183397445384054,
+      "tfidf_lr": 0.9153365691964845,
+      "char_svm": 0.7263507100761322
+    },
+    {
+      "id": "M0678",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.09720360964684246,
+      "char_svm": 0.04933391816162475
+    },
+    {
+      "id": "M0684",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.41052352833714906,
+      "char_svm": 0.38966960822809643
+    },
+    {
+      "id": "M0685",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.05416670048123605,
+      "tfidf_lr": 0.34962760265152387,
+      "char_svm": 0.4545289514858581
+    },
+    {
+      "id": "M0690",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6835208937363157,
+      "tfidf_lr": 0.8678887678224527,
+      "char_svm": 0.8362670598008691
+    },
+    {
+      "id": "M0693",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.06660803557509065,
+      "tfidf_lr": 0.11282594830138347,
+      "char_svm": 0.1337122046876755
+    },
+    {
+      "id": "M0702",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.020836344518680414,
+      "tfidf_lr": 0.21374545246434304,
+      "char_svm": 0.27446738287310807
+    },
+    {
+      "id": "M0705",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.12131883789173686,
+      "tfidf_lr": 0.43879250498470335,
+      "char_svm": 0.605179184754903
+    },
+    {
+      "id": "M0707",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.013519639645969637,
+      "tfidf_lr": 0.23106256068721445,
+      "char_svm": 0.08494700202213186
+    },
+    {
+      "id": "M0711",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8899274256374969,
+      "tfidf_lr": 0.807766823430932,
+      "char_svm": 0.6503725247806544
+    },
+    {
+      "id": "M0717",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.24560605119205173,
+      "char_svm": 0.4289633724617925
+    },
+    {
+      "id": "M0725",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01506798981059282,
+      "tfidf_lr": 0.3418739484038303,
+      "char_svm": 0.22110073573440503
+    },
+    {
+      "id": "M0732",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.12131883789173686,
+      "tfidf_lr": 0.1728094595047092,
+      "char_svm": 0.21112169477334305
+    },
+    {
+      "id": "M0743",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.6082590307465146,
+      "tfidf_lr": 0.6833322699745045,
+      "char_svm": 0.7411591395908378
+    },
+    {
+      "id": "M0755",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.22970105095339807,
+      "tfidf_lr": 0.5137907148403674,
+      "char_svm": 0.7110795801911632
+    },
+    {
+      "id": "M0757",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.47252769565540625,
+      "tfidf_lr": 0.6196852311756654,
+      "char_svm": 0.6544410570782242
+    },
+    {
+      "id": "M0758",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.06660803557509065,
+      "tfidf_lr": 0.44021127296051205,
+      "char_svm": 0.5007806484944528
+    },
+    {
+      "id": "M0763",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.018706509954354602,
+      "tfidf_lr": 0.3210031513925429,
+      "char_svm": 0.24022118813808938
+    },
+    {
+      "id": "M0768",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.018706509954354602,
+      "tfidf_lr": 0.13019326757445246,
+      "char_svm": 0.20612499024590467
+    },
+    {
+      "id": "M0769",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5274723043445938,
+      "tfidf_lr": 0.8055896460529224,
+      "char_svm": 0.6499906070375775
+    },
+    {
+      "id": "M0776",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.09959112993642451,
+      "char_svm": 0.2388915941840368
+    },
+    {
+      "id": "M0777",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.12131883789173686,
+      "tfidf_lr": 0.18062205040432489,
+      "char_svm": 0.32156177816384673
+    },
+    {
+      "id": "M0786",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.12131883789173686,
+      "tfidf_lr": 0.18423857167616434,
+      "char_svm": 0.30677247365176696
+    },
+    {
+      "id": "M0790",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.09305632605826139,
+      "char_svm": 0.3143091818462873
+    },
+    {
+      "id": "M0791",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.22970105095339807,
+      "tfidf_lr": 0.15803404496373863,
+      "char_svm": 0.11469389675084855
+    },
+    {
+      "id": "M0792",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.06742232737835396,
+      "char_svm": 0.11590547966866772
+    },
+    {
+      "id": "M0797",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9560601846038588,
+      "tfidf_lr": 0.8069219919902098,
+      "char_svm": 0.7320961870826906
+    },
+    {
+      "id": "M0810",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.025831238524664058,
+      "tfidf_lr": 0.3332847115812576,
+      "char_svm": 0.3447596363724242
+    },
+    {
+      "id": "M0812",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.37221098197581365,
+      "char_svm": 0.4299153948757041
+    },
+    {
+      "id": "M0813",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.789181706522253,
+      "tfidf_lr": 0.7159290307685231,
+      "char_svm": 0.497892265888871
+    },
+    {
+      "id": "M0815",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.04393981539614132,
+      "tfidf_lr": 0.31540418317975166,
+      "char_svm": 0.17155413884555495
+    },
+    {
+      "id": "M0816",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.05416670048123605,
+      "tfidf_lr": 0.2752774115897557,
+      "char_svm": 0.1977512428979509
+    },
+    {
+      "id": "M0820",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.8234647252208833,
+      "tfidf_lr": 0.8250200515516711,
+      "char_svm": 0.514201839821877
+    },
+    {
+      "id": "M0825",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.13100726534123222,
+      "char_svm": 0.11276485492397743
+    },
+    {
+      "id": "M0835",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.005652437151237075,
+      "tfidf_lr": 0.07933702786950513,
+      "char_svm": 0.10700613043348545
+    },
+    {
+      "id": "M0840",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.018706509954354602,
+      "tfidf_lr": 0.17324956580366396,
+      "char_svm": 0.47354758242448086
+    },
+    {
+      "id": "M0846",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.17653527477911665,
+      "tfidf_lr": 0.12085746858959857,
+      "char_svm": 0.10550332532951152
+    },
+    {
+      "id": "M0849",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.1765352747791167,
+      "tfidf_lr": 0.532591760983693,
+      "char_svm": 0.688835113644641
+    },
+    {
+      "id": "M0852",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.3656252292378715,
+      "char_svm": 0.4675519835760671
+    },
+    {
+      "id": "M0855",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.30737119092067566,
+      "char_svm": 0.4009169300380963
+    },
+    {
+      "id": "M0857",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.01679064808681382,
+      "tfidf_lr": 0.08615747283263152,
+      "char_svm": 0.040205337763781906
+    },
+    {
+      "id": "M0862",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.04393981539614132,
+      "tfidf_lr": 0.2713369455554459,
+      "char_svm": 0.15899032269681154
+    },
+    {
+      "id": "M0869",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.013519639645969637,
+      "tfidf_lr": 0.14502850692658176,
+      "char_svm": 0.364682527247884
+    },
+    {
+      "id": "M0870",
+      "campaign": "helpdesk_ticket",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.29317777890643243,
+      "tfidf_lr": 0.3626636137807215,
+      "char_svm": 0.2311572180388127
+    },
+    {
+      "id": "M0871",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.12131883789173686,
+      "tfidf_lr": 0.13327558260415936,
+      "char_svm": 0.20714526726249038
+    },
+    {
+      "id": "M0876",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9902433343754488,
+      "tfidf_lr": 0.7711422304161989,
+      "char_svm": 0.33407840924677584
+    },
+    {
+      "id": "M0886",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.3917409692534856,
+      "tfidf_lr": 0.6319942914814232,
+      "char_svm": 0.6369402566955044
+    },
+    {
+      "id": "M0887",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.020836344518680414,
+      "tfidf_lr": 0.21238249177495644,
+      "char_svm": 0.249414894830017
+    },
+    {
+      "id": "M0896",
+      "campaign": "shared_doc",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5274723043445938,
+      "tfidf_lr": 0.6958504265808201,
+      "char_svm": 0.4746147372675935
+    },
+    {
+      "id": "M0907",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9791636554813196,
+      "tfidf_lr": 0.8656286883519115,
+      "char_svm": 0.8768284359752284
+    },
+    {
+      "id": "M0908",
+      "campaign": "it_pw_expiry_policy",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.22970105095339818,
+      "tfidf_lr": 0.5081483217261611,
+      "char_svm": 0.6430060323183691
+    },
+    {
+      "id": "M0909",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.960456220449047,
+      "tfidf_lr": 0.8902296384953098,
+      "char_svm": 0.7128780671410825
+    },
+    {
+      "id": "M0911",
+      "campaign": "payroll_cutoff_urgent",
+      "y": 0,
+      "urgent": 1,
+      "rules": 0.11007257436250298,
+      "tfidf_lr": 0.06992548083928767,
+      "char_svm": 0.08496804545105031
+    },
+    {
+      "id": "M0917",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.7702989490466019,
+      "tfidf_lr": 0.7723608356592702,
+      "char_svm": 0.6976694882547254
+    },
+    {
+      "id": "M0922",
+      "campaign": "ceo_favour",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.9849320101894071,
+      "tfidf_lr": 0.8715096252160349,
+      "char_svm": 0.8075190215748712
+    },
+    {
+      "id": "M0923",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.018706509954354602,
+      "tfidf_lr": 0.35487318756003056,
+      "char_svm": 0.774927061133943
+    },
+    {
+      "id": "M0927",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.5547792351072148,
+      "tfidf_lr": 0.5223989004210314,
+      "char_svm": 0.7135515926681757
+    },
+    {
+      "id": "M0930",
+      "campaign": "security_awareness",
+      "y": 0,
+      "urgent": 0,
+      "rules": 0.06660803557509065,
+      "tfidf_lr": 0.07813533194454766,
+      "char_svm": 0.1047292513123279
+    },
+    {
+      "id": "M0934",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.3917409692534856,
+      "tfidf_lr": 0.7985558521541128,
+      "char_svm": 0.6591746614304353
+    },
+    {
+      "id": "M0935",
+      "campaign": "vendor_bank_change",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.13354172253321245,
+      "tfidf_lr": 0.150768626697281,
+      "char_svm": 0.3698092908694694
+    },
+    {
+      "id": "M0937",
+      "campaign": "survey_gift",
+      "y": 1,
+      "urgent": 0,
+      "rules": 0.3917409692534856,
+      "tfidf_lr": 0.5422749993108251,
+      "char_svm": 0.44413814255798084
+    }
+  ],
+  "trace": [
+    {
+      "id": "FR-01",
+      "requirement": "Deduplicate near-identical templates before split",
+      "implemented_in": "src/pipeline.py: dedup()",
+      "evidence": "outputs/dedup_proof.json, dedup_groups.csv",
+      "shown_in": "Data & EDA tab"
+    },
+    {
+      "id": "FR-02",
+      "requirement": "Compare rules, TF-IDF linear model, third model",
+      "implemented_in": "src/cues.py + make_models()",
+      "evidence": "Models tab, outputs/summary.json",
+      "shown_in": "Models tab"
+    },
+    {
+      "id": "FR-03",
+      "requirement": "Campaign-separated holdout",
+      "implemented_in": "config.HOLDOUT_CAMPAIGNS; run() split",
+      "evidence": "outputs/holdout_ids.csv, holdout_predictions.csv",
+      "shown_in": "Models tab"
+    },
+    {
+      "id": "FR-04",
+      "requirement": "Reject/abstain + safe explanation",
+      "implemented_in": "abstain_stats(); cues.score_message(); lr_terms()",
+      "evidence": "Errors tab; Live Scanner",
+      "shown_in": "Live Scanner tab"
+    },
+    {
+      "id": "FR-05",
+      "requirement": "FPR on legit urgent messages + robustness drift",
+      "implemented_in": "run(): at01, PERTURBATIONS",
+      "evidence": "Robustness tab, outputs/summary.json",
+      "shown_in": "Robustness tab"
+    },
+    {
+      "id": "NFR-01",
+      "requirement": "Never click/fetch/execute content",
+      "implemented_in": "sanitize.py string-only; no network libs imported",
+      "evidence": "tests: tests/test_safety.py",
+      "shown_in": "Banner"
+    },
+    {
+      "id": "NFR-02",
+      "requirement": "No real credentials / PII",
+      "implemented_in": "sanitize.redact_pii(); synthetic data",
+      "evidence": "outputs/sanitization_log.csv",
+      "shown_in": "Live Scanner redaction notice"
+    },
+    {
+      "id": "NFR-03",
+      "requirement": "Decision support, not a guarantee",
+      "implemented_in": "dashboard banner + scan response",
+      "evidence": "Dashboard header",
+      "shown_in": "Header"
+    },
+    {
+      "id": "AT-01",
+      "requirement": "Legit password-reset notice: FP impact",
+      "implemented_in": "run(): at01",
+      "evidence": "Tests tab",
+      "shown_in": "Tests tab"
+    },
+    {
+      "id": "AT-02",
+      "requirement": "Phishing with unfamiliar phrasing on excluded campaign",
+      "implemented_in": "run(): at02",
+      "evidence": "Tests tab",
+      "shown_in": "Tests tab"
+    },
+    {
+      "id": "AT-03",
+      "requirement": "Defanged URL / punctuation changes",
+      "implemented_in": "run(): at03, perturb.py",
+      "evidence": "Robustness tab",
+      "shown_in": "Robustness tab"
+    },
+    {
+      "id": "CP-1",
+      "requirement": "Safe corpus handling; URLs inert",
+      "implemented_in": "sanitization_log.csv; reserved TLDs",
+      "evidence": "outputs/sanitization_log.csv",
+      "shown_in": "Data & EDA tab"
+    },
+    {
+      "id": "CP-2",
+      "requirement": "Audit near-duplicate removal across splits",
+      "implemented_in": "proof['cross_split_audit']",
+      "evidence": "outputs/dedup_proof.json",
+      "shown_in": "Data & EDA tab"
+    },
+    {
+      "id": "CP-3",
+      "requirement": "Campaign test + confusion analysis",
+      "implemented_in": "schemes + camp_rows",
+      "evidence": "Models tab",
+      "shown_in": "Models tab"
+    },
+    {
+      "id": "CP-4",
+      "requirement": "Explain a missed phish and a flagged legit message",
+      "implemented_in": "errors list",
+      "evidence": "Errors tab",
+      "shown_in": "Errors tab"
+    },
+    {
+      "id": "CP-5",
+      "requirement": "8 new harmless messages with perturbations",
+      "implemented_in": "CP5 + cp5_table()",
+      "evidence": "Robustness tab",
+      "shown_in": "Robustness tab"
+    }
+  ],
+  "perturbations": {
+    "defang_alt": "Defang style: [.] -> (.), hxxp -> hXXp",
+    "defang_dot": "Defang style: [.] -> [dot] (unsupported)",
+    "punct_noise": "Punctuation noise: '...', spaced colons, '!!'",
+    "case_upper": "ALL CAPS",
+    "char_sub": "Character substitution (o->0, l->1, a->@ ...)",
+    "benign_pad": "Benign padding sentence appended",
+    "urgency_add": "Harmless urgency cue prepended"
+  }
+}

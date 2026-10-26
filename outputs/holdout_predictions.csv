@@ -1,0 +1,1841 @@
+message_id,campaign_group,label,legit_urgent,channel,subject_or_title,body_text,p_rules,p_tfidf_lr,p_char_svm
+M0003,shared_doc,phish,0,email,Divya shared a file with you,"Hello,
+
+Sharing the meeting notes from earlier, there are a few items for you.
+
+You can view it at hxxps://docs-share-hub[.]test/d/fyu3wv74
+
+Thanks",0.03954377955095296,0.11711419097287738,0.1681622075048358
+M0005,helpdesk_ticket,legit,0,email,Ticket INV-25204 updated,"Hello,
+
+Could you share a screenshot of the error so we can proceed?
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/events
+
+Service Desk",0.005652437151237075,0.09352856020877136,0.2505937107104252
+M0010,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 23 Jun,"Hi Arjun,
+
+This is a mandatory reminder from IT. Update your password by 23 Jun to avoid a lockout.
+
+Self-service: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Regards, IT Helpdesk",0.020836344518680414,0.17051161912242452,0.12937589990598075
+M0013,security_awareness,legit,0,email,Phishing awareness week,"Hi Asha,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Learn more: hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Stay safe",0.013519639645969637,0.15711086230054488,0.49486278674135303
+M0014,it_pw_expiry_policy,legit,1,email,Password expires in 6 days,"Hello,
+
+Under the security policy, your password expires in 6 days. Please change it using the intranet portal before then.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Thanks",0.01679064808681382,0.18341983462497946,0.19020579676457858
+M0019,shared_doc,phish,0,email,Draft for your review,"Hello,
+
+I have put the draft together and would value your thoughts.
+
+Access the file: hxxp://tiny-lnk[.]test/3etd4a
+
+Thanks",0.4182406231581638,0.6144065950302339,0.6197691558156154
+M0022,security_awareness,legit,0,email,Do not click suspicious links,"Hi all,
+
+Remember: IT will never ask for your password. If a message seems suspicious, forward it to the security team.
+
+Learn more: hxxps://payments[.]northbridge-vendor[.]test/help
+
+Security Team",0.005652437151237075,0.16622932791221492,0.3198972428028641
+M0026,payroll_cutoff_urgent,legit,1,sms,,Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle. HR portal: hxxps://intranet[.]examplecorp[.]test/expenses,0.018706509954354602,0.12076287984325935,0.08808264390528797
+M0027,security_awareness,legit,0,email,Security tip of the week,"Hi Lakshmi,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Register: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Regards, InfoSec",0.005652437151237075,0.068316500361962,0.08913333154508936
+M0031,shared_doc,phish,0,email,Updated plan,"Hi,
+
+I have put the draft together and would value your thoughts.
+
+Access the file: hxxps://files[.]cloudbox-share[.]test/d/2kd5sufb
+
+Best",0.29317777890643243,0.14510078011565875,0.41219431655501615
+M0032,payroll_cutoff_urgent,legit,1,email,Payroll deadline approaching,"Dear managers,
+
+Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle.
+
+Approve at hxxps://intranet[.]examplecorp[.]test/events
+
+Payroll Team",0.005652437151237075,0.11146984894471652,0.06297666020721476
+M0033,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Dear managers,
+
+Payroll will close in 24 hours. Approve pending items now.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/it/status
+
+Regards, HR",0.01679064808681382,0.09041567422276521,0.06043721580898251
+M0037,survey_gift,phish,0,email,Quick 2-minute survey,"Hello team,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Start here: hxxp://examplecorp-helpdesk[.]invalid/verify?id=2972
+
+Cheers",0.7702989490466019,0.8324618487561628,0.6904202716403455
+M0038,survey_gift,phish,0,sms,,Only a few places remain for this month's appreciation draw. Start here: hxxp://s-hrt[.]test/ym3fdw,0.8664582774667876,0.5699742014296336,0.22304820450982232
+M0042,it_pw_expiry_policy,legit,1,email,Password expires in 2 days,"Hi team,
+
+Under the security policy, your password expires in 2 days. Please change it using the intranet portal before then.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/tickets
+
+IT Security",0.01679064808681382,0.2033938685369757,0.25808826056321627
+M0044,ceo_favour,phish,0,email,Are you free?,"Rahul,
+
+I am in a meeting and cannot take calls. I need you to handle something for me discreetly.
+
+Message me here rather than on the company chat.
+
+Sent from my phone",0.19309868423321644,0.2725623362156902,0.2157387476633993
+M0045,shared_doc,phish,0,email,Draft for your review,"Hi,
+
+The updated plan is ready for review whenever you have a minute.
+
+Open it here: hxxp://examplecorp-secure[.]test/login?id=8280
+
+Best",0.5274723043445938,0.6310900529059797,0.45141887947851433
+M0046,helpdesk_ticket,legit,0,email,Ticket TKT-14929 updated,"Dear Farah,
+
+The issue was resolved. Please reply within 3 days if the problem continues.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Service Desk",0.005652437151237075,0.06891145297384552,0.12902236482685628
+M0047,security_awareness,legit,0,email,Do not click suspicious links,"Hi Lakshmi,
+
+Join this week's awareness session to learn how to spot fake login pages.
+
+Questions? Visit the security desk.
+
+Security Team",0.03954377955095296,0.26617020345579373,0.16823052673812242
+M0048,survey_gift,phish,0,email,A small thank-you for your feedback,"Hello team,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Claim yours: hxxp://secure-examplecorp[.]test/login?id=5901
+
+People Team",0.7702989490466019,0.7359566413925335,0.5212033489572946
+M0051,security_awareness,legit,0,email,Phishing awareness week,"Hello team,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Questions? Visit the security desk.
+
+Stay safe",0.03954377955095296,0.12402024177790119,0.09387311871819048
+M0056,security_awareness,legit,0,email,Do not click suspicious links,"Dear colleagues,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Learn more: hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Regards, InfoSec",0.013519639645969637,0.1455776566038306,0.14490963694161244
+M0057,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Hi Dinesh,
+
+Please verify your bank details are current on the HR portal before the payroll run.
+
+Reach payroll on ext 4410.
+
+Thanks for acting promptly.",0.14679033980138237,0.1581546336078142,0.1931969887476741
+M0059,ceo_favour,phish,0,email,Are you free?,"Hey Dinesh,
+
+Could you do something for me before the end of the day? Keep it between us for now.
+
+Reply as soon as you see this.
+
+Sent from my phone",0.5547792351072148,0.3016977239564628,0.24596275306199908
+M0062,helpdesk_ticket,legit,0,email,We need more information on TKT-21787,"Hi,
+
+Your ticket TKT-21787 has been assigned to a technician.
+
+Ticket system: hxxps://intranet[.]examplecorp[.]test/it/status
+
+Regards, IT Support",0.005652437151237075,0.0997041949084469,0.1693698202047648
+M0063,helpdesk_ticket,legit,0,email,We need more information on REF-53759,"Hello,
+
+Your ticket REF-53759 has been assigned to a technician.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/events
+
+Thanks",0.005652437151237075,0.08446156739874872,0.18646967469434406
+M0065,ceo_favour,phish,0,email,Are you free?,"Hello Vikram
+
+I would like to surprise some clients with small gift vouchers. Can you arrange them? I will reimburse you.
+
+Details here when you are ready: hxxp://s-hrt[.]test/6fk358
+
+Regards",0.3917409692534856,0.5437163409010881,0.25057403858122707
+M0066,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 29 Jun,"Hi Meera,
+
+You can also change it at the self-service page. IT will never ask you to share it.
+
+Helpdesk ext 4455 can help.
+
+Thanks",0.007845023030455627,0.19600737197119955,0.07123021325079461
+M0070,shared_doc,phish,0,email,Notes from Tuesday,"Hey Imran
+
+The updated plan is ready for review whenever you have a minute.
+
+You can view it at hxxp://tiny-lnk[.]test/n355xf
+
+Cheers",0.4182406231581638,0.6363790329010647,0.43545772038536795
+M0074,helpdesk_ticket,legit,0,email,Your request INV-65098 was resolved,"Dear Sneha,
+
+Could you share a screenshot of the error so we can proceed?
+
+Reply to this message to reopen it.
+
+Thanks",0.19309868423321644,0.3325624676090032,0.25317701641071255
+M0075,security_awareness,legit,0,email,Do not click suspicious links,"Dear colleagues,
+
+Remember: IT will never ask for your password. If a message seems suspicious, forward it to the security team.
+
+Register: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Security Team",0.0007842485527910258,0.17796627403291215,0.21691924291347467
+M0076,security_awareness,legit,0,email,Phishing awareness week,"Dear colleagues,
+
+Join this week's awareness session to learn how to spot fake login pages.
+
+Register: hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Regards, InfoSec",0.018706509954354602,0.0990865692947131,0.07375618304578264
+M0077,vendor_bank_change,phish,0,email,Vendor record update,"Dear customer,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+Details are available here: hxxps://files[.]cloudbox-share[.]test/d/28xuwhws
+
+Kind regards, Accounts",0.36586440898919936,0.3837118869301377,0.6366338449107639
+M0078,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 17 May,"Hello,
+
+Under the security policy, your password expires in 12 days. Please change it using the intranet portal before then.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Regards, IT Helpdesk",0.03954377955095297,0.19594457542765595,0.1196916671151755
+M0080,payroll_cutoff_urgent,legit,1,email,Payroll deadline approaching,"Hi team,
+
+This is the final reminder: managers must approve overtime today.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Payroll Team",0.05416670048123607,0.12766401005467226,0.07968860053532605
+M0084,helpdesk_ticket,legit,0,email,(no subject),"Hello,
+
+The issue was resolved. Please reply within 3 days if the problem continues.
+
+Reply to this message to reopen it.
+
+Service Desk",0.19309868423321644,0.20315257948849239,0.18354881331066877
+M0085,survey_gift,phish,0,email,"Share your thoughts, rewards inside","Hello team,
+
+Only a few places remain for this month's appreciation draw.
+
+Take the survey: hxxp://secure-examplecorp[.]test/login?id=1861
+
+Cheers",0.97125150407346,0.6797530074447887,0.23566543185785813
+M0087,helpdesk_ticket,legit,0,email,Your request REF-58196 was resolved,"Hello,
+
+We have closed ticket REF-58196. Rate your experience if you wish.
+
+Reply to this message to reopen it.
+
+Service Desk",0.19309868423321644,0.21692974869391624,0.10711584428926367
+M0090,survey_gift,phish,0,email,Quick 2-minute survey,"Hey,
+
+We would love your feedback and a small gift card is reserved for you.
+
+Start here: hxxp://examplecorp-helpdesk[.]invalid/verify?id=6960
+
+Cheers",0.97125150407346,0.9621988262154471,0.8357319879017223
+M0094,security_awareness,legit,0,email,Phishing awareness week,"Hi all,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Learn more: hxxps://intranet[.]examplecorp[.]test/events
+
+Regards, InfoSec",0.005652437151237075,0.055459361341433505,0.2895985848944631
+M0095,vendor_bank_change,phish,0,email,Updated remittance details,"Hello,
+
+Our finance team has moved to a new bank. Please use the new account for your next payment.
+
+Please complete the form at hxxps://docs-share-hub[.]test/d/8qu5hjds
+
+Please confirm once updated.",0.22970105095339807,0.3308057571489195,0.42059625610138696
+M0101,survey_gift,phish,0,email,"Share your thoughts, rewards inside","Hi Rahul,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Claim yours: hxxp://tiny-lnk[.]test/jtrees
+
+People Team",0.3917409692534856,0.5779346503164409,0.42880037886227323
+M0103,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Hi Meera,
+
+Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle.
+
+Approve at hxxps://payments[.]northbridge-vendor[.]test/help
+
+Thanks for acting promptly.",0.11007257436250302,0.08306323647506741,0.06928838406035485
+M0109,security_awareness,legit,0,email,Do not click suspicious links,"Hello team,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Learn more: hxxps://intranet[.]examplecorp[.]test/tickets
+
+Regards, InfoSec",0.018706509954354602,0.1669888196633465,0.2551396363967208
+M0113,security_awareness,legit,0,email,Phishing awareness week,"Hello team,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Questions? Visit the security desk.
+
+Regards, InfoSec",0.03954377955095296,0.16710395417947332,0.24027654632131124
+M0116,vendor_bank_change,phish,0,email,Change of bank account,"Dear Lakshmi,
+
+Our finance team has moved to a new bank. Please use the new account for your next payment.
+
+Please complete the form at hxxp://go-lnk[.]invalid/9tynje
+
+With thanks",0.6082590307465146,0.6168173579723224,0.43675986498561975
+M0120,payroll_cutoff_urgent,legit,1,sms,,Please verify your bank details are current on the HR portal before the payroll run. Approve at hxxps://intranet[.]examplecorp[.]test/events,0.03954377955095297,0.12592319554818054,0.11076397085452988
+M0121,vendor_bank_change,phish,0,email,Please note our new payment details,"Good morning,
+
+Our finance team has moved to a new bank. Please use the new account for your next payment.
+
+Details are available here: hxxp://go-lnk[.]invalid/qkg5te
+
+Kind regards, Accounts",0.6082590307465146,0.561265034621429,0.6343886959485109
+M0122,helpdesk_ticket,legit,0,email,We need more information on TKT-29639,"Hi,
+
+We have closed ticket TKT-29639. Rate your experience if you wish.
+
+Ticket system: hxxps://intranet[.]examplecorp[.]test/it/status
+
+Regards, IT Support",0.005652437151237075,0.07457769134096705,0.07221392365341829
+M0123,security_awareness,legit,0,email,Do not click suspicious links,"Dear colleagues,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Register: hxxps://payments[.]northbridge-vendor[.]test/status
+
+Stay safe",0.03954377955095296,0.10946938453795635,0.118998887390796
+M0124,shared_doc,phish,0,email,Updated plan,"Hi Dinesh,
+
+Meera from HR shared a document with you. Have a look when you get a moment.
+
+Open it here: hxxp://examplecorp-secure[.]test/verify?id=2900
+
+Best",0.789181706522253,0.656763915922709,0.43272762465480846
+M0126,shared_doc,phish,0,email,Draft for your review,"Hey Meera
+
+Karthik from Support shared a document with you. Have a look when you get a moment.
+
+You can view it at hxxp://tiny-lnk[.]test/ef46qw
+
+Cheers",0.6835208937363157,0.6858843230637225,0.47936312191048946
+M0129,helpdesk_ticket,legit,0,sms,,We have closed ticket REF-58962. Rate your experience if you wish. View the ticket: hxxps://intranet[.]examplecorp[.]test/expenses,0.018706509954354602,0.14178442614918876,0.25605511281350296
+M0133,helpdesk_ticket,legit,0,email,Ticket REF-79136 updated,"Hi Arjun,
+
+We have closed ticket REF-79136. Rate your experience if you wish.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/events
+
+Regards, IT Support",0.005652437151237075,0.06616829146205527,0.07127293142925407
+M0134,survey_gift,phish,0,email,Team appreciation survey,"Hi everyone,
+
+We would love your feedback and a small gift card is reserved for you.
+
+Take the survey: hxxp://examplecorp-secure[.]test/login?id=6016
+
+Cheers",0.9183397445384054,0.9132430784399229,0.6016553067042146
+M0137,payroll_cutoff_urgent,legit,1,email,Payroll deadline approaching,"Dear managers,
+
+This is the final reminder: managers must approve overtime today.
+
+Reach payroll on ext 4410.
+
+Payroll Team",0.04393981539614132,0.2647203213548601,0.13827126756948874
+M0142,survey_gift,phish,0,email,"Share your thoughts, rewards inside","Hey,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Claim yours: hxxps://files[.]cloudbox-share[.]test/d/qsqbcebx
+
+Thanks a lot",0.5547792351072148,0.2305601103079835,0.5059396358130535
+M0143,ceo_favour,phish,0,email,Are you at your desk?,"Nisha,
+
+I am in a meeting and cannot take calls. I need you to handle something for me discreetly.
+
+Let me know when you are available.
+
+Sent from my phone",0.29317777890643243,0.4698925590373556,0.39596789939449245
+M0145,helpdesk_ticket,legit,0,email,We need more information on TKT-88985,"Hi Rahul,
+
+We have closed ticket TKT-88985. Rate your experience if you wish.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/events
+
+Thanks",0.005652437151237075,0.06643729401365481,0.07487344900251197
+M0148,vendor_bank_change,phish,0,email,Updated remittance details,"Hello,
+
+Following our recent restructuring, the beneficiary account for future invoices has changed.
+
+The new details are at hxxps://docs-share-hub[.]test/d/zbjdetf3
+
+With thanks",0.13354172253321245,0.26186052923363584,0.3138951174140003
+M0151,helpdesk_ticket,legit,0,email,We need more information on INV-47973,"Hi Rahul,
+
+The issue was resolved. Please reply within 3 days if the problem continues.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/events
+
+Regards, IT Support",0.009756665624551365,0.09339671024637675,0.0682251983881982
+M0156,security_awareness,legit,0,email,(no subject),"Hello team,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Questions? Visit the security desk.
+
+Regards, InfoSec",0.03954377955095296,0.2166223815486985,0.32736247482823616
+M0157,security_awareness,legit,0,email,Security tip of the week,"Hello team,
+
+Remember: IT will never ask for your password. If a message seems suspicious, forward it to the security team.
+
+Learn more: hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Security Team",0.0007842485527910258,0.13408082079957484,0.22468431558841126
+M0158,helpdesk_ticket,legit,0,email,Ticket REF-87922 updated,"Dear Ravi,
+
+We have closed ticket REF-87922. Rate your experience if you wish.
+
+Reply to this message to reopen it.
+
+Service Desk",0.19309868423321644,0.2195383672432805,0.18443300072197463
+M0159,helpdesk_ticket,legit,0,email,We need more information on REF-28321,"Hi,
+
+The issue was resolved. Please reply within 3 days if the problem continues.
+
+Ticket system: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Service Desk",0.018706509954354602,0.1205055570191837,0.16514594848833494
+M0161,ceo_favour,phish,0,sms,,I need a task sorted quietly. Reply to this message and I will share the details. Message me here rather than on the company chat.,0.19309868423321644,0.3067599870089546,0.35205380098120753
+M0162,it_pw_expiry_policy,legit,1,email,Password expires in 12 days,"Hi team,
+
+You can also change it at the self-service page. IT will never ask you to share it.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Thanks",0.01679064808681382,0.12027263279801377,0.06909394835388814
+M0165,survey_gift,phish,0,email,Quick 2-minute survey,"Hi Karthik,
+
+Complete a short survey and claim your reward before spots run out.
+
+Start here: hxxp://tiny-lnk[.]test/gvcrxk
+
+Thanks a lot",0.8664582774667876,0.6065357488959117,0.35722815636137906
+M0166,helpdesk_ticket,legit,0,email,Your request TKT-36541 was resolved,"Hi Sneha,
+
+The issue was resolved. Please reply within 3 days if the problem continues.
+
+View the ticket: hxxps://payments[.]northbridge-vendor[.]test/status
+
+Service Desk",0.03954377955095296,0.07261456150246877,0.08444371451406985
+M0170,payroll_cutoff_urgent,legit,1,email,Final reminder - submit timesheets today,"Hi team,
+
+This is the final reminder: managers must approve overtime today.
+
+Reach payroll on ext 4410.
+
+Regards, HR",0.04393981539614132,0.21110811729433937,0.08255097361635276
+M0171,helpdesk_ticket,legit,0,email,Ticket TKT-50360 updated,"Hello,
+
+Could you share a screenshot of the error so we can proceed?
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Service Desk",0.023202938145644076,0.20743620888795888,0.347011281320617
+M0176,helpdesk_ticket,legit,0,email,Your request TKT-40736 was resolved,"Hi Arjun,
+
+Could you share a screenshot of the error so we can proceed?
+
+View the ticket: hxxps://portal[.]cloudmail-services[.]test/status
+
+Service Desk",0.03954377955095296,0.09599685017090988,0.17910366854516938
+M0177,helpdesk_ticket,legit,0,email,Your request REF-88630 was resolved,"Dear Karthik,
+
+Your ticket REF-88630 has been assigned to a technician.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Regards, IT Support",0.005652437151237075,0.09862497513120759,0.13635263106975534
+M0183,ceo_favour,phish,0,sms,,Could you do something for me before the end of the day? Keep it between us for now. Reply as soon as you see this.,0.5547792351072148,0.36818114958566067,0.4153493212250869
+M0185,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 08 Oct,"Hello,
+
+You can also change it at the self-service page. IT will never ask you to share it.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Regards, IT Helpdesk",0.005652437151237075,0.10154984415523859,0.031707422225266006
+M0186,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Dear managers,
+
+Payroll will close in 6 hours. Approve pending items now.
+
+Approve at hxxps://intranet[.]examplecorp[.]test/events
+
+Regards, HR",0.01679064808681382,0.12245090691460143,0.09156289336003881
+M0187,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Hi Imran,
+
+Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle.
+
+Reach payroll on ext 4410.
+
+Thanks for acting promptly.",0.07378164660246529,0.19331004584276676,0.13154970859332918
+M0188,helpdesk_ticket,legit,0,email,Ticket REF-80608 updated,"Dear Nisha,
+
+Could you share a screenshot of the error so we can proceed?
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Regards, IT Support",0.009756665624551365,0.15365645321643456,0.20078606894652848
+M0190,survey_gift,phish,0,email,"Share your thoughts, rewards inside","Hey,
+
+Only a few places remain for this month's appreciation draw.
+
+Take the survey: hxxp://tiny-lnk[.]test/vvmv7p
+
+People Team",0.6592603884513855,0.2915570725632549,0.08239183287172892
+M0193,ceo_favour,phish,0,sms,,Could you do something for me before the end of the day? Keep it between us for now. Let me know when you are available.,0.5547792351072148,0.3948814949317844,0.457097803076943
+M0194,shared_doc,phish,0,email,Draft for your review,"Hi Arjun,
+
+I have put the draft together and would value your thoughts.
+
+You can view it at hxxp://examp1ecorp[.]test/secure/update?id=8301
+
+Cheers",0.789181706522253,0.867822767830496,0.7880080447235951
+M0196,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Dear managers,
+
+This is the final reminder: managers must approve overtime today.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Payroll Team",0.03954377955095297,0.1564657701492346,0.09526395323626591
+M0198,helpdesk_ticket,legit,0,email,Your request TKT-16551 was resolved,"Hello,
+
+Your ticket TKT-16551 has been assigned to a technician.
+
+Reply to this message to reopen it.
+
+Regards, IT Support",0.19309868423321644,0.2713610127968695,0.1839064001959936
+M0203,payroll_cutoff_urgent,legit,1,email,Final reminder - submit timesheets today,"Hello,
+
+This is the final reminder: managers must approve overtime today.
+
+Reach payroll on ext 4410.
+
+Thanks for acting promptly.",0.04393981539614132,0.2509007414903116,0.12935639658367826
+M0205,survey_gift,phish,0,email,Quick 2-minute survey,"Hey,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Start here: hxxp://examplecorp-secure[.]test/signin?id=3070
+
+People Team",0.9183397445384054,0.9437566834172836,0.8245991481823927
+M0207,ceo_favour,phish,0,sms,,I need a task sorted quietly. Reply to this message and I will share the details. Details here when you are ready: hxxp://go-lnk[.]invalid/xs4k74,0.8069013157667836,0.7725720842090521,0.774986728441422
+M0211,shared_doc,phish,0,email,Draft for your review,"Hey Imran
+
+I have put the draft together and would value your thoughts.
+
+Open it here: hxxp://examplecorp-secure[.]test/login?id=4264
+
+Best",0.789181706522253,0.874437753763944,0.7969489086169497
+M0213,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Hi team,
+
+Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Payroll Team",0.01679064808681382,0.06288954578463626,0.04123763388715027
+M0215,helpdesk_ticket,legit,0,email,We need more information on REF-91223,"Hi,
+
+Your ticket REF-91223 has been assigned to a technician.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Service Desk",0.009756665624551365,0.14790338734486524,0.23784898755820238
+M0217,it_pw_expiry_policy,legit,1,email,Password expires in 12 days,"Hello,
+
+Under the security policy, your password expires in 12 days. Please change it using the intranet portal before then.
+
+Helpdesk ext 4455 can help.
+
+Regards, IT Helpdesk",0.023202938145644076,0.3736098575685076,0.27315599730764956
+M0218,it_pw_expiry_policy,legit,1,email,Password expires in 4 days,"Dear colleague,
+
+This is a mandatory reminder from IT. Update your password by 17 Sep to avoid a lockout.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Thanks",0.09975048911968518,0.2561311642439695,0.2871128883467301
+M0223,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 24 Sep,"Hi team,
+
+Your account will require a new password soon. Press Ctrl+Alt+Del on your office laptop and select change password.
+
+Helpdesk ext 4455 can help.
+
+Regards, IT Helpdesk",0.01506798981059282,0.2417478076311223,0.20389703609332413
+M0224,vendor_bank_change,phish,0,email,Updated remittance details,"Dear Sneha,
+
+Our finance team has moved to a new bank. Please use the new account for your next payment.
+
+The new details are at hxxp://examplecorp-helpdesk[.]invalid/secure/update?id=6606
+
+With thanks",0.8069013157667836,0.6062769977530215,0.3929815627121005
+M0226,it_pw_expiry_policy,legit,1,email,Password expires in 12 days,"Hello,
+
+This is a mandatory reminder from IT. Update your password by 14 May to avoid a lockout.
+
+Self-service: hxxps://intranet[.]examplecorp[.]test/events
+
+Regards, IT Helpdesk",0.060086650174007626,0.2527233827349327,0.31458388761614237
+M0227,payroll_cutoff_urgent,legit,1,email,Payroll deadline approaching,"Hi team,
+
+Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle.
+
+Reach payroll on ext 4410.
+
+Thanks for acting promptly.",0.01506798981059282,0.1182463847099527,0.06418648311467724
+M0228,it_pw_expiry_policy,legit,1,email,Password expires in 24 days,"Dear colleague,
+
+This is a mandatory reminder from IT. Update your password by 27 Jul to avoid a lockout.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Thanks",0.060086650174007626,0.2359698324909184,0.24340613435434388
+M0234,vendor_bank_change,phish,0,email,Vendor record update,"Good morning,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+Please complete the form at hxxp://tiny-lnk[.]test/edm6fc
+
+Please confirm once updated.",0.6082590307465146,0.8125792624771684,0.6512810408012731
+M0235,security_awareness,legit,0,email,Phishing awareness week,"Hi all,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Questions? Visit the security desk.
+
+Stay safe",0.03954377955095296,0.17237618298331076,0.3234044094394464
+M0245,helpdesk_ticket,legit,0,email,We need more information on REF-88565,"Hi Priya,
+
+We have closed ticket REF-88565. Rate your experience if you wish.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Service Desk",0.005652437151237075,0.08226278384838642,0.07784389267129915
+M0249,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 05 Aug,"Hi Divya,
+
+Your account will require a new password soon. Press Ctrl+Alt+Del on your office laptop and select change password.
+
+Portal: hxxps://portal[.]cloudmail-services[.]test/help
+
+Regards, IT Helpdesk",0.06660803557509065,0.16514872558689764,0.15958320516673927
+M0250,ceo_favour,phish,0,email,Quick favour,"Farah,
+
+Could you do something for me before the end of the day? Keep it between us for now.
+
+Details here when you are ready: hxxp://secure-examplecorp[.]test/account/confirm?id=3328
+
+Regards",0.9849320101894071,0.814868603047242,0.718782318098769
+M0252,security_awareness,legit,0,email,Security tip of the week,"Hello team,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Register: hxxps://intranet[.]examplecorp[.]test/it/status
+
+Stay safe",0.005652437151237075,0.09839898296384918,0.35138773569451726
+M0253,security_awareness,legit,0,email,Phishing awareness week,"Hello team,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Register: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Regards, InfoSec",0.005652437151237075,0.04000420090202345,0.05559007764907406
+M0254,ceo_favour,phish,0,email,Are you at your desk?,"Hello Ravi
+
+I need a task sorted quietly. Reply to this message and I will share the details.
+
+Reply as soon as you see this.
+
+Sent from my phone",0.5547792351072148,0.36472041989735193,0.36605170478423826
+M0256,vendor_bank_change,phish,0,email,Change of bank account,"Hello,
+
+Our finance team has moved to a new bank. Please use the new account for your next payment.
+
+Details are available here: hxxp://examplecorp-secure[.]test/signin?id=2926
+
+With thanks",0.960456220449047,0.7582232012638883,0.6084201819964518
+M0257,shared_doc,phish,0,email,Notes from Tuesday,"Hi Sneha,
+
+The updated plan is ready for review whenever you have a minute.
+
+Open it here: hxxp://go-lnk[.]invalid/25d2rs
+
+Best",0.4182406231581638,0.553056775243806,0.32948381626378026
+M0258,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 09 Jul,"Hello,
+
+Under the security policy, your password expires in 3 days. Please change it using the intranet portal before then.
+
+Self-service: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Thanks",0.01679064808681382,0.1275192546674802,0.10885428614076072
+M0259,survey_gift,phish,0,sms,,We would love your feedback and a small gift card is reserved for you. Start here: hxxp://s-hrt[.]test/xfund8,0.8664582774667876,0.8853835855054141,0.7830819689503606
+M0260,ceo_favour,phish,0,email,Need your help,"Hello Anita
+
+Could you do something for me before the end of the day? Keep it between us for now.
+
+Reply as soon as you see this.
+
+Sent from my phone",0.5547792351072148,0.35710224097566345,0.3062301736207895
+M0261,shared_doc,phish,0,email,Lakshmi shared a file with you,"Hello,
+
+I have put the draft together and would value your thoughts.
+
+Access the file: hxxp://s-hrt[.]test/9bnhw3
+
+Thanks",0.1765352747791167,0.40721306992183104,0.3764153270652375
+M0266,survey_gift,phish,0,sms,,We would love your feedback and a small gift card is reserved for you. Claim yours: hxxp://go-lnk[.]invalid/wc25nn,0.6835208937363157,0.8279167255883145,0.7255174665288678
+M0267,security_awareness,legit,0,email,Do not click suspicious links,"Hello team,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Questions? Visit the security desk.
+
+Security Team",0.03954377955095296,0.34992879936411814,0.5147556602238094
+M0268,survey_gift,phish,0,email,Quick 2-minute survey,"Hi Priya,
+
+We would love your feedback and a small gift card is reserved for you.
+
+Take the survey: hxxp://go-lnk[.]invalid/cfug7c
+
+Cheers",0.6835208937363157,0.7497306221009968,0.6918803793977283
+M0270,shared_doc,phish,0,email,Draft for your review,"Hi,
+
+The updated plan is ready for review whenever you have a minute.
+
+You can view it at hxxp://tiny-lnk[.]test/ff4sy2
+
+Best",0.1765352747791167,0.4668246612359835,0.3779814842078577
+M0272,ceo_favour,phish,0,email,Are you free?,"Hey Meera,
+
+I am in a meeting and cannot take calls. I need you to handle something for me discreetly.
+
+Message me here rather than on the company chat.
+
+Regards",0.29317777890643243,0.4458709351332571,0.3957867714435456
+M0278,shared_doc,phish,0,email,Priya shared a file with you,"Hello,
+
+The updated plan is ready for review whenever you have a minute.
+
+Access the file: hxxp://s-hrt[.]test/5ssndn
+
+Cheers",0.4182406231581638,0.5797773550039349,0.5715831142887383
+M0279,ceo_favour,phish,0,sms,,I would like to surprise some clients with small gift vouchers. Can you arrange them? I will reimburse you. Details here when you are ready: hxxp://examplecorp-secure[.]test/verify?id=3466,0.9183397445384054,0.9106459323286984,0.6713603873067799
+M0280,it_pw_expiry_policy,legit,1,email,Password expires in 4 days,"Dear colleague,
+
+This is a mandatory reminder from IT. Update your password by 23 Mar to avoid a lockout.
+
+Portal: hxxps://payments[.]northbridge-vendor[.]test/portal
+
+Thanks",0.6082590307465146,0.3259935799298386,0.4033080589130165
+M0284,it_pw_expiry_policy,legit,1,email,Password expires in 4 days,"Hello,
+
+Your account will require a new password soon. Press Ctrl+Alt+Del on your office laptop and select change password.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Regards, IT Helpdesk",0.05416670048123607,0.2966447181505521,0.4875707896960228
+M0291,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Hi Nisha,
+
+Payroll will close in 48 hours. Approve pending items now.
+
+Reach payroll on ext 4410.
+
+Regards, HR",0.04393981539614132,0.24085397692756577,0.1499326150463734
+M0293,shared_doc,phish,0,email,Notes from Tuesday,"Hey Ravi
+
+Karthik from Sales shared a document with you. Have a look when you get a moment.
+
+Access the file: hxxp://examp1ecorp[.]test/account/confirm?id=5602
+
+Cheers",0.5274723043445938,0.5501727832080983,0.29080078239966584
+M0294,helpdesk_ticket,legit,0,email,Your request REF-93028 was resolved,"Dear Rahul,
+
+The issue was resolved. Please reply within 3 days if the problem continues.
+
+Ticket system: hxxps://payments[.]northbridge-vendor[.]test/status
+
+Regards, IT Support",0.020836344518680414,0.062321742136223726,0.050017572265168064
+M0298,security_awareness,legit,0,email,Security tip of the week,"Hello team,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Questions? Visit the security desk.
+
+Regards, InfoSec",0.03954377955095296,0.1517428740107792,0.08512752532238534
+M0306,vendor_bank_change,phish,0,email,Updated remittance details,"Good morning,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+Details are available here: hxxps://files[.]cloudbox-share[.]test/d/xksjqr77
+
+With thanks",0.22970105095339807,0.3780267521624493,0.4656144851943491
+M0311,survey_gift,phish,0,email,Quick 2-minute survey,"Hello team,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Take the survey: hxxp://s-hrt[.]test/bbutrv
+
+Thanks a lot",0.6835208937363157,0.6175581323569023,0.6442985801328894
+M0320,security_awareness,legit,0,email,Do not click suspicious links,"Hi all,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Questions? Visit the security desk.
+
+Stay safe",0.03954377955095296,0.1985384100908061,0.17434863719641122
+M0321,it_pw_expiry_policy,legit,1,email,Mandatory password rotation,"Hello,
+
+Your account will require a new password soon. Press Ctrl+Alt+Del on your office laptop and select change password.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/events
+
+Thanks",0.005652437151237075,0.08918051455539558,0.2045836037503491
+M0323,payroll_cutoff_urgent,legit,1,sms,,Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle. Approve at hxxps://intranet[.]examplecorp[.]test/expenses,0.005652437151237075,0.12102169145462864,0.0652490653526052
+M0324,survey_gift,phish,0,email,A small thank-you for your feedback,"Hi everyone,
+
+We would love your feedback and a small gift card is reserved for you.
+
+Claim yours: hxxps://files[.]cloudbox-share[.]test/d/fy4tdqvy
+
+People Team",0.29317777890643243,0.26741951346173426,0.365209913074878
+M0329,ceo_favour,phish,0,sms,,I need a task sorted quietly. Reply to this message and I will share the details. Reply as soon as you see this.,0.5547792351072148,0.39287945009132785,0.48965174046521875
+M0335,vendor_bank_change,phish,0,email,Change of bank account,"Dear customer,
+
+Our finance team has moved to a new bank. Please use the new account for your next payment.
+
+Please complete the form at hxxps://files[.]cloudbox-share[.]test/d/nwkayqwn
+
+Please confirm once updated.",0.6341355910108007,0.3380124778192366,0.5275153672817453
+M0337,survey_gift,phish,0,email,Quick 2-minute survey,"Hey,
+
+Only a few places remain for this month's appreciation draw.
+
+Take the survey: hxxp://s-hrt[.]test/8tdy4d
+
+Cheers",0.8664582774667876,0.48590583958149297,0.227038397505649
+M0338,survey_gift,phish,0,email,"Share your thoughts, rewards inside","Hello team,
+
+We would love your feedback and a small gift card is reserved for you.
+
+Claim yours: hxxp://go-lnk[.]invalid/7hhfey
+
+Thanks a lot",0.3917409692534856,0.4907121308612919,0.32830807070531187
+M0340,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Hi Ravi,
+
+This is the final reminder: managers must approve overtime today.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Payroll Team",0.02874849592653997,0.13712240835402603,0.08381591274633025
+M0341,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Hi Karthik,
+
+Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle.
+
+Approve at hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Regards, HR",0.01679064808681382,0.08433877296882264,0.06071085505553292
+M0342,survey_gift,phish,0,email,"Share your thoughts, rewards inside","Hey,
+
+Only a few places remain for this month's appreciation draw.
+
+Claim yours: hxxps://files[.]cloudbox-share[.]test/d/zsah6rg4
+
+People Team",0.789181706522253,0.10132655412369321,0.07639340027459729
+M0345,security_awareness,legit,0,email,Phishing awareness week,"Hi Karthik,
+
+Remember: IT will never ask for your password. If a message seems suspicious, forward it to the security team.
+
+Learn more: hxxps://intranet[.]examplecorp[.]test/it/status
+
+Security Team",0.001358519950428958,0.15391141789224314,0.26956345843478324
+M0346,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 19 Mar,"Dear colleague,
+
+Your account will require a new password soon. Press Ctrl+Alt+Del on your office laptop and select change password.
+
+Helpdesk ext 4455 can help.
+
+Thanks",0.025831238524664058,0.3114965436860398,0.22380107901476612
+M0359,ceo_favour,phish,0,email,Need your help,"Nisha,
+
+I need a task sorted quietly. Reply to this message and I will share the details.
+
+Let me know when you are available.
+
+Sent from my phone",0.29317777890643243,0.4153113488050699,0.4073873714981168
+M0361,it_pw_expiry_policy,legit,1,email,Password expires in 2 days,"Hi Nisha,
+
+You can also change it at the self-service page. IT will never ask you to share it.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+IT Security",0.01679064808681382,0.17679575323040903,0.1840290879569252
+M0362,ceo_favour,phish,0,email,Quick favour,"Asha,
+
+Could you do something for me before the end of the day? Keep it between us for now.
+
+Reply as soon as you see this.
+
+Sent from my phone",0.5547792351072148,0.32902963759298515,0.3696014697661471
+M0364,it_pw_expiry_policy,legit,1,email,Password expires in 48 days,"Hello,
+
+You can also change it at the self-service page. IT will never ask you to share it.
+
+Self-service: hxxps://intranet[.]examplecorp[.]test/events
+
+IT Security",0.02874849592653997,0.23626121354461824,0.29199170194343965
+M0366,ceo_favour,phish,0,sms,,I am in a meeting and cannot take calls. I need you to handle something for me discreetly. Message me here rather than on the company chat.,0.5547792351072148,0.5078555945888336,0.5660072466146598
+M0368,payroll_cutoff_urgent,legit,1,email,Payroll deadline approaching,"Dear managers,
+
+Payroll will close in 12 hours. Approve pending items now.
+
+Approve at hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Thanks for acting promptly.",0.009756665624551365,0.160197979884739,0.10296546741960493
+M0369,helpdesk_ticket,legit,0,email,Ticket TKT-59062 updated,"Dear Anita,
+
+Could you share a screenshot of the error so we can proceed?
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Regards, IT Support",0.04393981539614132,0.3131899852821367,0.42919608257235775
+M0372,shared_doc,phish,0,email,Imran shared a file with you,"Hi Imran,
+
+I have put the draft together and would value your thoughts.
+
+Open it here: hxxps://docs-share-hub[.]test/d/xqph3r4n
+
+Best",0.03954377955095296,0.2307314337873265,0.3354221304898579
+M0373,it_pw_expiry_policy,legit,1,email,Password expires in 6 days,"Hi Divya,
+
+Your account will require a new password soon. Press Ctrl+Alt+Del on your office laptop and select change password.
+
+Helpdesk ext 4455 can help.
+
+Thanks",0.04393981539614132,0.4240721823317095,0.5389838567501082
+M0375,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Dear managers,
+
+Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle.
+
+Approve at hxxps://portal[.]cloudmail-services[.]test/help
+
+Regards, HR",0.29317777890643243,0.15988690346772924,0.11474996776858819
+M0379,security_awareness,legit,0,email,Phishing awareness week,"Hello team,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Register: hxxps://intranet[.]examplecorp[.]test/tickets
+
+Stay safe",0.005652437151237075,0.07029804805590323,0.2910293611752599
+M0380,ceo_favour,phish,0,email,Need your help,"Hello Meera
+
+Could you do something for me before the end of the day? Keep it between us for now.
+
+Let me know when you are available.
+
+Regards",0.5547792351072148,0.3768705376392634,0.3227373393226763
+M0382,helpdesk_ticket,legit,0,email,Ticket REF-67263 updated,"Hi,
+
+Your ticket REF-67263 has been assigned to a technician.
+
+Reply to this message to reopen it.
+
+Service Desk",0.19309868423321644,0.24891884589459332,0.3768933077318219
+M0384,helpdesk_ticket,legit,0,email,Ticket REF-95009 updated,"Dear Ravi,
+
+The issue was resolved. Please reply within 3 days if the problem continues.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Service Desk",0.005652437151237075,0.08269394606729447,0.12154221104992603
+M0385,survey_gift,phish,0,email,A small thank-you for your feedback,"Hi Priya,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Start here: hxxp://examp1ecorp[.]test/secure/update?id=3215
+
+Cheers",0.97125150407346,0.9295744812695153,0.8741292850299162
+M0387,survey_gift,phish,0,sms,,We would love your feedback and a small gift card is reserved for you. Take the survey: hxxp://go-lnk[.]invalid/b5vae5,0.6835208937363157,0.8315556174172778,0.7295249963819582
+M0388,security_awareness,legit,0,email,Security tip of the week,"Dear colleagues,
+
+Join this week's awareness session to learn how to spot fake login pages.
+
+Questions? Visit the security desk.
+
+Regards, InfoSec",0.06660803557509065,0.21801091455070723,0.06589752595377309
+M0394,vendor_bank_change,phish,0,email,Change of bank account,"Hello,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+The new details are at hxxps://docs-share-hub[.]test/d/nha68jrm
+
+Kind regards, Accounts",0.13354172253321245,0.5532134056189567,0.6088951472566467
+M0398,vendor_bank_change,phish,0,email,Updated remittance details,"Good morning,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+Details are available here: hxxps://files[.]cloudbox-share[.]test/d/n9jre286
+
+Kind regards, Accounts",0.22970105095339807,0.3761301639322309,0.5728239473128878
+M0403,shared_doc,phish,0,email,Notes from Tuesday,"Hi,
+
+Sharing the meeting notes from earlier, there are a few items for you.
+
+Open it here: hxxps://files[.]cloudbox-share[.]test/d/schebpmw
+
+Thanks",0.12131883789173686,0.05901215688604654,0.12908004672364248
+M0410,vendor_bank_change,phish,0,email,Change of bank account,"Dear customer,
+
+For invoice INV-11174, the payment instructions are now different from earlier.
+
+Please complete the form at hxxp://examplecorp-helpdesk[.]invalid/secure/update?id=1450
+
+Please confirm once updated.",0.8786811621082632,0.9074246639293996,0.7913287981738953
+M0413,security_awareness,legit,0,email,Phishing awareness week,"Dear colleagues,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Questions? Visit the security desk.
+
+Security Team",0.06660803557509065,0.2423665016653376,0.1741181603064507
+M0418,vendor_bank_change,phish,0,email,Vendor record update,"Hello,
+
+For invoice INV-97496, the payment instructions are now different from earlier.
+
+Please complete the form at hxxp://examplecorp-helpdesk[.]invalid/verify?id=9644
+
+Kind regards, Accounts",0.789181706522253,0.8705333629534749,0.5934114321305141
+M0419,vendor_bank_change,phish,0,email,Please note our new payment details,"Dear Farah,
+
+For invoice TKT-40007, the payment instructions are now different from earlier.
+
+Details are available here: hxxp://examp1ecorp[.]test/signin?id=6320
+
+Kind regards, Accounts",0.8069013157667836,0.7861751196372291,0.6195815985469996
+M0420,vendor_bank_change,phish,0,email,Updated remittance details,"Good morning,
+
+Following our recent restructuring, the beneficiary account for future invoices has changed.
+
+Details are available here: hxxp://examp1ecorp[.]test/signin?id=9508
+
+Kind regards, Accounts",0.960456220449047,0.8797556557210895,0.7206991348158435
+M0421,vendor_bank_change,phish,0,email,Please note our new payment details,"Dear Dinesh,
+
+Following our recent restructuring, the beneficiary account for future invoices has changed.
+
+Details are available here: hxxp://examplecorp-login[.]test/account/confirm?id=6619
+
+Please confirm once updated.",0.8069013157667836,0.7491948738675565,0.7218575289642594
+M0425,ceo_favour,phish,0,sms,,I am in a meeting and cannot take calls. I need you to handle something for me discreetly. Details here when you are ready: hxxp://secure-examplecorp[.]test/signin?id=1549,0.9560601846038588,0.9306564679177893,0.8404396068274961
+M0426,shared_doc,phish,0,email,Draft for your review,"Hello,
+
+Karthik from Finance shared a document with you. Have a look when you get a moment.
+
+You can view it at hxxp://examplecorp-secure[.]test/verify?id=7221
+
+Best",0.789181706522253,0.7629974208617193,0.49388044518854746
+M0436,survey_gift,phish,0,email,Team appreciation survey,"Hi Karthik,
+
+Complete a short survey and claim your reward before spots run out.
+
+Take the survey: hxxp://s-hrt[.]test/rt3fj9
+
+Cheers",0.8664582774667876,0.6153512196449785,0.22923091140683063
+M0440,ceo_favour,phish,0,sms,,I would like to surprise some clients with small gift vouchers. Can you arrange them? I will reimburse you. Reply as soon as you see this.,0.3917409692534856,0.3596232647336685,0.28641324160799986
+M0446,shared_doc,phish,0,email,Notes from Tuesday,"Hi Lakshmi,
+
+I have put the draft together and would value your thoughts.
+
+Open it here: hxxp://examplecorp-login[.]test/verify?id=3513
+
+Best",0.789181706522253,0.8313522829688701,0.5909451813210252
+M0447,security_awareness,legit,0,email,Phishing awareness week,"Hello team,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Register: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Security Team",0.005652437151237075,0.09993962172658613,0.36519270172392915
+M0450,vendor_bank_change,phish,0,email,Please note our new payment details,"Hello,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+The new details are at hxxps://docs-share-hub[.]test/d/zqd2mt8u
+
+Please confirm once updated.",0.13354172253321245,0.4596680833238843,0.6042520215451291
+M0457,vendor_bank_change,phish,0,email,Change of bank account,"Dear customer,
+
+Following our recent restructuring, the beneficiary account for future invoices has changed.
+
+The new details are at hxxp://examplecorp-login[.]test/signin?id=7774
+
+Kind regards, Accounts",0.8899274256374969,0.8144117619405589,0.745864529472063
+M0461,shared_doc,phish,0,email,Rahul shared a file with you,"Hi,
+
+The updated plan is ready for review whenever you have a minute.
+
+You can view it at hxxps://files[.]cloudbox-share[.]test/d/kh4p63xq
+
+Thanks",0.29317777890643243,0.1554318604145783,0.26175841251975135
+M0466,security_awareness,legit,0,email,Phishing awareness week,"Hi all,
+
+Join this week's awareness session to learn how to spot fake login pages.
+
+Questions? Visit the security desk.
+
+Stay safe",0.03954377955095296,0.11982117777304062,0.07171228827114866
+M0467,shared_doc,phish,0,email,Updated plan,"Hello,
+
+I have put the draft together and would value your thoughts.
+
+You can view it at hxxp://examplecorp-secure[.]test/verify?id=1506
+
+Best",0.9183397445384054,0.9296614414026554,0.7720385539736485
+M0474,vendor_bank_change,phish,0,email,Change of bank account,"Good morning,
+
+Our finance team has moved to a new bank. Please use the new account for your next payment.
+
+Please complete the form at hxxp://examp1ecorp[.]test/signin?id=7871
+
+Please confirm once updated.",0.8899274256374969,0.7915172783857121,0.7179973699519268
+M0476,it_pw_expiry_policy,legit,1,email,Mandatory password rotation,"Hello,
+
+You can also change it at the self-service page. IT will never ask you to share it.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Thanks",0.005652437151237075,0.07510772135129791,0.03843970376024667
+M0477,shared_doc,phish,0,email,Anita shared a file with you,"Hey Anita
+
+The updated plan is ready for review whenever you have a minute.
+
+Access the file: hxxp://go-lnk[.]invalid/8gj8se
+
+Best",0.4182406231581638,0.5893539792783614,0.5651467955608845
+M0480,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Hi Karthik,
+
+Please verify your bank details are current on the HR portal before the payroll run.
+
+Approve at hxxps://payments[.]northbridge-vendor[.]test/status
+
+Thanks for acting promptly.",0.6082590307465143,0.14537400278877533,0.21344497341764437
+M0485,it_pw_expiry_policy,legit,1,email,Mandatory password rotation,"Dear colleague,
+
+Your account will require a new password soon. Press Ctrl+Alt+Del on your office laptop and select change password.
+
+Self-service: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+IT Security",0.005652437151237075,0.15056423795437893,0.3176804804477439
+M0487,helpdesk_ticket,legit,0,email,Ticket REF-89436 updated,"Dear Sneha,
+
+Could you share a screenshot of the error so we can proceed?
+
+Ticket system: hxxps://intranet[.]examplecorp[.]test/tickets
+
+Regards, IT Support",0.005652437151237075,0.10583620834302614,0.14049911503565468
+M0495,vendor_bank_change,phish,0,email,Change of bank account,"Hello,
+
+Our finance team has moved to a new bank. Please use the new account for your next payment.
+
+Details are available here: hxxp://examp1ecorp[.]test/account/confirm?id=7771
+
+Kind regards, Accounts",0.960456220449047,0.7767061127830102,0.6529836883833858
+M0498,survey_gift,phish,0,email,Team appreciation survey,"Hey,
+
+Complete a short survey and claim your reward before spots run out.
+
+Take the survey: hxxp://s-hrt[.]test/7ncdts
+
+People Team",0.9512002770012,0.6674613050663732,0.18301732490594813
+M0500,helpdesk_ticket,legit,0,email,Ticket REF-57377 updated,"Hello,
+
+We have closed ticket REF-57377. Rate your experience if you wish.
+
+Reply to this message to reopen it.
+
+Regards, IT Support",0.19309868423321644,0.2049227928315172,0.11085077394980997
+M0503,survey_gift,phish,0,email,A small thank-you for your feedback,"Hi everyone,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Take the survey: hxxp://go-lnk[.]invalid/egnpn8
+
+People Team",0.6835208937363157,0.7363046152160253,0.7308309667839522
+M0504,ceo_favour,phish,0,email,Are you free?,"Hello Imran
+
+I am in a meeting and cannot take calls. I need you to handle something for me discreetly.
+
+Details here when you are ready: hxxp://examp1ecorp[.]test/signin?id=5395
+
+Sent from my phone",0.9560601846038588,0.8957778058623794,0.6692276217339641
+M0505,security_awareness,legit,0,email,Phishing awareness week,"Dear colleagues,
+
+Remember: IT will never ask for your password. If a message seems suspicious, forward it to the security team.
+
+Register: hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Stay safe",0.0007842485527910258,0.09410968505057558,0.10301354092095792
+M0511,helpdesk_ticket,legit,0,email,Your request INV-17580 was resolved,"Dear Priya,
+
+Your ticket INV-17580 has been assigned to a technician.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Regards, IT Support",0.005652437151237075,0.10787824463385602,0.17153356309500567
+M0516,shared_doc,phish,0,email,Notes from Tuesday,"Hey Sneha
+
+Dinesh from Operations shared a document with you. Have a look when you get a moment.
+
+Access the file: hxxps://files[.]cloudbox-share[.]test/d/v5dbyvzj
+
+Best",0.12131883789173686,0.09030546088649498,0.10708167182865758
+M0522,ceo_favour,phish,0,email,Are you at your desk?,"Sneha,
+
+I am in a meeting and cannot take calls. I need you to handle something for me discreetly.
+
+Reply as soon as you see this.
+
+Thanks,",0.4182406231581638,0.28035140504325207,0.18531613830693192
+M0526,ceo_favour,phish,0,email,Are you free?,"Hi Imran,
+
+I need a task sorted quietly. Reply to this message and I will share the details.
+
+Let me know when you are available.
+
+Thanks,",0.19309868423321644,0.2241781873540802,0.1866495735795999
+M0529,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 17 Oct,"Dear colleague,
+
+You can also change it at the self-service page. IT will never ask you to share it.
+
+Helpdesk ext 4455 can help.
+
+Thanks",0.007845023030455627,0.19191283362532852,0.05677333079376254
+M0536,vendor_bank_change,phish,0,email,Change of bank account,"Good morning,
+
+For invoice REF-23208, the payment instructions are now different from earlier.
+
+Please complete the form at hxxps://files[.]cloudbox-share[.]test/d/jjc9bvmf
+
+Kind regards, Accounts",0.29317777890643243,0.4846207011107797,0.42367385601198926
+M0537,it_pw_expiry_policy,legit,1,email,Mandatory password rotation,"Hi team,
+
+This is a mandatory reminder from IT. Update your password by 14 May to avoid a lockout.
+
+Self-service: hxxps://portal[.]cloudmail-services[.]test/portal
+
+IT Security",0.07378164660246529,0.1702903370561245,0.3038803543642349
+M0538,helpdesk_ticket,legit,0,email,We need more information on INV-64014,"Hello,
+
+Your ticket INV-64014 has been assigned to a technician.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/tickets
+
+Regards, IT Support",0.005652437151237075,0.09474677579680454,0.18942429371044936
+M0542,survey_gift,phish,0,email,A small thank-you for your feedback,"Hi everyone,
+
+Only a few places remain for this month's appreciation draw.
+
+Start here: hxxps://docs-share-hub[.]test/d/2dsgc6n5
+
+Cheers",0.789181706522253,0.34117857283407954,0.19340225293270316
+M0544,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Dear managers,
+
+Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/tickets
+
+Regards, HR",0.05416670048123607,0.10345559496601932,0.07697006905753905
+M0546,security_awareness,legit,0,email,Do not click suspicious links,"Hi all,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Register: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Stay safe",0.005652437151237075,0.1409689642036494,0.4777254005038742
+M0554,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 13 Jul,"Hello,
+
+You can also change it at the self-service page. IT will never ask you to share it.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+IT Security",0.013519639645969637,0.17010810790249806,0.09390548870205806
+M0556,survey_gift,phish,0,email,Team appreciation survey,"Hello team,
+
+Complete a short survey and claim your reward before spots run out.
+
+Take the survey: hxxp://s-hrt[.]test/2snh46
+
+People Team",0.9512002770012,0.6085566135011764,0.1484355932502945
+M0557,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Dear managers,
+
+Payroll will close in 3 hours. Approve pending items now.
+
+Reach payroll on ext 4410.
+
+Thanks for acting promptly.",0.04393981539614132,0.24851946634185512,0.18440205537132648
+M0563,payroll_cutoff_urgent,legit,1,email,Payroll deadline approaching,"Dear managers,
+
+Payroll will close in 3 hours. Approve pending items now.
+
+Approve at hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Payroll Team",0.013519639645969637,0.24151065881630873,0.1267469480310083
+M0569,helpdesk_ticket,legit,0,email,Your request INV-52006 was resolved,"Hi Imran,
+
+The issue was resolved. Please reply within 3 days if the problem continues.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/events
+
+Thanks",0.005652437151237075,0.058709682832294816,0.08553118867129678
+M0570,it_pw_expiry_policy,legit,1,email,Password expires in 3 days,"Hi team,
+
+Your account will require a new password soon. Press Ctrl+Alt+Del on your office laptop and select change password.
+
+Self-service: hxxps://intranet[.]examplecorp[.]test/it/status
+
+Regards, IT Helpdesk",0.01679064808681382,0.16488144725919304,0.2768658756850126
+M0571,payroll_cutoff_urgent,legit,1,email,Final reminder - submit timesheets today,"Dear managers,
+
+Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Payroll Team",0.01679064808681382,0.09869823496553051,0.045371522439409895
+M0586,ceo_favour,phish,0,email,Quick favour,"Hi Nisha,
+
+I would like to surprise some clients with small gift vouchers. Can you arrange them? I will reimburse you.
+
+Let me know when you are available.
+
+Sent from my phone",0.1765352747791167,0.3075331043025825,0.26397545567771624
+M0601,shared_doc,phish,0,email,Updated plan,"Hi,
+
+The updated plan is ready for review whenever you have a minute.
+
+Open it here: hxxp://go-lnk[.]invalid/5ef6kw
+
+Cheers",0.4182406231581638,0.5822994496456381,0.5441693709103973
+M0615,ceo_favour,phish,0,email,Are you free?,"Hey Ravi,
+
+Could you do something for me before the end of the day? Keep it between us for now.
+
+Details here when you are ready: hxxp://secure-examplecorp[.]test/account/confirm?id=5079
+
+Thanks,",0.9849320101894071,0.7804915293374748,0.651283249378699
+M0625,security_awareness,legit,0,email,Security tip of the week,"Dear colleagues,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Register: hxxps://intranet[.]examplecorp[.]test/it/status
+
+Security Team",0.005652437151237075,0.09334320483787178,0.0998203953847273
+M0635,ceo_favour,phish,0,email,Need your help,"Hello Anita
+
+I need a task sorted quietly. Reply to this message and I will share the details.
+
+Reply as soon as you see this.
+
+Regards",0.5547792351072148,0.39949252676925434,0.37949828564722604
+M0636,survey_gift,phish,0,email,Team appreciation survey,"Hey,
+
+Complete a short survey and claim your reward before spots run out.
+
+Start here: hxxp://examp1ecorp[.]test/signin?id=1577
+
+People Team",0.97125150407346,0.8444177416000345,0.2820745715666212
+M0641,vendor_bank_change,phish,0,email,Vendor record update,"Dear customer,
+
+For invoice INV-12174, the payment instructions are now different from earlier.
+
+Please complete the form at hxxps://docs-share-hub[.]test/d/kdpb7s6y
+
+Kind regards, Accounts",0.21081829347774714,0.4621314165179117,0.48740627515007606
+M0643,it_pw_expiry_policy,legit,1,sms,,This is a mandatory reminder from IT. Update your password by 30 May to avoid a lockout. Helpdesk ext 4455 can help.,0.05416670048123605,0.3981714679917592,0.42411212629482464
+M0645,vendor_bank_change,phish,0,email,Change of bank account,"Good morning,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+Please complete the form at hxxps://files[.]cloudbox-share[.]test/d/7n3r4kta
+
+Kind regards, Accounts",0.22970105095339807,0.4829917604486714,0.5375236199441988
+M0646,helpdesk_ticket,legit,0,email,Your request REF-43877 was resolved,"Dear Ravi,
+
+The issue was resolved. Please reply within 3 days if the problem continues.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Thanks",0.013519639645969637,0.11083011142487434,0.11115585684082423
+M0647,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 02 Aug,"Hello,
+
+You can also change it at the self-service page. IT will never ask you to share it.
+
+Portal: hxxps://intranet[.]examplecorp[.]test/tickets
+
+Regards, IT Helpdesk",0.005652437151237075,0.10339746945672301,0.03525542505291563
+M0648,survey_gift,phish,0,email,"Share your thoughts, rewards inside","Hi everyone,
+
+Only a few places remain for this month's appreciation draw.
+
+Claim yours: hxxp://examplecorp-helpdesk[.]invalid/login?id=9589
+
+Cheers",0.97125150407346,0.7157068081574304,0.31898647044221234
+M0651,ceo_favour,phish,0,email,Need your help,"Hello Asha
+
+I would like to surprise some clients with small gift vouchers. Can you arrange them? I will reimburse you.
+
+Message me here rather than on the company chat.
+
+Sent from my phone",0.5547792351072148,0.4002588350986035,0.30502352777909536
+M0653,shared_doc,phish,0,email,Lakshmi shared a file with you,"Hi,
+
+Sharing the meeting notes from earlier, there are a few items for you.
+
+You can view it at hxxps://files[.]cloudbox-share[.]test/d/3vdv692b
+
+Cheers",0.29317777890643243,0.16580844623005486,0.324396061857294
+M0656,security_awareness,legit,0,email,Do not click suspicious links,"Hello team,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Learn more: hxxps://portal[.]cloudmail-services[.]test/help
+
+Stay safe",0.06660803557509065,0.235005918492414,0.5903449561870507
+M0660,vendor_bank_change,phish,0,email,Change of bank account,"Dear Ravi,
+
+Our finance team has moved to a new bank. Please use the new account for your next payment.
+
+The new details are at hxxp://examplecorp-secure[.]test/secure/update?id=5882
+
+Please confirm once updated.",0.8899274256374969,0.756670054441845,0.794254123334046
+M0661,vendor_bank_change,phish,0,email,(no subject),"Dear Rahul,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+Please complete the form at hxxps://files[.]cloudbox-share[.]test/d/sqxvg9r6
+
+With thanks",0.13354172253321245,0.2465349255616722,0.23572563381222986
+M0663,payroll_cutoff_urgent,legit,1,email,Payroll deadline approaching,"Hi team,
+
+Payroll will close in 3 hours. Approve pending items now.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Payroll Team",0.013519639645969637,0.11044797308079793,0.058106111325967796
+M0666,survey_gift,phish,0,email,Team appreciation survey,"Hi Vikram,
+
+Only a few places remain for this month's appreciation draw.
+
+Claim yours: hxxps://files[.]cloudbox-share[.]test/d/n3yvdgha
+
+People Team",0.27091207765069353,0.028087479575652184,0.017356810189117732
+M0671,payroll_cutoff_urgent,legit,1,email,Final reminder - submit timesheets today,"Hi Anita,
+
+This is the final reminder: managers must approve overtime today.
+
+Approve at hxxps://intranet[.]examplecorp[.]test/tickets
+
+Thanks for acting promptly.",0.01679064808681382,0.14680186482095553,0.07698768083897471
+M0673,survey_gift,phish,0,email,"Share your thoughts, rewards inside","Hey,
+
+We would love your feedback and a small gift card is reserved for you.
+
+Start here: hxxp://examplecorp-helpdesk[.]invalid/login?id=6270
+
+People Team",0.9183397445384054,0.9153365691964845,0.7263507100761322
+M0678,payroll_cutoff_urgent,legit,1,email,Final reminder - submit timesheets today,"Dear managers,
+
+This is the final reminder: managers must approve overtime today.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Thanks for acting promptly.",0.01679064808681382,0.09720360964684246,0.04933391816162475
+M0684,ceo_favour,phish,0,sms,,I would like to surprise some clients with small gift vouchers. Can you arrange them? I will reimburse you. Message me here rather than on the company chat.,0.5547792351072148,0.41052352833714906,0.38966960822809643
+M0685,it_pw_expiry_policy,legit,1,email,Mandatory password rotation,"Hi Rahul,
+
+This is a mandatory reminder from IT. Update your password by 12 Aug to avoid a lockout.
+
+Helpdesk ext 4455 can help.
+
+IT Security",0.05416670048123605,0.34962760265152387,0.4545289514858581
+M0690,survey_gift,phish,0,email,Quick 2-minute survey,"Hey,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Take the survey: hxxp://s-hrt[.]test/zhesxc
+
+Cheers",0.6835208937363157,0.8678887678224527,0.8362670598008691
+M0693,shared_doc,phish,0,email,Notes from Tuesday,"Hi Divya,
+
+Sharing the meeting notes from earlier, there are a few items for you.
+
+Access the file: hxxps://docs-share-hub[.]test/d/paqna5na
+
+Best",0.06660803557509065,0.11282594830138347,0.1337122046876755
+M0702,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 23 Aug,"Hi Nisha,
+
+This is a mandatory reminder from IT. Update your password by 23 Aug to avoid a lockout.
+
+Self-service: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+IT Security",0.020836344518680414,0.21374545246434304,0.27446738287310807
+M0705,shared_doc,phish,0,email,Arjun shared a file with you,"Hey Arjun
+
+I have put the draft together and would value your thoughts.
+
+Open it here: hxxps://docs-share-hub[.]test/d/yeuzd55b
+
+Cheers",0.12131883789173686,0.43879250498470335,0.605179184754903
+M0707,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 12 Mar,"Hi Sneha,
+
+You can also change it at the self-service page. IT will never ask you to share it.
+
+Helpdesk ext 4455 can help.
+
+Thanks",0.013519639645969637,0.23106256068721445,0.08494700202213186
+M0711,vendor_bank_change,phish,0,email,Updated remittance details,"Dear customer,
+
+For invoice TKT-26569, the payment instructions are now different from earlier.
+
+The new details are at hxxp://examplecorp-helpdesk[.]invalid/signin?id=5147
+
+Kind regards, Accounts",0.8899274256374969,0.807766823430932,0.6503725247806544
+M0717,helpdesk_ticket,legit,0,email,We need more information on TKT-55050,"Hi,
+
+Your ticket TKT-55050 has been assigned to a technician.
+
+View the ticket: hxxps://payments[.]northbridge-vendor[.]test/portal
+
+Service Desk",0.29317777890643243,0.24560605119205173,0.4289633724617925
+M0725,payroll_cutoff_urgent,legit,1,sms,,Payroll will close in 12 hours. Approve pending items now. Reach payroll on ext 4410.,0.01506798981059282,0.3418739484038303,0.22110073573440503
+M0732,shared_doc,phish,0,email,Draft for your review,"Hey Lakshmi
+
+Farah from Operations shared a document with you. Have a look when you get a moment.
+
+You can view it at hxxps://files[.]cloudbox-share[.]test/d/vt2j474g
+
+Best",0.12131883789173686,0.1728094595047092,0.21112169477334305
+M0743,vendor_bank_change,phish,0,email,Vendor record update,"Dear Ravi,
+
+Following our recent restructuring, the beneficiary account for future invoices has changed.
+
+Details are available here: hxxp://tiny-lnk[.]test/cw5fst
+
+Please confirm once updated.",0.6082590307465146,0.6833322699745045,0.7411591395908378
+M0755,vendor_bank_change,phish,0,email,Change of bank account,"Dear Priya,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+The new details are at hxxps://files[.]cloudbox-share[.]test/d/7tehy8qw
+
+Please confirm once updated.",0.22970105095339807,0.5137907148403674,0.7110795801911632
+M0757,vendor_bank_change,phish,0,email,Vendor record update,"Good morning,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+Details are available here: hxxps://docs-share-hub[.]test/d/se6xtkfq
+
+Kind regards, Accounts",0.47252769565540625,0.6196852311756654,0.6544410570782242
+M0758,security_awareness,legit,0,email,Do not click suspicious links,"Dear colleagues,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Questions? Visit the security desk.
+
+Regards, InfoSec",0.06660803557509065,0.44021127296051205,0.5007806484944528
+M0763,payroll_cutoff_urgent,legit,1,sms,,Payroll will close in 24 hours. Approve pending items now. Approve at hxxps://intranet[.]examplecorp[.]test/selfservice,0.018706509954354602,0.3210031513925429,0.24022118813808938
+M0768,helpdesk_ticket,legit,0,email,Your request INV-69399 was resolved,"Hi,
+
+We have closed ticket INV-69399. Rate your experience if you wish.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/it/status
+
+Service Desk",0.018706509954354602,0.13019326757445246,0.20612499024590467
+M0769,shared_doc,phish,0,email,Farah shared a file with you,"Hello,
+
+I have put the draft together and would value your thoughts.
+
+You can view it at hxxp://secure-examplecorp[.]test/login?id=3041
+
+Cheers",0.5274723043445938,0.8055896460529224,0.6499906070375775
+M0776,helpdesk_ticket,legit,0,sms,,Could you share a screenshot of the error so we can proceed? Ticket system: hxxps://intranet[.]examplecorp[.]test/hr/approvals,0.005652437151237075,0.09959112993642451,0.2388915941840368
+M0777,shared_doc,phish,0,email,Notes from Tuesday,"Hey Sneha
+
+I have put the draft together and would value your thoughts.
+
+You can view it at hxxps://files[.]cloudbox-share[.]test/d/c4rhfkwv
+
+Best",0.12131883789173686,0.18062205040432489,0.32156177816384673
+M0786,shared_doc,phish,0,email,Draft for your review,"Hi,
+
+Sharing the meeting notes from earlier, there are a few items for you.
+
+Open it here: hxxps://docs-share-hub[.]test/d/wwz6drsq
+
+Thanks",0.12131883789173686,0.18423857167616434,0.30677247365176696
+M0790,helpdesk_ticket,legit,0,sms,,Your ticket TKT-74358 has been assigned to a technician. Ticket system: hxxps://intranet[.]examplecorp[.]test/events,0.005652437151237075,0.09305632605826139,0.3143091818462873
+M0791,payroll_cutoff_urgent,legit,1,email,Final reminder - submit timesheets today,"Hi team,
+
+Please verify your bank details are current on the HR portal before the payroll run.
+
+Approve at hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Payroll Team",0.22970105095339807,0.15803404496373863,0.11469389675084855
+M0792,helpdesk_ticket,legit,0,sms,,We have closed ticket TKT-73858. Rate your experience if you wish. View the ticket: hxxps://intranet[.]examplecorp[.]test/it/status,0.005652437151237075,0.06742232737835396,0.11590547966866772
+M0797,ceo_favour,phish,0,email,Quick favour,"Hello Dinesh
+
+I need a task sorted quietly. Reply to this message and I will share the details.
+
+Details here when you are ready: hxxp://examplecorp-helpdesk[.]invalid/secure/update?id=4514
+
+Thanks,",0.9560601846038588,0.8069219919902098,0.7320961870826906
+M0810,it_pw_expiry_policy,legit,1,email,Mandatory password rotation,"Hi Karthik,
+
+Your account will require a new password soon. Press Ctrl+Alt+Del on your office laptop and select change password.
+
+Helpdesk ext 4455 can help.
+
+Regards, IT Helpdesk",0.025831238524664058,0.3332847115812576,0.3447596363724242
+M0812,ceo_favour,phish,0,email,Are you at your desk?,"Hi Anita,
+
+Could you do something for me before the end of the day? Keep it between us for now.
+
+Message me here rather than on the company chat.
+
+Thanks,",0.5547792351072148,0.37221098197581365,0.4299153948757041
+M0813,shared_doc,phish,0,email,Draft for your review,"Hello,
+
+Nisha from Engineering shared a document with you. Have a look when you get a moment.
+
+You can view it at hxxp://examplecorp-login[.]test/verify?id=7041
+
+Thanks",0.789181706522253,0.7159290307685231,0.497892265888871
+M0815,payroll_cutoff_urgent,legit,1,email,Final reminder - submit timesheets today,"Dear managers,
+
+This is the final reminder: managers must approve overtime today.
+
+Reach payroll on ext 4410.
+
+Payroll Team",0.04393981539614132,0.31540418317975166,0.17155413884555495
+M0816,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 02 Oct,"Hi team,
+
+This is a mandatory reminder from IT. Update your password by 02 Oct to avoid a lockout.
+
+Helpdesk ext 4455 can help.
+
+Thanks",0.05416670048123605,0.2752774115897557,0.1977512428979509
+M0820,vendor_bank_change,phish,0,email,Updated remittance details,"Good morning,
+
+For invoice REF-51591, the payment instructions are now different from earlier.
+
+Please complete the form at hxxp://tiny-lnk[.]test/2ynme4
+
+Kind regards, Accounts",0.8234647252208833,0.8250200515516711,0.514201839821877
+M0825,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Hello,
+
+Payroll will close in 24 hours. Approve pending items now.
+
+Approve at hxxps://intranet[.]examplecorp[.]test/events
+
+Thanks for acting promptly.",0.01679064808681382,0.13100726534123222,0.11276485492397743
+M0835,security_awareness,legit,0,email,Security tip of the week,"Dear colleagues,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Learn more: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Stay safe",0.005652437151237075,0.07933702786950513,0.10700613043348545
+M0840,helpdesk_ticket,legit,0,email,Ticket INV-45535 updated,"Hello,
+
+Your ticket INV-45535 has been assigned to a technician.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/expenses
+
+Service Desk",0.018706509954354602,0.17324956580366396,0.47354758242448086
+M0846,payroll_cutoff_urgent,legit,1,email,Final reminder - submit timesheets today,"Hello,
+
+Please verify your bank details are current on the HR portal before the payroll run.
+
+Approve at hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Thanks for acting promptly.",0.17653527477911665,0.12085746858959857,0.10550332532951152
+M0849,security_awareness,legit,0,email,Do not click suspicious links,"Hi Arjun,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Questions? Visit the security desk.
+
+Stay safe",0.1765352747791167,0.532591760983693,0.688835113644641
+M0852,ceo_favour,phish,0,email,Quick favour,"Divya,
+
+I need a task sorted quietly. Reply to this message and I will share the details.
+
+Reply as soon as you see this.
+
+Thanks,",0.5547792351072148,0.3656252292378715,0.4675519835760671
+M0855,survey_gift,phish,0,email,"Share your thoughts, rewards inside","Hi Anita,
+
+We would love your feedback and a small gift card is reserved for you.
+
+Start here: hxxps://files[.]cloudbox-share[.]test/d/m6xcgvta
+
+People Team",0.29317777890643243,0.30737119092067566,0.4009169300380963
+M0857,payroll_cutoff_urgent,legit,1,email,Final reminder - submit timesheets today,"Hi Sneha,
+
+Timesheets must be approved by 5 pm tomorrow or they move to the next payroll cycle.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Payroll Team",0.01679064808681382,0.08615747283263152,0.040205337763781906
+M0862,payroll_cutoff_urgent,legit,1,email,Final reminder - submit timesheets today,"Hi Anita,
+
+Payroll will close in 48 hours. Approve pending items now.
+
+Reach payroll on ext 4410.
+
+Thanks for acting promptly.",0.04393981539614132,0.2713369455554459,0.15899032269681154
+M0869,helpdesk_ticket,legit,0,email,Ticket TKT-34138 updated,"Hello,
+
+Your ticket TKT-34138 has been assigned to a technician.
+
+View the ticket: hxxps://intranet[.]examplecorp[.]test/hr/payslip
+
+Service Desk",0.013519639645969637,0.14502850692658176,0.364682527247884
+M0870,helpdesk_ticket,legit,0,email,Your request REF-56325 was resolved,"Hello,
+
+The issue was resolved. Please reply within 3 days if the problem continues.
+
+Reply to this message to reopen it.
+
+Thanks",0.29317777890643243,0.3626636137807215,0.2311572180388127
+M0871,shared_doc,phish,0,email,Notes from Tuesday,"Hey Karthik
+
+Karthik from Procurement shared a document with you. Have a look when you get a moment.
+
+Access the file: hxxps://files[.]cloudbox-share[.]test/d/draegccg
+
+Best",0.12131883789173686,0.13327558260415936,0.20714526726249038
+M0876,survey_gift,phish,0,email,Quick 2-minute survey,"Hello team,
+
+Complete a short survey and claim your reward before spots run out.
+
+Claim yours: hxxp://examplecorp-login[.]test/secure/update?id=1844
+
+Thanks a lot",0.9902433343754488,0.7711422304161989,0.33407840924677584
+M0886,survey_gift,phish,0,email,A small thank-you for your feedback,"Hey,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Start here: hxxp://tiny-lnk[.]test/w995d3
+
+Thanks a lot",0.3917409692534856,0.6319942914814232,0.6369402566955044
+M0887,it_pw_expiry_policy,legit,1,email,Reminder: change your password before 13 Oct,"Hi Asha,
+
+This is a mandatory reminder from IT. Update your password by 13 Oct to avoid a lockout.
+
+Self-service: hxxps://intranet[.]examplecorp[.]test/expenses
+
+IT Security",0.020836344518680414,0.21238249177495644,0.249414894830017
+M0896,shared_doc,phish,0,email,Lakshmi shared a file with you,"Hello,
+
+I have put the draft together and would value your thoughts.
+
+Open it here: hxxp://examplecorp-secure[.]test/verify?id=1795
+
+Thanks",0.5274723043445938,0.6958504265808201,0.4746147372675935
+M0907,vendor_bank_change,phish,0,email,Please note our new payment details,"Dear customer,
+
+Following our recent restructuring, the beneficiary account for future invoices has changed.
+
+The new details are at hxxp://secure-examplecorp[.]test/signin?id=6939
+
+Please confirm once updated.",0.9791636554813196,0.8656286883519115,0.8768284359752284
+M0908,it_pw_expiry_policy,legit,1,email,Mandatory password rotation,"Hi Priya,
+
+This is a mandatory reminder from IT. Update your password by 12 Jul to avoid a lockout.
+
+Helpdesk ext 4455 can help.
+
+IT Security",0.22970105095339818,0.5081483217261611,0.6430060323183691
+M0909,vendor_bank_change,phish,0,email,Vendor record update,"Dear Anita,
+
+We are updating our vendor records. Kindly confirm your remittance preferences using the form.
+
+Details are available here: hxxp://secure-examplecorp[.]test/account/confirm?id=3153
+
+With thanks",0.960456220449047,0.8902296384953098,0.7128780671410825
+M0911,payroll_cutoff_urgent,legit,1,email,URGENT: payroll cut-off tomorrow,"Hello,
+
+Please verify your bank details are current on the HR portal before the payroll run.
+
+HR portal: hxxps://intranet[.]examplecorp[.]test/hr/approvals
+
+Regards, HR",0.11007257436250298,0.06992548083928767,0.08496804545105031
+M0917,survey_gift,phish,0,email,A small thank-you for your feedback,"Hi everyone,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Start here: hxxp://examplecorp-login[.]test/account/confirm?id=5323
+
+Thanks a lot",0.7702989490466019,0.7723608356592702,0.6976694882547254
+M0922,ceo_favour,phish,0,sms,,Could you do something for me before the end of the day? Keep it between us for now. Details here when you are ready: hxxp://secure-examplecorp[.]test/account/confirm?id=3754,0.9849320101894071,0.8715096252160349,0.8075190215748712
+M0923,security_awareness,legit,0,email,Do not click suspicious links,"Hello team,
+
+Beware of fake invoices and parcel fees. Verify the sender before you act.
+
+Learn more: hxxps://intranet[.]examplecorp[.]test/selfservice
+
+Security Team",0.018706509954354602,0.35487318756003056,0.774927061133943
+M0927,survey_gift,phish,0,sms,,"Your opinion matters to us, and early responders receive a bonus. Take the survey: hxxps://docs-share-hub[.]test/d/c5t8scyf",0.5547792351072148,0.5223989004210314,0.7135515926681757
+M0930,security_awareness,legit,0,email,Phishing awareness week,"Hi Meera,
+
+Phishing attacks often create urgency and ask for your password. Report them using the report button.
+
+Learn more: hxxps://payments[.]northbridge-vendor[.]test/help
+
+Regards, InfoSec",0.06660803557509065,0.07813533194454766,0.1047292513123279
+M0934,survey_gift,phish,0,sms,,"Your opinion matters to us, and early responders receive a bonus. Claim yours: hxxp://s-hrt[.]test/zm35bs",0.3917409692534856,0.7985558521541128,0.6591746614304353
+M0935,vendor_bank_change,phish,0,email,Vendor record update,"Hello,
+
+Our finance team has moved to a new bank. Please use the new account for your next payment.
+
+The new details are at hxxps://files[.]cloudbox-share[.]test/d/66qa9zyy
+
+Please confirm once updated.",0.13354172253321245,0.150768626697281,0.3698092908694694
+M0937,survey_gift,phish,0,email,"Share your thoughts, rewards inside","Hello team,
+
+Your opinion matters to us, and early responders receive a bonus.
+
+Take the survey: hxxp://tiny-lnk[.]test/m4r3hw
+
+People Team",0.3917409692534856,0.5422749993108251,0.44413814255798084

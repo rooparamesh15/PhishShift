@@ -1,0 +1,14 @@
+step,rows_affected,note
+load_raw,941,raw_messages.csv left unchanged on disk (data/raw/); all fixes applied to a copy
+normalise_channel,237,trim + lowercase (Email/EMAIL/' sms ' -> email/sms)
+map_labels,246,"label spellings (Phish/PHISHING/1, Legit/benign/0) -> {phish, legit}"
+drop_unknown_label,0,rows with unmappable label removed
+parse_dates,380,3 date formats -> ISO yyyy-mm-dd
+drop_bad_dates,0,rows with unparseable date
+fill_missing_sender_type,23,missing sender_domain_type -> 'unknown' (kept as its own category)
+fill_missing_subject,8,empty e-mail subject -> '(no subject)'; SMS keeps empty subject by design
+normalise_whitespace,97,trailing spaces / blank lines trimmed
+strip_attachment_lines,12,'Attachment: file.pdf' lines removed (attachments excluded by SRS)
+defang_urls,100,live-looking http(s):// URLs rewritten to hxxp(s)://host[.]tld (inert strings)
+redact_pii,0,e-mails / phones / card-like numbers / 'password: x' redacted (NFR-02)
+extract_url_features,808,URL traits derived from strings only; links never opened (NFR-01)

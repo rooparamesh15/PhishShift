@@ -1,0 +1,304 @@
+{
+  "rows": {
+    "raw": 941,
+    "clean": 941,
+    "dedup": 711
+  },
+  "class_balance": {
+    "legit": 372,
+    "phish": 339
+  },
+  "channel_by_label": {
+    "legit": {
+      "email": 344,
+      "sms": 28
+    },
+    "phish": {
+      "email": 291,
+      "sms": 48
+    }
+  },
+  "sender_by_label": {
+    "legit": {
+      "external_free": 27,
+      "internal": 275,
+      "lookalike": 9,
+      "unknown": 22,
+      "vendor": 39
+    },
+    "phish": {
+      "external_free": 96,
+      "internal": 44,
+      "lookalike": 114,
+      "unknown": 68,
+      "vendor": 17
+    }
+  },
+  "campaigns": [
+    {
+      "campaign_group": "acct_suspend",
+      "label": "phish",
+      "n": 31,
+      "role": "train"
+    },
+    {
+      "campaign_group": "ceo_favour",
+      "label": "phish",
+      "n": 32,
+      "role": "held-out"
+    },
+    {
+      "campaign_group": "facilities_notice",
+      "label": "legit",
+      "n": 45,
+      "role": "train"
+    },
+    {
+      "campaign_group": "finance_expense",
+      "label": "legit",
+      "n": 38,
+      "role": "train"
+    },
+    {
+      "campaign_group": "helpdesk_ticket",
+      "label": "legit",
+      "n": 40,
+      "role": "held-out"
+    },
+    {
+      "campaign_group": "hr_benefits",
+      "label": "legit",
+      "n": 32,
+      "role": "train"
+    },
+    {
+      "campaign_group": "hr_payroll_update",
+      "label": "legit",
+      "n": 36,
+      "role": "train"
+    },
+    {
+      "campaign_group": "invoice_overdue",
+      "label": "phish",
+      "n": 40,
+      "role": "train"
+    },
+    {
+      "campaign_group": "it_maintenance",
+      "label": "legit",
+      "n": 38,
+      "role": "train"
+    },
+    {
+      "campaign_group": "it_pw_expiry_policy",
+      "label": "legit",
+      "n": 36,
+      "role": "held-out"
+    },
+    {
+      "campaign_group": "it_pw_reset",
+      "label": "legit",
+      "n": 34,
+      "role": "train"
+    },
+    {
+      "campaign_group": "mfa_reset",
+      "label": "phish",
+      "n": 29,
+      "role": "train"
+    },
+    {
+      "campaign_group": "parcel_fee",
+      "label": "phish",
+      "n": 33,
+      "role": "train"
+    },
+    {
+      "campaign_group": "payroll_cutoff_urgent",
+      "label": "legit",
+      "n": 38,
+      "role": "held-out"
+    },
+    {
+      "campaign_group": "payroll_dd",
+      "label": "phish",
+      "n": 34,
+      "role": "train"
+    },
+    {
+      "campaign_group": "pw_expire_click",
+      "label": "phish",
+      "n": 35,
+      "role": "train"
+    },
+    {
+      "campaign_group": "security_awareness",
+      "label": "legit",
+      "n": 35,
+      "role": "held-out"
+    },
+    {
+      "campaign_group": "shared_doc",
+      "label": "phish",
+      "n": 33,
+      "role": "held-out"
+    },
+    {
+      "campaign_group": "survey_gift",
+      "label": "phish",
+      "n": 38,
+      "role": "held-out"
+    },
+    {
+      "campaign_group": "vendor_bank_change",
+      "label": "phish",
+      "n": 34,
+      "role": "held-out"
+    }
+  ],
+  "month_by_label": {
+    "legit": {
+      "2026-03": 20,
+      "2026-04": 44,
+      "2026-05": 67,
+      "2026-06": 61,
+      "2026-07": 30,
+      "2026-08": 55,
+      "2026-09": 78,
+      "2026-10": 17
+    },
+    "phish": {
+      "2026-03": 37,
+      "2026-04": 60,
+      "2026-05": 76,
+      "2026-06": 29,
+      "2026-07": 3,
+      "2026-08": 47,
+      "2026-09": 68,
+      "2026-10": 19
+    }
+  },
+  "missing_after_cleaning": {
+    "subject_or_title": 76,
+    "body_text": 0,
+    "sender_domain_type": 0
+  },
+  "missing_raw": {
+    "subject_or_title": 134,
+    "body_text": 0,
+    "sender_domain_type": 23
+  },
+  "body_length": {
+    "phish": {
+      "mean": 174.8377581120944,
+      "p95": 225.09999999999997
+    },
+    "legit": {
+      "mean": 160.1451612903226,
+      "p95": 214.0
+    }
+  },
+  "length_hist": {
+    "phish": [
+      0,
+      1,
+      91,
+      161,
+      86,
+      0,
+      0
+    ],
+    "legit": [
+      0,
+      5,
+      128,
+      198,
+      41,
+      0,
+      0
+    ]
+  },
+  "length_bins": [
+    "<60",
+    "60-100",
+    "100-150",
+    "150-200",
+    "200-300",
+    "300-500",
+    ">500"
+  ],
+  "outliers": {
+    "body_len_gt_500": 0
+  },
+  "leakage_probes": {
+    "sender_domain_type only": {
+      "holdout_accuracy": 0.8041958041958042
+    },
+    "URL features only": {
+      "holdout_accuracy": 0.8426573426573427
+    },
+    "channel only": {
+      "holdout_accuracy": 0.5454545454545454
+    },
+    "campaign_group only (must NOT be a feature)": {
+      "holdout_accuracy": 0.5209790209790209
+    }
+  },
+  "leakage_notes": [
+    "campaign_group perfectly determines the label, so it is excluded from every model input.",
+    "sender_domain_type and URL traits are partly informative by construction; the 'text only' ablation shows how much of the result depends on them.",
+    "Holdout campaigns are dated later than most training campaigns (time ordering), so a random split would be optimistic.",
+    "Near-identical templates were merged BEFORE splitting (FR-01); see dedup_proof.json for the audit."
+  ],
+  "keyword_overrepresentation": {
+    "password_mentions_by_label": {
+      "legit": 87,
+      "phish": 62
+    },
+    "payroll_mentions_by_label": {
+      "legit": 104,
+      "phish": 28
+    },
+    "urgent_words_by_label": {
+      "phish": 57,
+      "legit": 23
+    },
+    "legit_urgent_flag_rows": 144
+  },
+  "train_top_terms": {
+    "phish": [
+      "f_login_path_1 f_https_0",
+      "f_ip_host_0 f_lookalike_1",
+      "f_subdomains_0 f_login_path_1",
+      "f_lookalike_1 f_subdomains_0",
+      "f_lookalike_1",
+      "f_https_0",
+      "your",
+      "f_login_path_1",
+      "and",
+      "invoice",
+      "in",
+      "f_subdomains_0",
+      "payment",
+      "to",
+      "send_lookalike f_n_urls_1"
+    ],
+    "legit": [
+      "f_subdomains_1",
+      "f_lookalike_0 f_subdomains_1",
+      "f_https_1",
+      "f_login_path_0 f_https_1",
+      "f_subdomains_1 f_login_path_0",
+      "chan_email send_internal",
+      "send_internal",
+      "f_ip_host_0 f_lookalike_0",
+      "f_login_path_0",
+      "on",
+      "send_internal f_n_urls_1",
+      "thanks",
+      "from",
+      "page",
+      "f_lookalike_0"
+    ]
+  }
+}

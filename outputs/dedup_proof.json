@@ -1,0 +1,170 @@
+{
+  "threshold": 0.92,
+  "method": "TF-IDF (1-2 gram) cosine on text with URLs/numbers/names masked; connected components within the same label; keep lowest message_id",
+  "rows_before": 941,
+  "rows_after": 711,
+  "removed": 230,
+  "duplicate_groups": 179,
+  "largest_group": 5,
+  "cross_label_near_duplicates_not_merged": 0,
+  "per_campaign": [
+    {
+      "campaign_group": "acct_suspend",
+      "before": 47,
+      "after": 31,
+      "removed": 16
+    },
+    {
+      "campaign_group": "ceo_favour",
+      "before": 47,
+      "after": 32,
+      "removed": 15
+    },
+    {
+      "campaign_group": "facilities_notice",
+      "before": 46,
+      "after": 45,
+      "removed": 1
+    },
+    {
+      "campaign_group": "finance_expense",
+      "before": 47,
+      "after": 38,
+      "removed": 9
+    },
+    {
+      "campaign_group": "helpdesk_ticket",
+      "before": 47,
+      "after": 40,
+      "removed": 7
+    },
+    {
+      "campaign_group": "hr_benefits",
+      "before": 46,
+      "after": 32,
+      "removed": 14
+    },
+    {
+      "campaign_group": "hr_payroll_update",
+      "before": 45,
+      "after": 36,
+      "removed": 9
+    },
+    {
+      "campaign_group": "invoice_overdue",
+      "before": 51,
+      "after": 40,
+      "removed": 11
+    },
+    {
+      "campaign_group": "it_maintenance",
+      "before": 44,
+      "after": 38,
+      "removed": 6
+    },
+    {
+      "campaign_group": "it_pw_expiry_policy",
+      "before": 45,
+      "after": 36,
+      "removed": 9
+    },
+    {
+      "campaign_group": "it_pw_reset",
+      "before": 48,
+      "after": 34,
+      "removed": 14
+    },
+    {
+      "campaign_group": "mfa_reset",
+      "before": 44,
+      "after": 29,
+      "removed": 15
+    },
+    {
+      "campaign_group": "parcel_fee",
+      "before": 48,
+      "after": 33,
+      "removed": 15
+    },
+    {
+      "campaign_group": "payroll_cutoff_urgent",
+      "before": 50,
+      "after": 38,
+      "removed": 12
+    },
+    {
+      "campaign_group": "payroll_dd",
+      "before": 47,
+      "after": 34,
+      "removed": 13
+    },
+    {
+      "campaign_group": "pw_expire_click",
+      "before": 49,
+      "after": 35,
+      "removed": 14
+    },
+    {
+      "campaign_group": "security_awareness",
+      "before": 51,
+      "after": 35,
+      "removed": 16
+    },
+    {
+      "campaign_group": "shared_doc",
+      "before": 41,
+      "after": 33,
+      "removed": 8
+    },
+    {
+      "campaign_group": "survey_gift",
+      "before": 55,
+      "after": 38,
+      "removed": 17
+    },
+    {
+      "campaign_group": "vendor_bank_change",
+      "before": 43,
+      "after": 34,
+      "removed": 9
+    }
+  ],
+  "cross_split_audit": {
+    "random_split_WITHOUT_dedup": {
+      "n_test": 236,
+      "n_near_dup_with_train": 86,
+      "max_similarity": 1.000000000000001,
+      "histogram": {
+        "<0.50": 0,
+        "0.50-0.70": 14,
+        "0.70-0.90": 122,
+        "0.90-0.92": 14,
+        ">=0.92": 86
+      }
+    },
+    "random_split_after_dedup": {
+      "n_test": 178,
+      "n_near_dup_with_train": 0,
+      "max_similarity": 0.9187549250684885,
+      "histogram": {
+        "<0.50": 0,
+        "0.50-0.70": 22,
+        "0.70-0.90": 144,
+        "0.90-0.92": 12,
+        ">=0.92": 0
+      }
+    },
+    "campaign_holdout_after_dedup": {
+      "n_test": 286,
+      "n_near_dup_with_train": 0,
+      "max_similarity": 0.26381436917861534,
+      "histogram": {
+        "<0.50": 286,
+        "0.50-0.70": 0,
+        "0.70-0.90": 0,
+        "0.90-0.92": 0,
+        ">=0.92": 0
+      }
+    }
+  }
+}

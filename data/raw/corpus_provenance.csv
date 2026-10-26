@@ -1,0 +1,21 @@
+campaign_group,label,split_role,raw_rows,date_window,authored_by,licence
+acct_suspend,phish,train/validation,47,2026-03-01..2026-04-10,project team (original text),CC0 / educational use
+pw_expire_click,phish,train/validation,49,2026-03-16..2026-04-30,project team (original text),CC0 / educational use
+payroll_dd,phish,train/validation,47,2026-03-31..2026-05-20,project team (original text),CC0 / educational use
+parcel_fee,phish,train/validation,48,2026-04-15..2026-05-25,project team (original text),CC0 / educational use
+invoice_overdue,phish,train/validation,51,2026-04-30..2026-06-14,project team (original text),CC0 / educational use
+mfa_reset,phish,train/validation,44,2026-05-15..2026-06-24,project team (original text),CC0 / educational use
+ceo_favour,phish,held-out test,47,2026-07-29..2026-09-07,project team (original text),CC0 / educational use
+shared_doc,phish,held-out test,41,2026-08-13..2026-09-22,project team (original text),CC0 / educational use
+vendor_bank_change,phish,held-out test,43,2026-08-28..2026-10-02,project team (original text),CC0 / educational use
+survey_gift,phish,held-out test,55,2026-09-12..2026-10-17,project team (original text),CC0 / educational use
+it_pw_reset,legit,train/validation,48,2026-03-01..2026-06-29,project team (original text),CC0 / educational use
+hr_payroll_update,legit,train/validation,45,2026-03-11..2026-06-29,project team (original text),CC0 / educational use
+it_maintenance,legit,train/validation,44,2026-03-21..2026-07-09,project team (original text),CC0 / educational use
+finance_expense,legit,train/validation,47,2026-03-31..2026-07-19,project team (original text),CC0 / educational use
+facilities_notice,legit,train/validation,46,2026-04-10..2026-07-29,project team (original text),CC0 / educational use
+hr_benefits,legit,train/validation,46,2026-04-20..2026-08-08,project team (original text),CC0 / educational use
+it_pw_expiry_policy,legit,held-out test,45,2026-07-29..2026-09-12,project team (original text),CC0 / educational use
+payroll_cutoff_urgent,legit,held-out test,50,2026-08-08..2026-09-22,project team (original text),CC0 / educational use
+helpdesk_ticket,legit,held-out test,47,2026-08-18..2026-09-27,project team (original text),CC0 / educational use
+security_awareness,legit,held-out test,51,2026-09-02..2026-10-12,project team (original text),CC0 / educational use
