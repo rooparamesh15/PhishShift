@@ -164,8 +164,8 @@ class Handler(BaseHTTPRequestHandler):
 
 def serve(port=8765, open_browser=True):
     load_bundle()
-    httpd = ThreadingHTTPServer(("127.0.0.1", port), Handler)
-    url = f"http://127.0.0.1:{port}/"
+    httpd = ThreadingHTTPServer(("0.0.0.0", port), Handler)
+    url = f"http://0.0.0.0:{port}/"
     print(f"\n  PhishShift dashboard running at {url}\n  (press Ctrl+C to stop)\n", flush=True)
     if open_browser:
         threading.Timer(1.0, lambda: webbrowser.open(url)).start()
